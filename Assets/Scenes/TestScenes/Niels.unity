@@ -167,6 +167,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530363d4d7227ae4b8231f80a715233d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArcadeInputs: 00000000000000000000000000000000000000000000000000000000
+  InputNames:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  filePath: 
+  fileName: /Inputs.txt
 --- !u!1 &888441853
 GameObject:
   m_ObjectHideFlags: 0
