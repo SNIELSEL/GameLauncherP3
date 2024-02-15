@@ -1,0 +1,17 @@
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\bin\Debug\net6.0\InputEmulator.exe
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\bin\Debug\net6.0\InputEmulator.deps.json
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\bin\Debug\net6.0\InputEmulator.runtimeconfig.json
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\bin\Debug\net6.0\InputEmulator.dll
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\bin\Debug\net6.0\InputEmulator.pdb
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\bin\Debug\net6.0\WindowsInput.dll
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\obj\Debug\net6.0\InputEmulator.csproj.AssemblyReference.cache
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\obj\Debug\net6.0\InputEmulator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\obj\Debug\net6.0\InputEmulator.AssemblyInfoInputs.cache
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\obj\Debug\net6.0\InputEmulator.AssemblyInfo.cs
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\obj\Debug\net6.0\InputEmulator.csproj.CoreCompileInputs.cache
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\obj\Debug\net6.0\InputEmulator.csproj.CopyComplete
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\obj\Debug\net6.0\InputEmulator.dll
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\obj\Debug\net6.0\refint\InputEmulator.dll
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\obj\Debug\net6.0\InputEmulator.pdb
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\obj\Debug\net6.0\InputEmulator.genruntimeconfig.cache
+C:\Users\offic\Unity projects\GameLauncherP3\InputEmulator\InputEmulatorP3\InputEmulator\obj\Debug\net6.0\ref\InputEmulator.dll
