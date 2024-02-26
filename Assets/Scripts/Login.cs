@@ -5,6 +5,7 @@ using TMPro;
 using System.Text;
 public class Login : MonoBehaviour
 {
+    #region variables
     [Tooltip("if this bool is true than the user is logged into an (admin) acount")]
     public bool isAdmin;
 
@@ -16,6 +17,12 @@ public class Login : MonoBehaviour
     [SerializeField] private TMP_InputField username;
     [SerializeField] private TMP_InputField password;
 
+    [Header("InputField Refrence for changing Username and Password")]
+    [SerializeField] private TMP_InputField newUsername;
+    [SerializeField] private TMP_InputField confirmNewUsername;
+    [SerializeField] private TMP_InputField newPassword;
+    [SerializeField] private TMP_InputField confirmNewPassword;
+
     [Header("Standard values")]
     [Tooltip("On the first time starting the app it will set and save the username to this variable")]
     [SerializeField] private string AdminUsername;
@@ -26,6 +33,7 @@ public class Login : MonoBehaviour
 
     [Header("Recovery Key text")]
     [SerializeField] private TMP_Text recoveryKeyText;
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -85,4 +93,28 @@ public class Login : MonoBehaviour
         return stringBuilder.ToString();
     }
 
+    #region Changing username and password
+    public void ChangeUsername()
+    {
+        if (newUsername.text != "" && newUsername.text == confirmNewUsername.text)
+        {
+            PlayerPrefs.SetString("Username", newUsername.text);
+            print("Username set succesfull new username is: " + PlayerPrefs.GetString("Username"));
+        }
+        newUsername.text = "";
+        confirmNewUsername.text = "";
+    }
+
+    public void ChangePassword()
+    {
+        if (newPassword.text != "" && newPassword.text == confirmNewPassword.text)
+        {
+            PlayerPrefs.SetString("Password", newPassword.text);
+            print("Password set succesfull new Password is: " + PlayerPrefs.GetString("Password"));
+        }
+        newPassword.text = "";
+        confirmNewPassword.text = "";
+    }
+
+    #endregion
 }
