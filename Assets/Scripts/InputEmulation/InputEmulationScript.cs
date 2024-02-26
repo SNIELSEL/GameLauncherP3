@@ -4,6 +4,8 @@ using WindowsInput.Native;
 using WindowsInput;
 using System.IO;
 using Unity.VisualScripting;
+using UnityRawInput;
+using System.Collections;
 
 public class InputEmulationScript : MonoBehaviour
 {
@@ -12,6 +14,20 @@ public class InputEmulationScript : MonoBehaviour
     [SerializeField] string[] InputNames;
     [SerializeField] string filePath, fileName;
     private int currentLineIndex = 0;
+
+    private bool test;
+
+    private void OnDisable()
+    {
+        RawInput.WorkInBackground = false;
+        RawInput.Stop();
+    }
+
+    private void OnEnable()
+    {
+        RawInput.Start();
+        RawInput.WorkInBackground = true;
+    }
 
     void Start()
     {
@@ -42,9 +58,26 @@ public class InputEmulationScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if(test == true)
         {
+            StartCoroutine(ResetTestBool());
+        }
+
+        if (RawInput.IsKeyDown(RawKey.MiddleButton) && test == false) 
+        {
+            test = true;
             sim.Keyboard.KeyPress(VirtualKeyCode.LWIN);
         }
+
+        if (RawInput.IsKeyDown(RawKey.Escape) && test == false)
+        {
+            Application.Quit();
+        }
+    }
+
+    IEnumerator ResetTestBool()
+    {
+        yield return new WaitForSeconds(0.15f);
+        test = false;
     }
 }
