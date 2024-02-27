@@ -32,11 +32,11 @@ public class FilterTest : MonoBehaviour
         select score; //must end with select or group
 
 
-        IEnumerable<string> nameQuery = //query variable
+       /* IEnumerable<string> nameQuery = //query variable
         from name in names //required
         //where name// optional
         orderby name ascending // optional
-        select name; //must end with select or group
+        select name; //must end with select or group*/
 
         // je begint een query expression met een from en hij eindigt bij de laatste select of group.
         foreach (var testScore in scoreQuery)

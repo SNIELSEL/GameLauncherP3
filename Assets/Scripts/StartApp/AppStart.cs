@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.Windows;
 using System.IO;
@@ -22,11 +21,13 @@ public class AppStart : MonoBehaviour
 
     public void StartGame1()
     {
-       //Process.Start(Environment.CurrentDirectory + "/GameLauncherTest.4Musketiers/4Musketiers,exe");
+        string path = Application.dataPath + "/../Games/4 musketiers/4MusketiersS2P4";
+        Process.Start(path);
     }
 
     public void StartGame2()
     {
-
+        string path = Application.dataPath + "/../Games/TheCleanQueen Build 5/TheCleanQueen";
+        Process.Start(path);
     }
 }
