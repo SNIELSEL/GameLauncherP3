@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +5,7 @@ public class Fullscreen : MonoBehaviour
 {
     public void Awake()
     {
-        if(gameObject.GetComponent<Toggle>().isOn == true && Screen.fullScreen != Screen.fullScreen)
+        if (gameObject.GetComponent<Toggle>().isOn == true && Screen.fullScreen != Screen.fullScreen)
         {
             Screen.fullScreen = Screen.fullScreen;
         }

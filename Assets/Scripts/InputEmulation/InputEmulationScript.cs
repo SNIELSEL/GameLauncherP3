@@ -1,11 +1,9 @@
-using UnityEditor;
-using UnityEngine;
-using WindowsInput.Native;
-using WindowsInput;
-using System.IO;
-using Unity.VisualScripting;
-using UnityRawInput;
 using System.Collections;
+using System.IO;
+using UnityEngine;
+using UnityRawInput;
+using WindowsInput;
+using WindowsInput.Native;
 
 public class InputEmulationScript : MonoBehaviour
 {
@@ -33,7 +31,7 @@ public class InputEmulationScript : MonoBehaviour
     {
         sim = new InputSimulator();
 
-        filePath = Application.dataPath + fileName;
+        //filePath = Application.dataPath + fileName;
 
         for (int i = 0; i < ArcadeInputs.Length; i++)
         {
@@ -46,7 +44,7 @@ public class InputEmulationScript : MonoBehaviour
     {
         string[] lines = File.ReadAllLines(filePath);
 
-        if(index < lines.Length)
+        if (index < lines.Length)
         {
             return lines[index];
         }
@@ -58,15 +56,16 @@ public class InputEmulationScript : MonoBehaviour
 
     void Update()
     {
-        if(test == true)
+        if (test == true)
         {
             StartCoroutine(ResetTestBool());
         }
 
-        if (RawInput.IsKeyDown(RawKey.MiddleButton) && test == false) 
+        if (RawInput.IsKeyDown(RawKey.MiddleButton) && test == false)
         {
             test = true;
             sim.Keyboard.KeyPress(VirtualKeyCode.LWIN);
+            sim.Keyboard.KeyPress(VirtualKeyCode.VK_M);
         }
 
         if (RawInput.IsKeyDown(RawKey.Escape) && test == false)
