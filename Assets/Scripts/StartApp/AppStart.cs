@@ -21,7 +21,7 @@ public class AppStart : MonoBehaviour
 
     public void StartGame1()
     {
-        string path = Application.dataPath + "/../Games/4 musketiers/4MusketiersS2P4";
+        string path = Application.dataPath + "/../Games/ArcadePong/PongFlex";
         Process.Start(path);
     }
 

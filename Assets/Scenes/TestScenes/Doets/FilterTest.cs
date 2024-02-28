@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,25 +6,15 @@ using UnityEngine;
 
 public class FilterTest : MonoBehaviour
 {
-     //int[] scores = { 10, 92, 02, 56, 48, 23 };
-     List<int> primeNumers = new List<int>();
+    //int[] scores = { 10, 92, 02, 56, 48, 23 };
+    int[] primeNumers = { 10, 92, 02, 56, 48, 23 };
 
-     List<string> names = new List<string>();
+    //List<string> names = new List<string>();
+     string[] names = {"eeeeeh", "nessie", "haaaaaaaaai", "doeeeeei", "peerv", "jezus", "naast" };
 
     // Execute the query to produce the results
     private void Start()
     {
-        primeNumers.Add(10);
-        primeNumers.Add(92);
-        primeNumers.Add(02);
-        primeNumers.Add(56);
-        primeNumers.Add(48);
-        primeNumers.Add(23);
-
-        names.Add("ewuifeiuw");
-        names.Add("alaneiono");
-        names.Add("wiqwqbnoin");
-        names.Add("opomjpnmmm");
 
         IEnumerable<int> scoreQuery = //query variable
         from score in primeNumers //required
@@ -32,11 +23,27 @@ public class FilterTest : MonoBehaviour
         select score; //must end with select or group
 
 
-       /* IEnumerable<string> nameQuery = //query variable
-        from name in names //required
-        //where name// optional
-        orderby name ascending // optional
-        select name; //must end with select or group*/
+        // Array.Sort(names, (x, y) => String.Compare(x, y));
+        Array.Sort(names);
+        Console.WriteLine("After sorting the entire array by using the default comparer:");
+        DisplayValues(names);
+
+
+        static void DisplayValues(String[] arr)
+        {
+            for (int i = arr.GetLowerBound(0); i <= arr.GetUpperBound(0);
+                  i++)
+            {
+                Debug.Log( arr[i]);
+            }
+            Console.WriteLine();
+        }
+
+        /* IEnumerable<string> nameQuery = //query variable
+         from name in names //required
+         //where name// optional
+         orderby name ascending // optional
+         select name; //must end with select or group*/
 
         // je begint een query expression met een from en hij eindigt bij de laatste select of group.
         foreach (var testScore in scoreQuery)
