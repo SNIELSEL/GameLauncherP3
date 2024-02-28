@@ -33,6 +33,15 @@ public class Login : MonoBehaviour
 
     [Header("Recovery Key text")]
     [SerializeField] private TMP_Text recoveryKeyText;
+
+    [Header("Message/Error text")]
+    [Tooltip("is used for login errors")]
+    [SerializeField] private TMP_Text errorText;
+    private int wrongTries;
+
+    [SerializeField] private TMP_Text changeUsernameTextMessage;
+    [SerializeField] private TMP_Text changePasswordTextMessage;
+    
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -62,11 +71,24 @@ public class Login : MonoBehaviour
             loginScreen.SetActive(false);
             acountScreen.SetActive(true);
             recoveryKeyText.text = "";
+            wrongTries = 0;
         }
         else
         {
             print("Login failed");
-            // Set text on screen: Login failed.
+            wrongTries += 1;
+            if (wrongTries >= 3)
+            {
+                errorText.text = "You can use the recovery key in the password slot to login";
+            }
+            else
+            {
+                errorText.text = "Wrong username or password";
+            }
+        }
+        if (wrongTries == 0)
+        {
+            errorText.text = "";
         }
         username.text = "";
         password.text = "";
@@ -99,7 +121,13 @@ public class Login : MonoBehaviour
         if (newUsername.text != "" && newUsername.text == confirmNewUsername.text)
         {
             PlayerPrefs.SetString("Username", newUsername.text);
-            print("Username set succesfull new username is: " + PlayerPrefs.GetString("Username"));
+            changeUsernameTextMessage.color = Color.green;
+            changeUsernameTextMessage.text = "Username Changed succesfully";
+        }
+        else
+        {
+            changeUsernameTextMessage.color = Color.red;
+            changeUsernameTextMessage.text = "Both fields have to be the exact same and can't be empty";
         }
         newUsername.text = "";
         confirmNewUsername.text = "";
@@ -110,7 +138,13 @@ public class Login : MonoBehaviour
         if (newPassword.text != "" && newPassword.text == confirmNewPassword.text)
         {
             PlayerPrefs.SetString("Password", newPassword.text);
-            print("Password set succesfull new Password is: " + PlayerPrefs.GetString("Password"));
+            changePasswordTextMessage.color = Color.green;
+            changePasswordTextMessage.text = "Password changed succesfully";
+        }
+        else
+        {
+            changePasswordTextMessage.color = Color.red;
+            changePasswordTextMessage.text = "Both fields have to be the exact same and can't be empty";
         }
         newPassword.text = "";
         confirmNewPassword.text = "";
