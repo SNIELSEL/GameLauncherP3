@@ -33,6 +33,8 @@ public class Login : MonoBehaviour
 
     [Header("Recovery Key text")]
     [SerializeField] private TMP_Text recoveryKeyText;
+    [Tooltip("This is the copy button for the recovery key")]
+    [SerializeField] private GameObject copyButton;
 
     [Header("Message/Error text")]
     [Tooltip("is used for login errors")]
@@ -58,7 +60,8 @@ public class Login : MonoBehaviour
         {
             recoveryKey = GenerateRandomString(8);
             PlayerPrefs.SetString("Recoverykey", recoveryKey);
-            recoveryKeyText.text = recoveryKey;
+            recoveryKeyText.text = "This is your recovery key save it before loging in this is the only time you get it! \n\n" +recoveryKey;
+            copyButton.SetActive(true);
         }
     }
 
@@ -72,6 +75,7 @@ public class Login : MonoBehaviour
             acountScreen.SetActive(true);
             recoveryKeyText.text = "";
             wrongTries = 0;
+            copyButton.SetActive(false);
         }
         else
         {
@@ -151,4 +155,9 @@ public class Login : MonoBehaviour
     }
 
     #endregion
+
+    public void CopyButton()
+    {
+        GUIUtility.systemCopyBuffer = recoveryKey;
+    }
 }
