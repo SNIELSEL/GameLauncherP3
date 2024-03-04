@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class GameProfile : MonoBehaviour
 {
-    public BuildYear buildYear;
+   /* public BuildYear buildYear;
+    public StudentYear studentYear;*/
 
 
     // Start is called before the first frame update
@@ -31,6 +32,7 @@ public class GameProfile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // checks if bools are turned on to filter
+
     }
 }

@@ -2,16 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FilterTest : MonoBehaviour
 {
-    //int[] scores = { 10, 92, 02, 56, 48, 23 };
     int[] primeNumers = { 10, 92, 02, 56, 48, 23 };
+    [SerializeField]string[] names; //{"eeeeeh", "nessie", "haaaaaaaaai", "doeeeeei", "peer", "jezus", "naast" }
+    [SerializeField] TMP_Text[] AAAAH;
 
-    //List<string> names = new List<string>();
-     string[] names = {"eeeeeh", "nessie", "haaaaaaaaai", "doeeeeei", "peerv", "jezus", "naast" };
+    public BuildYear buildYear;
+    public StudentYear studentYear;
 
+    bool sortAlphabet;
     // Execute the query to produce the results
     private void Start()
     {
@@ -22,23 +26,23 @@ public class FilterTest : MonoBehaviour
         orderby score descending // optional
         select score; //must end with select or group
 
-
         // Array.Sort(names, (x, y) => String.Compare(x, y));
         Array.Sort(names);
-        Console.WriteLine("After sorting the entire array by using the default comparer:");
-        DisplayValues(names);
 
-
-        static void DisplayValues(String[] arr)
+       /* static void DisplayValues(String[] arr)
         {
             for (int i = arr.GetLowerBound(0); i <= arr.GetUpperBound(0);
                   i++)
             {
                 Debug.Log( arr[i]);
-            }
+                
+            }   
             Console.WriteLine();
-        }
+        }*/
 
+        
+
+        //SortThisShit();
         /* IEnumerable<string> nameQuery = //query variable
          from name in names //required
          //where name// optional
@@ -49,11 +53,24 @@ public class FilterTest : MonoBehaviour
         foreach (var testScore in scoreQuery)
         {
             Debug.Log(testScore);
+           
+        }
+       
+    }
 
-        }
-        foreach (var name in names)
+    public void SortThisShit()
+    {
+        for (int i = 0; i < AAAAH.Length; i++)
         {
-            Debug.Log(name);
+            AAAAH[i].text = names[i];
+            sortAlphabet = false;
+            
         }
+        if (!sortAlphabet)
+        {
+            AAAAH = null;
+            sortAlphabet = true;
+        }
+        
     }
 }

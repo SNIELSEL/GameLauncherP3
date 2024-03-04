@@ -1,4 +1,5 @@
-public enum BuildYear {
+public enum BuildYear 
+{
     Year2019 = 0,
     Year2020 = 1,
     Year2021 = 2,
