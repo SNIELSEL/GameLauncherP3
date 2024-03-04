@@ -910,8 +910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32eb91b10e028c4d8be919a53489bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rickrollLink: https://youtu.be/xvFZjo5PgG0?si=ABuAGdyj4BD6fSxR
-  kaasLink: https://upload.wikimedia.org/wikipedia/commons/2/2d/Kaas_op_planken.jpg
+  link: 
 --- !u!1 &322089323
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,9 +945,9 @@ MonoBehaviour:
   - nessie
   - haaaaaaaaai
   - doeeeeei
-  - peer
-  - jezus
-  - naast
+  - aaaaaaaaaaaah
+  - god
+  - abbbb
   AAAAH:
   - {fileID: 52209804}
   - {fileID: 2136912342}
