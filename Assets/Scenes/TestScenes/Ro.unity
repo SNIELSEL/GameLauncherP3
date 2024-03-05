@@ -237,7 +237,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 27.5}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 230, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &70990841
 MonoBehaviour:
@@ -252,12 +252,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1550096247}
+    m_SelectOnDown: {fileID: 1488014025}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 1552112554}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
-  m_GlobalPointSize: 14
+  m_GlobalPointSize: 22
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -338,6 +338,54 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 156318528}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1038796930}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 541272338}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1209660285}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1019,7 +1067,91 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 156318528}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 70990841}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1435132292}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1550096247}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1038796930}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 541272338}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1209660285}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls: []
@@ -1795,12 +1927,12 @@ PrefabInstance:
     - target: {fileID: 3820982018958252027, guid: 7e07615fc50999746bcfb0e0a180e0a3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3820982018958252027, guid: 7e07615fc50999746bcfb0e0a180e0a3,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3820982018958252027, guid: 7e07615fc50999746bcfb0e0a180e0a3,
         type: 3}
@@ -1825,7 +1957,7 @@ PrefabInstance:
     - target: {fileID: 3820982018958252027, guid: 7e07615fc50999746bcfb0e0a180e0a3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -63.111485
       objectReference: {fileID: 0}
     - target: {fileID: 4481264120162341562, guid: 7e07615fc50999746bcfb0e0a180e0a3,
         type: 3}
@@ -1882,11 +2014,31 @@ PrefabInstance:
       propertyPath: m_text
       value: Login
       objectReference: {fileID: 0}
+    - target: {fileID: 5640260564397079166, guid: 7e07615fc50999746bcfb0e0a180e0a3,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640260564397079166, guid: 7e07615fc50999746bcfb0e0a180e0a3,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 7866764751405410475, guid: 7e07615fc50999746bcfb0e0a180e0a3,
         type: 3}
       propertyPath: m_Name
       value: Login
       objectReference: {fileID: 0}
+    - target: {fileID: 8467147989942532894, guid: 7e07615fc50999746bcfb0e0a180e0a3,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467147989942532894, guid: 7e07615fc50999746bcfb0e0a180e0a3,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 70990841}
     - target: {fileID: 8467147989942532894, guid: 7e07615fc50999746bcfb0e0a180e0a3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2275,7 +2427,91 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 541272338}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 70990841}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1435132292}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 156318528}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1038796930}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1550096247}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1209660285}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls: []
@@ -2756,7 +2992,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 840725000}
+    m_TransformParent: {fileID: 813752525}
     m_Modifications:
     - target: {fileID: 280649609724894311, guid: 072bd3bd89f9e164c81df347d703dd43,
         type: 3}
@@ -2795,13 +3031,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3774484480725636881, guid: 072bd3bd89f9e164c81df347d703dd43,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774484480725636881, guid: 072bd3bd89f9e164c81df347d703dd43,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774484480725636881, guid: 072bd3bd89f9e164c81df347d703dd43,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774484480725636881, guid: 072bd3bd89f9e164c81df347d703dd43,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -371.63794
+      value: -575.74634
       objectReference: {fileID: 0}
     - target: {fileID: 3774484480725636881, guid: 072bd3bd89f9e164c81df347d703dd43,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -316.59766
+      value: -492.9419
       objectReference: {fileID: 0}
     - target: {fileID: 3774484480725636881, guid: 072bd3bd89f9e164c81df347d703dd43,
         type: 3}
@@ -2816,17 +3067,17 @@ PrefabInstance:
     - target: {fileID: 3774484480725636881, guid: 072bd3bd89f9e164c81df347d703dd43,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3774484480725636881, guid: 072bd3bd89f9e164c81df347d703dd43,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3774484480725636881, guid: 072bd3bd89f9e164c81df347d703dd43,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3774484480725636881, guid: 072bd3bd89f9e164c81df347d703dd43,
         type: 3}
@@ -2842,6 +3093,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774484480725636881, guid: 072bd3bd89f9e164c81df347d703dd43,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4773629752614834341, guid: 072bd3bd89f9e164c81df347d703dd43,
         type: 3}
@@ -3597,8 +3853,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4004,10 +4260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -4024,8 +4280,8 @@ Canvas:
   m_GameObject: {fileID: 813752521}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 940608825}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4051,6 +4307,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1310236906}
+  - {fileID: 1435132293}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4266,7 +4523,6 @@ RectTransform:
   - {fileID: 70990840}
   - {fileID: 1959596458}
   - {fileID: 625443950}
-  - {fileID: 1435132293}
   m_Father: {fileID: 1310236906}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4801,7 +5057,91 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1038796930}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 70990841}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1435132292}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 156318528}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1550096247}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 541272338}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1209660285}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls: []
@@ -5212,7 +5552,7 @@ PrefabInstance:
     - target: {fileID: 898236111757326059, guid: 19026232b4b5e0c48a91a75003110648,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 170.5
+      value: 235.67801
       objectReference: {fileID: 0}
     - target: {fileID: 898236111757326059, guid: 19026232b4b5e0c48a91a75003110648,
         type: 3}
@@ -5262,22 +5602,22 @@ PrefabInstance:
     - target: {fileID: 1388240953519673404, guid: 19026232b4b5e0c48a91a75003110648,
         type: 3}
       propertyPath: m_fontSize
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1388240953519673404, guid: 19026232b4b5e0c48a91a75003110648,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3030473224923859375, guid: 19026232b4b5e0c48a91a75003110648,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 350
+      value: 850
       objectReference: {fileID: 0}
     - target: {fileID: 3030473224923859375, guid: 19026232b4b5e0c48a91a75003110648,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3030473224923859375, guid: 19026232b4b5e0c48a91a75003110648,
         type: 3}
@@ -5587,7 +5927,91 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1209660285}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 70990841}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1435132292}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 156318528}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1038796930}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 541272338}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1550096247}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls: []
@@ -6379,6 +6803,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d783197c81bdcb742b42228f49c97363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1488014023 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7115982333040495241, guid: 7e07615fc50999746bcfb0e0a180e0a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 310149969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1488014025 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8467147989942532894, guid: 7e07615fc50999746bcfb0e0a180e0a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 310149969}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488014023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1489541930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 898236111757326059, guid: 19026232b4b5e0c48a91a75003110648,
@@ -6540,7 +6982,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 154.5}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 230, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1550096247
 MonoBehaviour:
@@ -6555,10 +6997,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 70990841}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -6599,7 +7041,7 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
-  m_GlobalPointSize: 14
+  m_GlobalPointSize: 22
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -6641,6 +7083,54 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 156318528}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1038796930}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 541272338}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435132294}
+        m_TargetAssemblyTypeName: SelectTextBox, Assembly-CSharp
+        m_MethodName: DeselectColor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1209660285}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_InputField, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6816,8 +7306,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6916,7 +7406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1488014023}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1638867442
@@ -7045,8 +7535,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8145,7 +8635,7 @@ PrefabInstance:
     - target: {fileID: 3865661655285952212, guid: 5fac25b05207b5245985506c7cd34ce1,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 46.753586
       objectReference: {fileID: 0}
     - target: {fileID: 3865661655285952212, guid: 5fac25b05207b5245985506c7cd34ce1,
         type: 3}
@@ -8160,7 +8650,7 @@ PrefabInstance:
     - target: {fileID: 4548291303007308680, guid: 5fac25b05207b5245985506c7cd34ce1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 280
+      value: 374.02872
       objectReference: {fileID: 0}
     - target: {fileID: 4548291303007308680, guid: 5fac25b05207b5245985506c7cd34ce1,
         type: 3}
@@ -8230,12 +8720,12 @@ PrefabInstance:
     - target: {fileID: 6271991465130454967, guid: 5fac25b05207b5245985506c7cd34ce1,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6271991465130454967, guid: 5fac25b05207b5245985506c7cd34ce1,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6271991465130454967, guid: 5fac25b05207b5245985506c7cd34ce1,
         type: 3}
@@ -8259,8 +8749,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7173179261197377123, guid: 5fac25b05207b5245985506c7cd34ce1,
         type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 76
+      objectReference: {fileID: 0}
+    - target: {fileID: 7173179261197377123, guid: 5fac25b05207b5245985506c7cd34ce1,
+        type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 37
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 7173179261197377123, guid: 5fac25b05207b5245985506c7cd34ce1,
         type: 3}
@@ -8290,12 +8785,12 @@ PrefabInstance:
     - target: {fileID: 7442110566379919671, guid: 5fac25b05207b5245985506c7cd34ce1,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7442110566379919671, guid: 5fac25b05207b5245985506c7cd34ce1,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8386,8 +8881,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
