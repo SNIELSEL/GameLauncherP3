@@ -18,6 +18,7 @@ public class Shift : MonoBehaviour
         {
             for (int i = 0; i < typing.Length; i++)
             {
+                typing[i].Shift();
                 typing[i].GetComponent<TMP_Text>().text = typing[i].GetComponent<TMP_Text>().text.ToUpper();
             }
         }
@@ -26,6 +27,7 @@ public class Shift : MonoBehaviour
         {
             for (int i = 0; i < typing.Length; i++)
             {
+                typing[i].Shift();
                 typing[i].GetComponent<TMP_Text>().text = typing[i].GetComponent<TMP_Text>().text.ToLower();
             }
         }
