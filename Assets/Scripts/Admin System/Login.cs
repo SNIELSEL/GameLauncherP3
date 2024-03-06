@@ -3,25 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Text;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 public class Login : MonoBehaviour
 {
     #region variables
     [Tooltip("if this bool is true than the user is logged into an (admin) acount")]
     public bool isAdmin;
 
+    [Header("Eventsystem variables")]
+    [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private GameObject nextSelectedButton;
     [Header("Screens")]
     [SerializeField] private GameObject loginScreen;
     [SerializeField] private GameObject acountScreen;
 
     [Header("InputField Refrence")]
-    [SerializeField] private TMP_InputField username;
-    [SerializeField] private TMP_InputField password;
+    [SerializeField] private TMP_Text username;
+    [SerializeField] private TMP_Text password;
 
     [Header("InputField Refrence for changing Username and Password")]
-    [SerializeField] private TMP_InputField newUsername;
-    [SerializeField] private TMP_InputField confirmNewUsername;
-    [SerializeField] private TMP_InputField newPassword;
-    [SerializeField] private TMP_InputField confirmNewPassword;
+    [SerializeField] private TMP_Text newUsername;
+    [SerializeField] private TMP_Text confirmNewUsername;
+    [SerializeField] private TMP_Text newPassword;
+    [SerializeField] private TMP_Text confirmNewPassword;
 
     [Header("Standard values")]
     [Tooltip("On the first time starting the app it will set and save the username to this variable")]
@@ -33,8 +38,6 @@ public class Login : MonoBehaviour
 
     [Header("Recovery Key text")]
     [SerializeField] private TMP_Text recoveryKeyText;
-    [Tooltip("This is the copy button for the recovery key")]
-    [SerializeField] private GameObject copyButton;
 
     [Header("Message/Error text")]
     [Tooltip("is used for login errors")]
@@ -61,7 +64,6 @@ public class Login : MonoBehaviour
             recoveryKey = GenerateRandomString(8);
             PlayerPrefs.SetString("Recoverykey", recoveryKey);
             recoveryKeyText.text = "This is your recovery key save it before loging in this is the only time you get it! \n\n" +recoveryKey;
-            copyButton.SetActive(true);
         }
     }
 
@@ -75,7 +77,7 @@ public class Login : MonoBehaviour
             acountScreen.SetActive(true);
             recoveryKeyText.text = "";
             wrongTries = 0;
-            copyButton.SetActive(false);
+            eventSystem.SetSelectedGameObject(nextSelectedButton);
         }
         else
         {
@@ -156,8 +158,5 @@ public class Login : MonoBehaviour
 
     #endregion
 
-    public void CopyButton()
-    {
-        GUIUtility.systemCopyBuffer = recoveryKey;
-    }
+
 }

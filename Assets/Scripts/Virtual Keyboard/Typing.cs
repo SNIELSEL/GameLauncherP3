@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Typing : MonoBehaviour
 {
-    public TMP_InputField selectedInput;
+    public TMP_Text selectedInput;
     [SerializeField] private string uncapped, capped;
     private TMP_Text text;
     [SerializeField] private bool symbol;

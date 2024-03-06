@@ -7,12 +7,13 @@ using UnityEngine.UI;
 public class HidePassword : MonoBehaviour
 {
     [SerializeField] private Toggle hide;
+    [SerializeField] private TMP_Text password, hiddenPassword;
     
     public void OnToggle()
     {
         if (hide.isOn)
         {
-            gameObject.GetComponent<TMP_InputField>().contentType = TMP_InputField.ContentType.Password;
+
         }
         else
         {

@@ -5,7 +5,7 @@ using TMPro;
 
 public class Backspace : MonoBehaviour
 {
-    public TMP_InputField selectedInputField;
+    public TMP_Text selectedInputField;
 
     public void OnButtonClick()
     {
