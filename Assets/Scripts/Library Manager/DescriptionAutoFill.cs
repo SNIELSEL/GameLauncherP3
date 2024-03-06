@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using TMPro;
+using System.Reflection;
 using UnityEngine.UI;
 
 public class DescriptionAutoFill : MonoBehaviour
@@ -9,6 +10,7 @@ public class DescriptionAutoFill : MonoBehaviour
 
     [SerializeField] private string filePath;
     [SerializeField] private string imageFilePath;
+    [SerializeField] private string exeFilePath;
     [SerializeField] private string fileName;
     [SerializeField] private string[] lineText;
     public string[] gameFolders;
@@ -33,7 +35,7 @@ public class DescriptionAutoFill : MonoBehaviour
         {
             filePath = gameFolders[i] + "/Description.txt";
 
-            GameObject game = Instantiate(gameButtonPrefab, transform.position, transform.rotation);
+            GameObject requirementChecker = Instantiate(gameButtonPrefab, transform.position, transform.rotation);
     
             string[] lines = File.ReadAllLines(filePath);
             lineText = new string[lines.Length];
@@ -44,40 +46,45 @@ public class DescriptionAutoFill : MonoBehaviour
 
                 if (lineText[j] == "Name:")
                 {
-                    game.GetComponent<RequirmentCheck>().gameName = GetLineAtIndex(j + 1);
+                    requirementChecker.GetComponent<RequirmentCheck>().gameName = GetLineAtIndex(j + 1);
                 }
 
                 if (lineText[j] == "Description:")
                 {
-                    game.GetComponent<RequirmentCheck>().gameDescrioption = GetLineAtIndex(j + 1);
+                    requirementChecker.GetComponent<RequirmentCheck>().gameDescrioption = GetLineAtIndex(j + 1);
                 }
 
                 if (lineText[j] == "Day:")
                 {
-                    int.TryParse(GetLineAtIndex(j + 1), out game.GetComponent<RequirmentCheck>().day);
+                    int.TryParse(GetLineAtIndex(j + 1), out requirementChecker.GetComponent<RequirmentCheck>().day);
                 }
                 
                 if (lineText[j] == "Month:")
                 {
-                    int.TryParse(GetLineAtIndex(j + 1), out game.GetComponent<RequirmentCheck>().month);
+                    int.TryParse(GetLineAtIndex(j + 1), out requirementChecker.GetComponent<RequirmentCheck>().month);
                 }
                 
                 if (lineText[j] == "Year:")
                 {
-                    int.TryParse(GetLineAtIndex(j + 1), out game.GetComponent<RequirmentCheck>().year);
+                    int.TryParse(GetLineAtIndex(j + 1), out requirementChecker.GetComponent<RequirmentCheck>().year);
 
-                    game.GetComponent<RequirmentCheck>().CreateCreationDateWithData();
+                    requirementChecker.GetComponent<RequirmentCheck>().CreateCreationDateWithData();
                 }
             }
 
             //LoadImages
             imageFilePath = gameFolders[i] + "/Logo.PNG";
-            game.GetComponent<RequirmentCheck>().gameLogo.texture = LoadImage(imageFilePath);
+            requirementChecker.GetComponent<RequirmentCheck>().gameLogo.texture = LoadImage(imageFilePath);
 
             imageFilePath = gameFolders[i] + "/Banner.PNG";
-            game.GetComponent<RequirmentCheck>().gameBanner.texture = LoadImage(imageFilePath);
+            requirementChecker.GetComponent<RequirmentCheck>().gameBanner.texture = LoadImage(imageFilePath);
 
-            filePath = gameFolders[i] + "/.exe";
+            // find .exe path
+            filePath = gameFolders[i];
+            DirectoryInfo directoryInfo = new DirectoryInfo(filePath);
+            FileInfo[] exeName = directoryInfo.GetFiles("*.exe");
+            exeFilePath = filePath + "/" + exeName[0].Name;
+            requirementChecker.GetComponent<RequirmentCheck>().executableFilePath = exeFilePath;
         }
     }
 

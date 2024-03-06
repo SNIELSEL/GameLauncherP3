@@ -123,13 +123,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b148a2e9e5565294ea3ef70cfb258312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiGameButtonPrefab: {fileID: 7120353477341878180, guid: de981c9f1042c91439ffbe40649866a4,
+  uiGameButtonPrefab: {fileID: 4759807699321646390, guid: 6b1d438099b8fb946b81112a9f3a8224,
+    type: 3}
+  infoPrefab: {fileID: 1747770425669949532, guid: 33c77b9e1896b4d4f9428a29ba709b2e,
     type: 3}
   gameLogo: {fileID: 1006650242511116255}
   gameBanner: {fileID: 3196621857014678544}
   gameName: 
   gameDescrioption: 
   creationDate: 
+  executableFilePath: 
   year: 0
   month: 0
   day: 0

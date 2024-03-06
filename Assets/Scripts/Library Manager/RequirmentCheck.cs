@@ -8,13 +8,16 @@ using UnityEngine.UIElements;
 public class RequirmentCheck : MonoBehaviour
 {
     [SerializeField] private GameObject uiGameButtonPrefab;
-    private Transform parantObject;
+    [SerializeField] private GameObject infoPrefab;
+    private Transform buttonParantObject;
+    private Transform infoParantObject;
 
     public RawImage gameLogo;
     public RawImage gameBanner;
     public string gameName;
     public string gameDescrioption;
     public string creationDate;
+    public string executableFilePath;
 
     public int year;
     public int month;
@@ -29,7 +32,8 @@ public class RequirmentCheck : MonoBehaviour
 
     private void Start()
     {
-        parantObject = GameObject.Find("Games").transform;
+        buttonParantObject = GameObject.Find("Content").transform;
+        infoParantObject = GameObject.Find("ImageBackground").transform;
         StartCoroutine(CheckVeriables());
     }
 
@@ -46,48 +50,71 @@ public class RequirmentCheck : MonoBehaviour
 
         if (gameLogo.texture != null)
         {
-            variablesChecked++;
+            variablesChecked ++;
         }
 
         if (gameBanner.texture != null)
         {
-            variablesChecked++;
+            variablesChecked ++;
         }
 
         if (gameName != "")
         {
-            variablesChecked++;
+            variablesChecked ++;
         }
 
         if (gameDescrioption != "")
         {
-            variablesChecked++;
+            variablesChecked ++;
         }
 
         if (creationDate != "")
         {
+            variablesChecked ++;
+        }
+
+        if (executableFilePath != "")
+        {
             variablesChecked++;
         }
 
-        if (variablesChecked == 5)
+        if (variablesChecked == 6)
         {
-            GameObject game = Instantiate(uiGameButtonPrefab, transform.position, transform.rotation, parantObject);
+            // this part of the codeis responseble of instatiating a button and creating 
+            GameObject gameLibraryButton = Instantiate(uiGameButtonPrefab, transform.position, transform.rotation, buttonParantObject);
 
-            GameObject logoChild = game.transform.GetChild(1).gameObject;
-            logoChild.GetComponent<RawImage>().texture = gameLogo.texture;
+            GameObject button = gameLibraryButton.transform.GetChild(0).gameObject;
+            button.GetComponent<RawImage>().texture = gameLogo.texture;
 
-            GameObject NameChild = game.transform.GetChild(2).gameObject;
-            NameChild.GetComponent<TextMeshProUGUI>().text = gameName;
+            button = gameLibraryButton.transform.GetChild(0).gameObject;
+            GameObject panelTitel = button.transform.GetChild(0).gameObject;
+            GameObject uiGameName = panelTitel.transform.GetChild(0).gameObject;
+            uiGameName.GetComponent<TextMeshProUGUI>().text = gameName;
 
-            GameObject fullInfo = game.transform.GetChild(3).gameObject;
-            GameObject descriptionChild = fullInfo.transform.GetChild(2).gameObject;
-            descriptionChild.GetComponent<TextMeshProUGUI>().text = gameDescrioption;
+            //this part of the code is responseble of instatiating and setting the right info to the right text andf images on the info tab
+            GameObject InfoTab = Instantiate(infoPrefab, transform.position, transform.rotation, infoParantObject);
 
-            GameObject fullInfoNameChild = fullInfo.transform.GetChild(3).gameObject;
-            fullInfoNameChild.GetComponent<TextMeshProUGUI>().text = gameName;
+            GameObject bannerImage = InfoTab.transform.GetChild(0).gameObject;
+            bannerImage.GetComponent<RawImage>().texture = gameBanner.texture;
 
-            GameObject bannerChild = game.transform.GetChild(4).gameObject;
-            bannerChild.GetComponent<RawImage>().texture = gameBanner.texture;
+            GameObject gameImage = bannerImage.transform.GetChild(0).gameObject;
+            gameImage.GetComponent<RawImage>().texture = gameLogo.texture;
+
+            GameObject textPanel = bannerImage.transform.GetChild(2).gameObject;
+            GameObject gameInfoName = textPanel.transform.GetChild(0).gameObject;
+            gameInfoName.GetComponent<TextMeshProUGUI>().text = gameName;
+
+            textPanel = bannerImage.transform.GetChild(2).gameObject;
+            GameObject creatorInfo = textPanel.transform.GetChild(1).gameObject;
+            creatorInfo.GetComponent<TextMeshProUGUI>().text = gameDescrioption;
+
+            textPanel = bannerImage.transform.GetChild(2).gameObject;
+            GameObject infoTags = textPanel.transform.GetChild(2).gameObject;
+            infoTags.GetComponent<TextMeshProUGUI>().text = gameDescrioption;
+
+            textPanel = bannerImage.transform.GetChild(2).gameObject;
+            GameObject descriptionInfo = textPanel.transform.GetChild(3).gameObject;
+            descriptionInfo.GetComponent<TextMeshProUGUI>().text = gameDescrioption;
         }
 
         else
