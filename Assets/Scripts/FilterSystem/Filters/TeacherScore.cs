@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class TeacherScore : MonoBehaviour
+public enum TeacherScore
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   Stars0 = 1,
+   stars1 = 2,
+   stars2 = 3,
+   stars3 = 4,
+   stars4 = 5,
+   stars5 = 6,
+   stars6 = 7,
+   stars7 = 8,
+   stars8 = 9,
+   stars9 = 10,
+   stars10 = 11,
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

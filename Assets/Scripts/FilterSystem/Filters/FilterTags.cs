@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class FilterTags : MonoBehaviour
+public enum FilterTags
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    SinglePlayer,
+    MultiPlayer,
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    FirstPerson,
+    ThirsPerson,
+
+    TowerDefense,
+    Shooter,
+    LifeSimulator,
+    Party,
+    Platformer,
+    Arcade,
+    Puzzle,
+    OldSchool,
+    BattleRoyale,
 }

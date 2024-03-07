@@ -14,6 +14,8 @@ public class FilterTest : MonoBehaviour
 
     public BuildYear buildYear;
     public StudentYear studentYear;
+    //public FilterTags filterTags;
+    public List<FilterTags> games;
 
     bool sortAlphabet;
     // Execute the query to produce the results
@@ -28,26 +30,20 @@ public class FilterTest : MonoBehaviour
 
         // Array.Sort(names, (x, y) => String.Compare(x, y));
         Array.Sort(names);
+        SortNames();
 
-       /* static void DisplayValues(String[] arr)
-        {
-            for (int i = arr.GetLowerBound(0); i <= arr.GetUpperBound(0);
-                  i++)
-            {
-                Debug.Log( arr[i]);
-                
-            }   
-            Console.WriteLine();
-        }*/
+        /* static void DisplayValues(String[] arr)
+         {
+             for (int i = arr.GetLowerBound(0); i <= arr.GetUpperBound(0);
+                   i++)
+             {
+                 Debug.Log( arr[i]);
 
-        
+             }   
+             Console.WriteLine();
+         }*/
 
-        //SortThisShit();
-        /* IEnumerable<string> nameQuery = //query variable
-         from name in names //required
-         //where name// optional
-         orderby name ascending // optional
-         select name; //must end with select or group*/
+
 
         // je begint een query expression met een from en hij eindigt bij de laatste select of group.
         foreach (var testScore in scoreQuery)
@@ -55,10 +51,27 @@ public class FilterTest : MonoBehaviour
             Debug.Log(testScore);
            
         }
-       
     }
+    //tim code
+    private void DoSort()
+    {
+        Debug.Log("Before sorting:");
+        for (int i = 0; i < games.Count; i++)
+        {
+            Debug.Log("Game: " + games[i].ToString());
+        }
 
-    public void SortThisShit()
+        games = games.OrderBy(game => game).ToList();
+
+        Debug.Log("After sorting:");
+        for (int i = 0; i < games.Count; i++)
+        {
+            Debug.Log("Game: " + games[i].ToString());
+        }
+    } 
+
+
+    public void SortNames()
     {
         for (int i = 0; i < AAAAH.Length; i++)
         {
