@@ -1,9 +1,7 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class RequirmentCheck : MonoBehaviour
 {
@@ -14,9 +12,14 @@ public class RequirmentCheck : MonoBehaviour
 
     public RawImage gameLogo;
     public RawImage gameBanner;
+    public RawImage qrCode;
+
     public string gameName;
     public string gameDescrioption;
     public string creationDate;
+    public string creators;
+    public string tags;
+    public string docentenScore;
     public string executableFilePath;
 
     public int year;
@@ -73,12 +76,27 @@ public class RequirmentCheck : MonoBehaviour
             variablesChecked ++;
         }
 
+        if (creators != "")
+        {
+            variablesChecked++;
+        }
+        
+        if (tags != "")
+        {
+            variablesChecked++;
+        }
+        
+        if (docentenScore != "")
+        {
+            variablesChecked++;
+        }
+        
         if (executableFilePath != "")
         {
             variablesChecked++;
         }
 
-        if (variablesChecked == 6)
+        if (variablesChecked >= 9)
         {
             // this part of the codeis responseble of instatiating a button and creating 
             GameObject gameLibraryButton = Instantiate(uiGameButtonPrefab, transform.position, transform.rotation, buttonParantObject);
@@ -86,19 +104,25 @@ public class RequirmentCheck : MonoBehaviour
             GameObject button = gameLibraryButton.transform.GetChild(0).gameObject;
             button.GetComponent<RawImage>().texture = gameLogo.texture;
 
-            button = gameLibraryButton.transform.GetChild(0).gameObject;
             GameObject panelTitel = button.transform.GetChild(0).gameObject;
             GameObject uiGameName = panelTitel.transform.GetChild(0).gameObject;
             uiGameName.GetComponent<TextMeshProUGUI>().text = gameName;
 
             //this part of the code is responseble of instatiating and setting the right info to the right text andf images on the info tab
-            GameObject InfoTab = Instantiate(infoPrefab, transform.position, transform.rotation, infoParantObject);
+            GameObject infoTab = Instantiate(infoPrefab, transform.position, transform.rotation, infoParantObject);
+            infoTab.GetComponent<RectTransform>().offsetMax = new Vector2(0,0);
+            infoTab.GetComponent<RectTransform>().offsetMin = new Vector2(0,0);
+            button.GetComponent<GoToInfoTab>().buttonInfoTab = infoTab;
+            infoTab.SetActive(false);
 
-            GameObject bannerImage = InfoTab.transform.GetChild(0).gameObject;
+            GameObject bannerImage = infoTab.transform.GetChild(0).gameObject;
             bannerImage.GetComponent<RawImage>().texture = gameBanner.texture;
 
             GameObject gameImage = bannerImage.transform.GetChild(0).gameObject;
             gameImage.GetComponent<RawImage>().texture = gameLogo.texture;
+            
+/*            GameObject gameQRCode = infoTab.transform.GetChild(1).gameObject;
+            gameQRCode.GetComponent<RawImage>().texture = gameLogo.texture;*/
 
             GameObject textPanel = bannerImage.transform.GetChild(2).gameObject;
             GameObject gameInfoName = textPanel.transform.GetChild(0).gameObject;
@@ -106,11 +130,11 @@ public class RequirmentCheck : MonoBehaviour
 
             textPanel = bannerImage.transform.GetChild(2).gameObject;
             GameObject creatorInfo = textPanel.transform.GetChild(1).gameObject;
-            creatorInfo.GetComponent<TextMeshProUGUI>().text = gameDescrioption;
+            creatorInfo.GetComponent<TextMeshProUGUI>().text = creators;
 
             textPanel = bannerImage.transform.GetChild(2).gameObject;
             GameObject infoTags = textPanel.transform.GetChild(2).gameObject;
-            infoTags.GetComponent<TextMeshProUGUI>().text = gameDescrioption;
+            infoTags.GetComponent<TextMeshProUGUI>().text = tags;
 
             textPanel = bannerImage.transform.GetChild(2).gameObject;
             GameObject descriptionInfo = textPanel.transform.GetChild(3).gameObject;

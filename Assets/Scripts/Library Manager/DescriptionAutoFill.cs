@@ -18,10 +18,14 @@ public class DescriptionAutoFill : MonoBehaviour
 
     private int currentLineIndex = 0;
     [SerializeField] private int lineAmount;
-    
-    [SerializeField] TextMeshProUGUI nameText, descriptionText;
+
+    [SerializeField] TextMeshProUGUI nameText;
+    [SerializeField] TextMeshProUGUI descriptionText;
+    [SerializeField] TextMeshProUGUI CreatorText;
+
     [SerializeField] RawImage logo;
     [SerializeField] RawImage banner;
+    [SerializeField] RawImage qrCode;
 
     public void Start()
     {
@@ -54,6 +58,21 @@ public class DescriptionAutoFill : MonoBehaviour
                     requirementChecker.GetComponent<RequirmentCheck>().gameDescrioption = GetLineAtIndex(j + 1);
                 }
 
+                if (lineText[j] == "Creators:")
+                {
+                    requirementChecker.GetComponent<RequirmentCheck>().creators = GetLineAtIndex(j + 1);
+                }
+                
+                if (lineText[j] == "tags:")
+                {
+                    requirementChecker.GetComponent<RequirmentCheck>().tags = GetLineAtIndex(j + 1);
+                }
+                
+                if (lineText[j] == "Score:")
+                {
+                    requirementChecker.GetComponent<RequirmentCheck>().docentenScore = GetLineAtIndex(j + 1);
+                }
+
                 if (lineText[j] == "Day:")
                 {
                     int.TryParse(GetLineAtIndex(j + 1), out requirementChecker.GetComponent<RequirmentCheck>().day);
@@ -78,7 +97,10 @@ public class DescriptionAutoFill : MonoBehaviour
 
             imageFilePath = gameFolders[i] + "/Banner.PNG";
             requirementChecker.GetComponent<RequirmentCheck>().gameBanner.texture = LoadImage(imageFilePath);
-
+            
+            /*imageFilePath = gameFolders[i] + "/QRCode.PNG";
+            requirementChecker.GetComponent<RequirmentCheck>().gameBanner.texture = LoadImage(imageFilePath);
+*/
             // find .exe path
             filePath = gameFolders[i];
             DirectoryInfo directoryInfo = new DirectoryInfo(filePath);

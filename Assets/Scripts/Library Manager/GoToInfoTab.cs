@@ -1,18 +1,14 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class GoToInfoTab : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject buttonInfoTab;
 
-    // Update is called once per frame
-    void Update()
+    public void SetInfoTabActive()
     {
-        
+        buttonInfoTab.SetActive(true);
     }
 }
