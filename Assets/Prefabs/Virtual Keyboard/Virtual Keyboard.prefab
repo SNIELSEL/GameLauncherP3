@@ -48,6 +48,7 @@ MonoBehaviour:
   eventSystem: {fileID: 0}
   typing: []
   backspace: {fileID: 8026227326855218630}
+  setSelectedGameobject: {fileID: 5329114865756587614}
 --- !u!1 &564926457879065605
 GameObject:
   m_ObjectHideFlags: 0
@@ -5384,13 +5385,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6876540015371309551}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5329114865756587614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1628808870402693041, guid: 6adfc40f6d41e6d49a3862887f46083a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6876540015371309551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8700050407371407122 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2869542235931291389, guid: 6adfc40f6d41e6d49a3862887f46083a,
     type: 3}
   m_PrefabInstance: {fileID: 6876540015371309551}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5329114865756587614}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
