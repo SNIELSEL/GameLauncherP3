@@ -12,6 +12,7 @@ public class SelectTextBox : MonoBehaviour
     public Backspace backspace;
 
     private TMP_Text input;
+    [SerializeField] private GameObject setSelectedGameobject;
 
     public void Awake()
     {
@@ -27,6 +28,7 @@ public class SelectTextBox : MonoBehaviour
         backspace.selectedInputField = input;
         input.GetComponentInParent<Image>().color = Color.green;
         this.input = input;
+        eventSystem.SetSelectedGameObject(setSelectedGameobject);
     }
 
     public void CloseKeyBoard()

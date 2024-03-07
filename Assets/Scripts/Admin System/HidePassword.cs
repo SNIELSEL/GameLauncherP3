@@ -13,12 +13,11 @@ public class HidePassword : MonoBehaviour
     {
         if (hide.isOn)
         {
-
+            //password.GetComponent<Image>().color = 
         }
         else
         {
-            gameObject.GetComponent<TMP_InputField>().contentType = TMP_InputField.ContentType.Standard;
+            
         }
-        gameObject.GetComponent<TMP_InputField>().ActivateInputField();
     }
 }

@@ -3151,6 +3151,11 @@ PrefabInstance:
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 1638867441}
+    - target: {fileID: 7658293096263933689, guid: 072bd3bd89f9e164c81df347d703dd43,
+        type: 3}
+      propertyPath: setSelectedGameobject
+      value: 
+      objectReference: {fileID: 615812377}
     - target: {fileID: 8700050407371407122, guid: 072bd3bd89f9e164c81df347d703dd43,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3203,6 +3208,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 072bd3bd89f9e164c81df347d703dd43, type: 3}
+--- !u!1 &615812377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8055499599122469689, guid: 072bd3bd89f9e164c81df347d703dd43,
+    type: 3}
+  m_PrefabInstance: {fileID: 615812376}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &624990220 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4481264120162341562, guid: 7e07615fc50999746bcfb0e0a180e0a3,
