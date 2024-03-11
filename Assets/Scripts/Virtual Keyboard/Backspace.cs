@@ -12,6 +12,10 @@ public class Backspace : MonoBehaviour
         if (selectedInputField.text.Length > 0)
         {
             selectedInputField.text = selectedInputField.text.Remove(selectedInputField.text.Length - 1);
+            if(selectedInputField.transform.GetChild(0).GetComponent<TMP_Text>() != null)
+            {
+                selectedInputField.transform.GetChild(0).GetComponent<TMP_Text>().text = selectedInputField.transform.GetChild(0).GetComponent<TMP_Text>().text.Remove(selectedInputField.transform.GetChild(0).GetComponent<TMP_Text>().text.Length - 1);
+            }
         }
     }
 }

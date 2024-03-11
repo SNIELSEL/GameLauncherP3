@@ -17,9 +17,10 @@ public class Typing : MonoBehaviour
     }
     public void OnButtonClick()
     {
-        if (selectedInput != null)
+        selectedInput.text += text.text;
+        if (selectedInput.transform.GetChild(0).GetComponent<TMP_Text>() != null)
         {
-            selectedInput.text += text.text;
+            selectedInput.transform.GetChild(0).GetComponent<TMP_Text>().text += "*";
         }
     }
     public void Shift()
