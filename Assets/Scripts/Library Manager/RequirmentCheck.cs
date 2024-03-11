@@ -17,14 +17,18 @@ public class RequirmentCheck : MonoBehaviour
     public string gameName;
     public string gameDescrioption;
     public string creationDate;
+    public string leerJaar;
     public string creators;
-    public string tags;
+    public string tag1;
+    public string tag2;
+    public string tag3;
     public string docentenScore;
     public string executableFilePath;
 
     public int year;
     public int month;
     public int day;
+    private int confertedDocentenScore;
 
     private int variablesChecked;
 
@@ -46,7 +50,7 @@ public class RequirmentCheck : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         
-        if (year <= 1900)
+        if (year < 2020)
         {
             variablesChecked = -1000;
         }
@@ -80,8 +84,18 @@ public class RequirmentCheck : MonoBehaviour
         {
             variablesChecked++;
         }
-        
-        if (tags != "")
+
+        if (tag1 != "")
+        {
+            variablesChecked++;
+        }
+
+        if (tag2 != "")
+        {
+            variablesChecked++;
+        }
+
+        if (tag3 != "")
         {
             variablesChecked++;
         }
@@ -98,6 +112,7 @@ public class RequirmentCheck : MonoBehaviour
 
         if (variablesChecked >= 9)
         {
+
             // this part of the codeis responseble of instatiating a button and creating 
             GameObject gameLibraryButton = Instantiate(uiGameButtonPrefab, transform.position, transform.rotation, buttonParantObject);
 
@@ -121,29 +136,60 @@ public class RequirmentCheck : MonoBehaviour
             GameObject gameImage = bannerImage.transform.GetChild(0).gameObject;
             gameImage.GetComponent<RawImage>().texture = gameLogo.texture;
             
-/*            GameObject gameQRCode = infoTab.transform.GetChild(1).gameObject;
-            gameQRCode.GetComponent<RawImage>().texture = gameLogo.texture;*/
+            //GameObject gameQRCode = infoTab.transform.GetChild(1).gameObject;
+            //gameQRCode.GetComponent<RawImage>().texture = gameLogo.texture;
 
             GameObject textPanel = bannerImage.transform.GetChild(2).gameObject;
-            GameObject gameInfoName = textPanel.transform.GetChild(0).gameObject;
+            GameObject penal1 = textPanel.transform.GetChild(0).gameObject;
+            GameObject gameInfoName = penal1.transform.GetChild(0).gameObject;
             gameInfoName.GetComponent<TextMeshProUGUI>().text = gameName;
 
             textPanel = bannerImage.transform.GetChild(2).gameObject;
-            GameObject creatorInfo = textPanel.transform.GetChild(1).gameObject;
+            GameObject penal2 = textPanel.transform.GetChild(1).gameObject;
+            GameObject creatorInfo = penal2.transform.GetChild(0).gameObject;
             creatorInfo.GetComponent<TextMeshProUGUI>().text = creators;
 
             textPanel = bannerImage.transform.GetChild(2).gameObject;
-            GameObject infoTags = textPanel.transform.GetChild(2).gameObject;
-            infoTags.GetComponent<TextMeshProUGUI>().text = tags;
+            penal2 = textPanel.transform.GetChild(1).gameObject;
+            GameObject CreationDateInfo = penal2.transform.GetChild(1).gameObject;
+            CreationDateInfo.GetComponent<TextMeshProUGUI>().text = creationDate;
 
             textPanel = bannerImage.transform.GetChild(2).gameObject;
-            GameObject descriptionInfo = textPanel.transform.GetChild(3).gameObject;
+            penal2 = textPanel.transform.GetChild(1).gameObject;
+            GameObject leerJaarInfo = penal2.transform.GetChild(2).gameObject;
+            leerJaarInfo.GetComponent<TextMeshProUGUI>().text = leerJaar;
+
+            textPanel = bannerImage.transform.GetChild(2).gameObject;
+            GameObject penal3 = textPanel.transform.GetChild(2).gameObject;
+            GameObject infoTag1 = penal3.transform.GetChild(0).gameObject;
+            infoTag1.GetComponent<TextMeshProUGUI>().text = tag1;
+
+            textPanel = bannerImage.transform.GetChild(2).gameObject;
+            penal3 = textPanel.transform.GetChild(2).gameObject;
+            GameObject infoTag2 = penal3.transform.GetChild(1).gameObject;
+            infoTag2.GetComponent<TextMeshProUGUI>().text = tag2;
+
+            textPanel = bannerImage.transform.GetChild(2).gameObject;
+            penal3 = textPanel.transform.GetChild(2).gameObject;
+            GameObject infoTag3 = penal3.transform.GetChild(2).gameObject;
+            infoTag3.GetComponent<TextMeshProUGUI>().text = tag3;
+
+            textPanel = bannerImage.transform.GetChild(2).gameObject;
+            GameObject penal4 = textPanel.transform.GetChild(3).gameObject;
+            GameObject descriptionInfo = penal4.transform.GetChild(0).gameObject;
             descriptionInfo.GetComponent<TextMeshProUGUI>().text = gameDescrioption;
+
+            textPanel = bannerImage.transform.GetChild(2).gameObject;
+            penal4 = textPanel.transform.GetChild(3).gameObject;
+            GameObject score = penal4.transform.GetChild(1).gameObject;
+            int.TryParse(docentenScore, out confertedDocentenScore);
+            score.GetComponent<Slider>().value = confertedDocentenScore;
         }
 
         else
         {
             Destroy(gameObject);
+            Debug.Log("destroy");
         }
     }
 }
