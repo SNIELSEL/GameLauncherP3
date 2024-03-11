@@ -184,6 +184,9 @@ public class RequirmentCheck : MonoBehaviour
             GameObject score = penal4.transform.GetChild(1).gameObject;
             int.TryParse(docentenScore, out confertedDocentenScore);
             score.GetComponent<Slider>().value = confertedDocentenScore;
+
+            TextMeshProUGUI filePathText = infoTab.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
+            filePathText.text = executableFilePath;
         }
 
         else
