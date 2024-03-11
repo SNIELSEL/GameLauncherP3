@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestScenes/Doets/Doutzen.unity
-    guid: c6824f2add2d99047b436893f3ebfa63
-  - enabled: 0
     path: Assets/Scenes/TestScenes/Niels.unity
     guid: 8c8d5f59351934e4d80ea7a658222898
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/Doets/Doutzen.unity
+    guid: c6824f2add2d99047b436893f3ebfa63
   m_configObjects: {}

@@ -1,9 +1,74 @@
+Left joystick Up:
 VK_W
+
+Left joystick Left:
 VK_A
+
+Left joystick Down:
 VK_S
+
+Left joystick Right:
 VK_D
+
+X Button:
+VK_R
+
+A Button:
 SPACE
+
+Blank Red Button:
 RBUTTON
+
+Y Button:
 LBUTTON
+
+Black Button:
 CONTROL
+
+Yellow Button:
 SHIFT
+
+Right joystick Up:
+UP
+
+Right joystick Left:
+LEFT
+
+Right joystick Right:
+RIGHT
+
+Right joystick Down:
+DOWN
+
+Right X Button:
+VK_I
+
+Right A Button:
+VK_G
+
+Right Red Button(WithoutLetter):
+LMENU
+
+Right Y Button:
+VK_Q
+
+Right Black Button:
+TAB
+
+Right Yellow Button:
+SCROLL
+
+Start Button:
+ESCAPE
+
+Select button:
+VK_O
+
+Right Side Start:
+RCONTROL
+
+Right Side Select:
+VK_1
+
+Left Side Black Button:
+VK_2
