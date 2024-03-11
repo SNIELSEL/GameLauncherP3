@@ -62,12 +62,27 @@ public class DescriptionAutoFill : MonoBehaviour
                 {
                     requirementChecker.GetComponent<RequirmentCheck>().creators = GetLineAtIndex(j + 1);
                 }
-                
-                if (lineText[j] == "tags:")
+
+                if (lineText[j] == "LeerJaar:")
                 {
-                    requirementChecker.GetComponent<RequirmentCheck>().tags = GetLineAtIndex(j + 1);
+                    requirementChecker.GetComponent<RequirmentCheck>().leerJaar = GetLineAtIndex(j + 1);
                 }
-                
+
+                if (lineText[j] == "tag1:")
+                {
+                    requirementChecker.GetComponent<RequirmentCheck>().tag1 = GetLineAtIndex(j + 1);
+                }
+
+                if (lineText[j] == "tag2:")
+                {
+                    requirementChecker.GetComponent<RequirmentCheck>().tag2 = GetLineAtIndex(j + 1);
+                }
+
+                if (lineText[j] == "tag3:")
+                {
+                    requirementChecker.GetComponent<RequirmentCheck>().tag3 = GetLineAtIndex(j + 1);
+                }
+
                 if (lineText[j] == "Score:")
                 {
                     requirementChecker.GetComponent<RequirmentCheck>().docentenScore = GetLineAtIndex(j + 1);
