@@ -98,6 +98,7 @@ public class Login : MonoBehaviour
         }
         username.text = "";
         password.text = "";
+        password.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
     }
 
     public void Logout()
