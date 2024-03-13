@@ -3,14 +3,14 @@ using System;
 [Flags]
 public enum GanreTags
 {
-    Action = 1 << 5,
-    Adventure = 1 << 6,
-    Arcade = 1 << 7,
-    Casual = 1 << 8,
-    Racing = 1 << 9,
-    Simulation = 1 << 10,
-    Strategy = 1 << 11,
-    Puzzle = 1 << 12,
-    Party = 1 << 13,
+    Action = 1 << 0,
+    Adventure = 1 << 1,
+    Arcade = 1 << 2,
+    Casual = 1 << 3,
+    Racing = 1 << 4,
+    Simulation = 1 << 5,
+    Strategy = 1 << 6,
+    Puzzle = 1 << 7,
+    Party = 1 << 8,
 
 }

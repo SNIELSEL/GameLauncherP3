@@ -14,7 +14,7 @@ public class FilterTest : MonoBehaviour
 
     public List<RequirmentCheck> games;
 
-    public GanreTags tags;
+   // public GanreTags tags;
 
     //p//ublic List<List<int>> filters;
 
@@ -64,7 +64,7 @@ public class FilterTest : MonoBehaviour
         }
     }
 
-    public void UpdateFilterTags(int i)
+    public void UpdateFilterTagsGanre(int i)
     {
         // Remove if it already exists.
         if (filters[3].Contains(i))
@@ -74,6 +74,30 @@ public class FilterTest : MonoBehaviour
         else
         {
             filters[3].Add(i);
+        }
+    }
+
+    public void UpdateFilterTagsMulti(int i)
+    {
+        if (filters[4].Contains(i))
+        {
+            filters[4].Remove(i);
+        }
+        else
+        {
+            filters[4].Add(i);
+        }
+    }
+
+    public void UpdateFilterTagsPerspective(int i)
+    {
+        if (filters[5].Contains(i))
+        {
+            filters[5].Remove(i);
+        }
+        else
+        {
+            filters[5].Add(i);
         }
     }
 
@@ -117,6 +141,22 @@ public class FilterTest : MonoBehaviour
                     gamesFiltered.Add(game);
                 }
             }
+
+            for (int i = 0; i < filters[4].Count; i++)
+            {
+                if (game.multiPlayTag == (MultiPlayTag)i)
+                {
+                    gamesFiltered.Add(game);
+                }
+            }
+
+            for (int i = 0; i < filters[5].Count; i++)
+            {
+                if (game.perspectiveTag == (PerspectiveTag)i)
+                {
+                    gamesFiltered.Add(game);
+                }
+            }
         }
     }
     
@@ -125,7 +165,7 @@ public class FilterTest : MonoBehaviour
        
         Array.Sort(names);
         SortNames();
-        tags = GanreTags.Action | GanreTags.Arcade | GanreTags.Racing;
+       /* tags = GanreTags.Action | GanreTags.Arcade | GanreTags.Racing;
         while (enabled)
         {
             switch (tags)
@@ -133,7 +173,7 @@ public class FilterTest : MonoBehaviour
                 case 0:
                     break;
             }
-        }
+        }*/
     }
     //tim code
     private void DoSort()
