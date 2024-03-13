@@ -318,7 +318,7 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                MoveCursor(0, -50);
+                MoveCursor(0, -20);
             }
         }
 
@@ -331,7 +331,7 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                MoveCursor(0, 50);
+                MoveCursor(0, 20);
             }
         }
 
@@ -344,7 +344,7 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                MoveCursor(-50, 0);
+                MoveCursor(-20, 0);
             }
         }
 
@@ -357,7 +357,7 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                MoveCursor(50, 0);
+                MoveCursor(20, 0);
             }
         }
 
