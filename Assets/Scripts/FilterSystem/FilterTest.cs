@@ -14,13 +14,13 @@ public class FilterTest : MonoBehaviour
 
     public List<RequirmentCheck> games;
 
-    public FilterTags tags;
+    public GanreTags tags;
 
     //p//ublic List<List<int>> filters;
 
     // Alle categories
-    public List<int>[] filters = new List<int>[4];
-    // Volgorde   BuildYear teacherScore studentYear filterTags;
+    public List<int>[] filters = new List<int>[6];
+    // Volgorde   BuildYear teacherScore studentYear filterTags, multitag, perspectivetag,;
 
     bool sortAlphabet;
     // Execute the query to produce the results
@@ -112,7 +112,7 @@ public class FilterTest : MonoBehaviour
 
             for (int i = 0; i < filters[3].Count; i++)
             {
-                if (game.filterTags == (FilterTags)i)
+                if (game.ganreTag == (GanreTags)i)
                 {
                     gamesFiltered.Add(game);
                 }
@@ -125,7 +125,7 @@ public class FilterTest : MonoBehaviour
        
         Array.Sort(names);
         SortNames();
-        tags = FilterTags.Action | FilterTags.Arcade | FilterTags.Racing;
+        tags = GanreTags.Action | GanreTags.Arcade | GanreTags.Racing;
         while (enabled)
         {
             switch (tags)

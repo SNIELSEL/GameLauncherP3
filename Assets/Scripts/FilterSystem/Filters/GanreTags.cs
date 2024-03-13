@@ -1,15 +1,8 @@
 using System;
 
 [Flags]
-public enum FilterTags
+public enum GanreTags
 {
-    SinglePlayer = 1 << 0,
-    MultiPlayer = 1 << 1,
-
-    FirstPerson = 1 << 2,
-    ThirdPerson = 1 << 3,
-    TopDOwn = 1 << 4,
-
     Action = 1 << 5,
     Adventure = 1 << 6,
     Arcade = 1 << 7,

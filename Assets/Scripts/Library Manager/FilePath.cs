@@ -69,6 +69,7 @@ public class FilePath : MonoBehaviour
 
         descriptionAutoFill.gameFolders = subFolders;
         descriptionAutoFill.GetAllFolderData();
+
     }
 
     protected void GetFilePath()

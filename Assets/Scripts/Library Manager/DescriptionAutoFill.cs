@@ -27,7 +27,9 @@ public class DescriptionAutoFill : MonoBehaviour
     [SerializeField] RawImage banner;
     [SerializeField] RawImage qrCode;
 
-    public void Start()
+    public ENumManager eNumManager;
+
+    public void Awake()
     {
 
     }
@@ -122,7 +124,9 @@ public class DescriptionAutoFill : MonoBehaviour
             FileInfo[] exeName = directoryInfo.GetFiles("*.exe");
             exeFilePath = filePath + "/" + exeName[0].Name;
             requirementChecker.GetComponent<RequirmentCheck>().executableFilePath = exeFilePath;
-        }
+
+            eNumManager.ExecuteAllVoids();
+}
     }
 
     public static Texture2D LoadImage(string filename)

@@ -17,7 +17,9 @@ public class RequirmentCheck : MonoBehaviour
     public BuildYear buildYear;
     public TeacherScore teacherScore;
     public StudentYear studentYear;
-    public FilterTags filterTags;
+    public GanreTags ganreTag;
+    public MultiPlayTag multiPlayTag;
+    public PerspectiveTag perspectiveTag;
 
     public string gameName;
     public string gameDescrioption;
@@ -37,9 +39,18 @@ public class RequirmentCheck : MonoBehaviour
 
     private int variablesChecked;
 
+    public ENumManager eNumManager;
+
     public void CreateCreationDateWithData()
     {
         creationDate = day + "/" + month+ "/" + year;
+    }
+
+    private void Awake()
+    {
+        eNumManager = GameObject.Find("ScriptHolder").GetComponent<ENumManager>();
+
+        eNumManager.requirmentCheck = this;
     }
 
     private void Start()

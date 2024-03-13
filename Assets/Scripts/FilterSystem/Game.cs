@@ -7,5 +7,5 @@ public class Game : MonoBehaviour
    public BuildYear buildYear;
    public TeacherScore teacherScore;
    public StudentYear studentYear;
-   public FilterTags filterTags;
+   public GanreTags filterTags;
 }
