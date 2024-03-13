@@ -32,13 +32,29 @@ public class Search : MonoBehaviour
         foreach (GameObject game in games)
         {
             searchedGames++;
-
-            if(game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Length >= searchLength)
+            //goede
+            /*if(game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Length >= searchLength)
             {
-                if(searchText.ToLower() == (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
+                if(searchText.ToLower() == (game.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
                 {
                     game.SetActive(true);
-                   /* NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE*/
+                   *//* NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE*//*
+                }
+                else
+                {
+                    game.SetActive(false);
+                }
+            }*/
+
+
+            //probeer
+            if (game.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text.Length >= searchLength)
+            {
+                Debug.Log("pookie");
+                if (searchText.ToLower() == (game.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
+                {
+                    game.SetActive(true);
+                    /* NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE*/
                 }
                 else
                 {

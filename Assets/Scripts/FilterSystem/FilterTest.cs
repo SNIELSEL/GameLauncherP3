@@ -12,44 +12,127 @@ public class FilterTest : MonoBehaviour
     [SerializeField]string[] names; //{"eeeeeh", "nessie", "haaaaaaaaai", "doeeeeei", "peer", "jezus", "naast" }
     [SerializeField] TMP_Text[] AAAAH;
 
-    public BuildYear buildYear;
-    public StudentYear studentYear;
-    //public FilterTags filterTags;
-    public List<FilterTags> games;
+    public List<RequirmentCheck> games;
+
+    public FilterTags tags;
+
+    //p//ublic List<List<int>> filters;
+
+    // Alle categories
+    public List<int>[] filters = new List<int>[4];
+    // Volgorde   BuildYear teacherScore studentYear filterTags;
 
     bool sortAlphabet;
     // Execute the query to produce the results
+    
+    public void UpdateFilterBuildYear (int i)
+    {
+        // Remove if it already exists.
+        if (filters[0].Contains(i))
+        {
+            filters[0].Remove(i);
+        }
+        else
+        {
+            filters[0].Add(i);
+        }
+    }
+
+    public void UpdateFilterTeacherScore(int i)
+    {
+        // Remove if it already exists.
+        if (filters[1].Contains(i))
+        {
+            filters[1].Remove(i);
+        }
+        else
+        {
+            filters[1].Add(i);
+        }
+    }
+
+    public void UpdateFilterStudentYear(int i)
+    {
+        // Remove if it already exists.
+        if (filters[2].Contains(i))
+        {
+            filters[2].Remove(i);
+        }
+        else
+        {
+            filters[2].Add(i);
+        }
+    }
+
+    public void UpdateFilterTags(int i)
+    {
+        // Remove if it already exists.
+        if (filters[3].Contains(i))
+        {
+            filters[3].Remove(i);
+        }
+        else
+        {
+            filters[3].Add(i);
+        }
+    }
+
+    public void UpdateFilters ()
+    {
+        // Verwijder alle games in lijst
+        List<RequirmentCheck> gamesFiltered = new List<RequirmentCheck>();
+
+        foreach (RequirmentCheck game in games) {
+            
+
+            // BUildYear
+            for (int i = 0; i < filters[0].Count; i++)
+            {
+                if (game.buildYear == (BuildYear)i)
+                {
+                    gamesFiltered.Add(game);
+                }
+            }
+
+            for (int i = 0; i < filters[1].Count; i++)
+            {
+                if (game.teacherScore == (TeacherScore)i)
+                {
+                    gamesFiltered.Add(game);
+                }
+            }
+
+            for (int i = 0; i < filters[2].Count; i++)
+            {
+                if (game.studentYear == (StudentYear)i)
+                {
+                    gamesFiltered.Add(game);
+                }
+            }
+
+            for (int i = 0; i < filters[3].Count; i++)
+            {
+                if (game.filterTags == (FilterTags)i)
+                {
+                    gamesFiltered.Add(game);
+                }
+            }
+        }
+    }
+    
     private void Start()
     {
-
-        IEnumerable<int> scoreQuery = //query variable
-        from score in primeNumers //required
-        where score > 0// optional
-        orderby score descending // optional
-        select score; //must end with select or group
-
-        // Array.Sort(names, (x, y) => String.Compare(x, y));
+       
         Array.Sort(names);
         SortNames();
-
-        /* static void DisplayValues(String[] arr)
-         {
-             for (int i = arr.GetLowerBound(0); i <= arr.GetUpperBound(0);
-                   i++)
-             {
-                 Debug.Log( arr[i]);
-
-             }   
-             Console.WriteLine();
-         }*/
-
-
-
-        // je begint een query expression met een from en hij eindigt bij de laatste select of group.
-        foreach (var testScore in scoreQuery)
+        tags = FilterTags.Action | FilterTags.Arcade | FilterTags.Racing;
+        while (enabled)
         {
-            Debug.Log(testScore);
-           
+            switch (tags)
+            {
+                case 0:
+                    break;
+            }
         }
     }
     //tim code
@@ -60,8 +143,10 @@ public class FilterTest : MonoBehaviour
         {
             Debug.Log("Game: " + games[i].ToString());
         }
-
+        //Gebruikt linq
         games = games.OrderBy(game => game).ToList();
+
+        // if(Game(0).Category....
 
         Debug.Log("After sorting:");
         for (int i = 0; i < games.Count; i++)

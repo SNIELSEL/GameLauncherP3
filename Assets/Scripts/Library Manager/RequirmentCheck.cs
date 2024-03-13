@@ -14,6 +14,11 @@ public class RequirmentCheck : MonoBehaviour
     public RawImage gameBanner;
     public RawImage qrCode;
 
+    public BuildYear buildYear;
+    public TeacherScore teacherScore;
+    public StudentYear studentYear;
+    public FilterTags filterTags;
+
     public string gameName;
     public string gameDescrioption;
     public string creationDate;
@@ -42,6 +47,8 @@ public class RequirmentCheck : MonoBehaviour
         buttonParantObject = GameObject.Find("Content").transform;
         infoParantObject = GameObject.Find("ImageBackground").transform;
         StartCoroutine(CheckVeriables());
+
+        //buildYear = year;
     }
 
 
