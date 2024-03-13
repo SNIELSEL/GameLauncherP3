@@ -6,6 +6,10 @@ using WindowsInput;
 using WindowsInput.Native;
 using System.Runtime.InteropServices;
 using System;
+using System.Windows.Forms;
+using Object = System.Object;
+using Cursor = System.Windows.Forms.Cursor;
+using System.Drawing;
 
 public class InputEmulationScript : MonoBehaviour
 {
@@ -41,10 +45,46 @@ public class InputEmulationScript : MonoBehaviour
     [SerializeField] string filePath, fileName;
     private string currentLine;
     private int currentLineIndex = 0;
+    private int invisableI;
 
     private bool test;
+    private bool useCustomInput;
+    private bool usingMouse;
+    private bool usingPC;
+
+    private Cursor cursor;
+
+    //Emulation spull
+    public static System.Drawing.Point Position { get; set; }
 
     [DllImport("user32.dll")]
+    static extern bool GetCursorPos(ref Point lpPoint);
+
+    [DllImport("user32.dll")]
+
+    static extern void mouse_event(int dwFlags, int dx, int dy,
+                      int dwData, int dwExtraInfo);
+
+    [Flags]
+    public enum MouseEventFlags
+    {
+        LEFTDOWN = 0x00000002,
+        LEFTUP = 0x00000004,
+        MIDDLEDOWN = 0x00000020,
+        MIDDLEUP = 0x00000040,
+        MOVE = 0x00000001,
+        ABSOLUTE = 0x00008000,
+        RIGHTDOWN = 0x00000008,
+        RIGHTUP = 0x00000010
+    }
+
+    public static void LeftClick(int x, int y)
+    {
+        Cursor.Position = new System.Drawing.Point(x, y);
+        mouse_event((int)(MouseEventFlags.LEFTDOWN), 0, 0, 0, 0);
+        mouse_event((int)(MouseEventFlags.LEFTUP), 0, 0, 0, 0);
+    }
+
     private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, UIntPtr dwExtraInfo);
 
     private const uint MOUSEEVENTF_WHEEL = 0x0800;
@@ -69,135 +109,38 @@ public class InputEmulationScript : MonoBehaviour
 
     void Start()
     {
+        this.cursor = new Cursor(Cursor.Current.Handle);
+
         string[] lines = File.ReadAllLines(filePath);
 
         sim = new InputSimulator();
 
         //filePath = Application.dataPath + fileName;
 
-        for (int i = 0; i < lines.Length; i++)
+        for (invisableI = 0; invisableI < lines.Length; invisableI++)
         {
-            currentLine = lines[i];
+            currentLine = lines[invisableI];
 
-            if(currentLine == "Left joystick Up:")
+            if (currentLine == "UseInputTranslation:")
             {
-                lJoystickUp = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Left joystick Down:")
-            {
-                lJoystickDown = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Left joystick Left:")
-            {
-                lJoystickLeft = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Left joystick Right:")
-            {
-                lJoystickRight = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
+                if(GetLineAtIndex(invisableI + 1) == "Yes")
+                {
+                    useCustomInput = true;
+                }
+                else if (GetLineAtIndex(invisableI + 1) == "No")
+                {
+                    useCustomInput = false;
+                }
+                else if (GetLineAtIndex(invisableI + 1) == "PC")
+                {
+                    useCustomInput = true;
+                    usingPC = true;
+                }
             }
 
-            if (currentLine == "X Button:")
+            if(useCustomInput == true)
             {
-                lXButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "A Button:")
-            {
-                lAButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Blank Red Button:")
-            {
-                lBlankRedButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Y Button:")
-            {
-                lYButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Black Button:")
-            {
-                lBlackButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Yellow Button:")
-            {
-                lYellowButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Right joystick Up:")
-            {
-                rJoystickUp = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Right joystick Down:")
-            {
-                rJoystickDown = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Right joystick Left:")
-            {
-                rJoystickLeft = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Right joystick Right:")
-            {
-                rJoystickRight = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Right X Button:")
-            {
-                rXButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Right A Button:")
-            {
-                rAButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Right Red Button(WithoutLetter):")
-            {
-                rBlankRedButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Right Y Button:")
-            {
-                rYButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Right Black Button:")
-            {
-                rBlackButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Right Yellow Button:")
-            {
-                rYellowButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-
-            if (currentLine == "Start Button:")
-            {
-                startButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-            if (currentLine == "Select button:")
-            {
-                selectButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-            if (currentLine == "Right Side Start:")
-            {
-                rStartButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-            if (currentLine == "Right Side Select:")
-            {
-                rSelectButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
-            }
-            if (currentLine == "Left Side Black Button:")
-            {
-                lSideBlackButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(i + 1));
+                checkForinputNames();
             }
         }
     }
@@ -216,6 +159,126 @@ public class InputEmulationScript : MonoBehaviour
         }
     }
 
+    public void checkForinputNames()
+    {
+        if (currentLine == "Left joystick Up:")
+        {
+            lJoystickUp = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Left joystick Down:")
+        {
+            lJoystickDown = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Left joystick Left:")
+        {
+            lJoystickLeft = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Left joystick Right:")
+        {
+            lJoystickRight = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "X Button:")
+        {
+            lXButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "A Button:")
+        {
+            lAButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Blank Red Button:")
+        {
+            lBlankRedButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Y Button:")
+        {
+            lYButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Black Button:")
+        {
+            lBlackButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Yellow Button:")
+        {
+            lYellowButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Right joystick Up:")
+        {
+            rJoystickUp = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Right joystick Down:")
+        {
+            rJoystickDown = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Right joystick Left:")
+        {
+            rJoystickLeft = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Right joystick Right:")
+        {
+            rJoystickRight = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Right X Button:")
+        {
+            rXButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Right A Button:")
+        {
+            rAButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Right Red Button(WithoutLetter):")
+        {
+            rBlankRedButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Right Y Button:")
+        {
+            rYButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Right Black Button:")
+        {
+            rBlackButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Right Yellow Button:")
+        {
+            rYellowButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+
+        if (currentLine == "Start Button:")
+        {
+            startButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+        if (currentLine == "Select button:")
+        {
+            selectButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+        if (currentLine == "Right Side Start:")
+        {
+            rStartButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+        if (currentLine == "Right Side Select:")
+        {
+            rSelectButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+        }
+    }
+
     void Update()
     {
         if (test == true)
@@ -223,9 +286,21 @@ public class InputEmulationScript : MonoBehaviour
             StartCoroutine(ResetTestBool());
         }
 
-        InputListener();
+        if (!usingPC)
+        {
+            InputListener();
+        }
+        else
+        {
+            InputListenerPC();
+        }
     }
-
+    private void MoveCursor(int xToMove, int yToMove)
+    {
+        // Set the Current cursor, move the cursor's Position,
+        // and set its clipping rectangle to the form. 
+        Cursor.Position = new Point(Cursor.Position.X + xToMove, Cursor.Position.Y + yToMove);
+    }
     IEnumerator ResetTestBool()
     {
         yield return new WaitForSeconds(0.15f);
@@ -236,77 +311,407 @@ public class InputEmulationScript : MonoBehaviour
     {
         if (RawInput.IsKeyDown(RawKey.OEMComma) && !RawInput.IsKeyDown(RawKey.LeftShift) &&test == false)
         {
-            test = true;
-            sim.Keyboard.KeyDown(lJoystickUp);
+            if (!usingMouse)
+            {
+                test = true;
+                sim.Keyboard.KeyPress(lJoystickUp);
+            }
+            else
+            {
+                MoveCursor(0, -50);
+            }
         }
 
         if (RawInput.IsKeyDown(RawKey.OEMComma) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
         {
-            test = true;
-            sim.Keyboard.KeyDown(lJoystickDown);
+            if (!usingMouse)
+            {
+                test = true;
+                sim.Keyboard.KeyPress(lJoystickDown);
+            }
+            else
+            {
+                MoveCursor(0, 50);
+            }
         }
 
         if (RawInput.IsKeyDown(RawKey.OEMPeriod) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
         {
-            test = true;
-            sim.Keyboard.KeyDown(lJoystickLeft);
+            if (!usingMouse)
+            {
+                test = true;
+                sim.Keyboard.KeyPress(lJoystickLeft);
+            }
+            else
+            {
+                MoveCursor(-50, 0);
+            }
         }
 
         if (RawInput.IsKeyDown(RawKey.OEMPeriod) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
         {
-            test = true;
-            sim.Keyboard.KeyDown(lJoystickRight);
+            if (!usingMouse)
+            {
+                test = true;
+                sim.Keyboard.KeyPress(lJoystickRight);
+            }
+            else
+            {
+                MoveCursor(50, 0);
+            }
         }
 
         if (RawInput.IsKeyDown(RawKey.OEM2) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
         {
-            test = true;
-            sim.Keyboard.KeyDown(lXButton);
+            if (!usingMouse)
+            {
+                test = true;
+                sim.Keyboard.KeyPress(lXButton);
+            }
+            else
+            {
+                Point defPnt = new Point();
+                GetCursorPos(ref defPnt);
+
+                LeftClick(defPnt.X, defPnt.Y);
+            }
         }
 
 
         if (RawInput.IsKeyDown(RawKey.OEM2) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
         {
             test = true;
-            sim.Keyboard.KeyDown(lAButton);
+            sim.Keyboard.KeyPress(lAButton);
         }
 
 
         if (RawInput.IsKeyDown(RawKey.OEM1) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
         {
             test = true;
-            sim.Keyboard.KeyDown(lBlankRedButton);
+            sim.Keyboard.KeyPress(lBlankRedButton);
         }
 
         if (RawInput.IsKeyDown(RawKey.OEM1) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
         {
             test = true;
-            sim.Keyboard.KeyDown(lYButton);
+            sim.Keyboard.KeyPress(lYButton);
         }
 
         if (RawInput.IsKeyDown(RawKey.OEM7) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
         {
             test = true;
-            sim.Keyboard.KeyDown(lBlackButton);
+            sim.Keyboard.KeyPress(lBlackButton);
         }
 
         if (RawInput.IsKeyDown(RawKey.OEM7) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
         {
             test = true;
-            sim.Keyboard.KeyDown(lYellowButton);
+            sim.Keyboard.KeyPress(lYellowButton);
         }
 
         if (RawInput.IsKeyDown(RawKey.OEM4) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
         {
             test = true;
-            sim.Keyboard.KeyDown(rJoystickUp);
+            sim.Keyboard.KeyPress(rJoystickUp);
         }
 
         if (RawInput.IsKeyDown(RawKey.OEM4) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
         {
             test = true;
-            sim.Keyboard.KeyDown(rJoystickDown);
+            sim.Keyboard.KeyPress(rJoystickDown);
         }
 
+        if (RawInput.IsKeyDown(RawKey.OEM6) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rJoystickLeft);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.OEM6) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rJoystickRight);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.OEM5) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rXButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.OEM5) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rAButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.OEMPlus) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rBlankRedButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.OEMPlus) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rYButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.OEMMinus) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rBlackButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.OEMMinus) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rYellowButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.N0) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(startButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.N9) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(selectButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.N8) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rStartButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.N7) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rSelectButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.N6) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
+        {
+            test = true;
+
+            if(usingMouse == false)
+            {
+                usingMouse = true;
+            }
+            else
+            {
+                usingMouse = false;
+            }
+        }
+    }
+
+
+
+    /// <summary>
+    /// PC Version of The Input Listener for Debugging Without a RaspberryPi
+    /// </summary>
+
+    private void InputListenerPC()
+    {
+        if (RawInput.IsKeyDown(RawKey.Up) && test == false)
+        {
+            if (!usingMouse)
+            {
+                test = true;
+                sim.Keyboard.KeyPress(lJoystickUp);
+            }
+            else
+            {
+                MoveCursor(0, -50);
+            }
+        }
+
+        if (RawInput.IsKeyDown(RawKey.Down) && test == false)
+        {
+            if (!usingMouse)
+            {
+                test = true;
+                sim.Keyboard.KeyPress(lJoystickDown);
+            }
+            else
+            {
+                MoveCursor(0, 50);
+            }
+        }
+
+        if (RawInput.IsKeyDown(RawKey.Left) && test == false)
+        {
+            if (!usingMouse)
+            {
+                test = true;
+                sim.Keyboard.KeyPress(lJoystickLeft);
+            }
+            else
+            {
+                MoveCursor(-50, 0);
+            }
+        }
+
+        if (RawInput.IsKeyDown(RawKey.Right) && test == false)
+        {
+            if (!usingMouse)
+            {
+                test = true;
+                sim.Keyboard.KeyPress(lJoystickRight);
+            }
+            else
+            {
+                MoveCursor(50, 0);
+            }
+        }
+
+        if (RawInput.IsKeyDown(RawKey.X) && test == false)
+        {
+            if (!usingMouse)
+            {
+                test = true;
+                sim.Keyboard.KeyPress(lXButton);
+            }
+            else
+            {
+                Point defPnt = new Point();
+                GetCursorPos(ref defPnt);
+
+                LeftClick(defPnt.X, defPnt.Y);
+            }
+        }
+
+
+        if (RawInput.IsKeyDown(RawKey.Z) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(lAButton);
+        }
+
+
+        if (RawInput.IsKeyDown(RawKey.Shift) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(lBlankRedButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.Space) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(lYButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.LeftMenu) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(lBlackButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.LeftControl) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(lYellowButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.R) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rJoystickUp);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.F) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rJoystickDown);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.D) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rJoystickLeft);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.G) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rJoystickRight);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.W) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rXButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.I) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rAButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.K) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rBlankRedButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.A) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rYButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.S) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rBlackButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.Q) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rYellowButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.N1) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(startButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.Tab) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(selectButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.V) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rStartButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.L) && test == false)
+        {
+            test = true;
+            sim.Keyboard.KeyPress(rSelectButton);
+        }
+
+        if (RawInput.IsKeyDown(RawKey.P) && test == false)
+        {
+            test = true;
+
+            if (usingMouse == false)
+            {
+                usingMouse = true;
+            }
+            else
+            {
+                usingMouse = false;
+            }
+        }
     }
 }

@@ -1,3 +1,11 @@
+InputSettings
+
+//Enter Yes or No on the line after the:
+UseInputTranslation:
+PC
+
+Input
+//Here you can change the inputs
 Left joystick Up:
 VK_W
 
@@ -69,6 +77,3 @@ RCONTROL
 
 Right Side Select:
 VK_1
-
-Left Side Black Button:
-VK_2

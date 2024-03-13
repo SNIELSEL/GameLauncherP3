@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 1018885338}
   - component: {fileID: 1018885337}
   - component: {fileID: 1018885336}
+  - component: {fileID: 1018885339}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -248,6 +249,7 @@ MonoBehaviour:
   logo: {fileID: 0}
   banner: {fileID: 0}
   qrCode: {fileID: 0}
+  eNumManager: {fileID: 0}
 --- !u!114 &1018885337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +290,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1018885339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018885335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530363d4d7227ae4b8231f80a715233d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lJoystickUp: 0
+  lJoystickDown: 0
+  lJoystickLeft: 0
+  lJoystickRight: 0
+  lXButton: 0
+  lAButton: 0
+  lBlankRedButton: 0
+  lYButton: 0
+  lBlackButton: 0
+  lYellowButton: 0
+  rJoystickUp: 0
+  rJoystickDown: 0
+  rJoystickLeft: 0
+  rJoystickRight: 0
+  rXButton: 0
+  rAButton: 0
+  rBlankRedButton: 0
+  rYButton: 0
+  rBlackButton: 0
+  rYellowButton: 0
+  startButton: 0
+  selectButton: 0
+  rSelectButton: 0
+  rStartButton: 0
+  lSideBlackButton: 0
+  filePath: C:/Users/offic/Unity projects/GameLauncherP3/Assets/Inputs.txt
+  fileName: /Inputs.txt
 --- !u!1 &1269563929 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1338191363328768660, guid: 21bff95471b6dca478bb5bd28eb4dedb,
@@ -981,7 +1022,7 @@ PrefabInstance:
     - target: {fileID: 858855543734124124, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1041.3745
+      value: 1041.375
       objectReference: {fileID: 0}
     - target: {fileID: 1184355560071069099, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
