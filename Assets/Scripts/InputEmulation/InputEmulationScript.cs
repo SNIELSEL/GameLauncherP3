@@ -46,11 +46,13 @@ public class InputEmulationScript : MonoBehaviour
     private string currentLine;
     private int currentLineIndex = 0;
     private int invisableI;
+    public int sens;
 
     private bool test;
     private bool useCustomInput;
     private bool usingMouse;
     private bool usingPC;
+    private bool isHolding;
 
     private Cursor cursor;
 
@@ -383,7 +385,7 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                MoveCursor(0, -20);
+                MoveCursor(0, -sens);
             }
         }
 
@@ -396,7 +398,7 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                MoveCursor(0, 20);
+                MoveCursor(0, sens);
             }
         }
 
@@ -409,7 +411,7 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                MoveCursor(-20, 0);
+                MoveCursor(-sens, 0);
             }
         }
 
@@ -422,7 +424,7 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                MoveCursor(20, 0);
+                MoveCursor(sens, 0);
             }
         }
 
@@ -590,7 +592,7 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                MoveCursor(0, -50);
+                MoveCursor(0, -sens);
             }
         }
 
@@ -603,7 +605,7 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                MoveCursor(0, 50);
+                MoveCursor(0, sens);
             }
         }
 
@@ -616,7 +618,7 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                MoveCursor(-50, 0);
+                MoveCursor(-sens, 0);
             }
         }
 
@@ -629,7 +631,7 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                MoveCursor(50, 0);
+                MoveCursor(sens, 0);
             }
         }
 
@@ -645,9 +647,20 @@ public class InputEmulationScript : MonoBehaviour
                 Point defPnt = new Point();
                 GetCursorPos(ref defPnt);
 
-                LeftClick(defPnt.X, defPnt.Y);
+                //LeftClick(defPnt.X, defPnt.Y);
 
-                ButtonDown(MouseButtonConstants.vbLeftButton);
+                if (!isHolding)
+                {
+                    test = true;
+                    isHolding = true;
+                    ButtonDown(MouseButtonConstants.vbLeftButton);
+                }
+                else
+                {
+                    test = true;
+                    isHolding = false;
+                    ButtonUp(MouseButtonConstants.vbLeftButton);
+                }
             }
         }
 

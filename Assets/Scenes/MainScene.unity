@@ -340,6 +340,7 @@ MonoBehaviour:
   lSideBlackButton: 0
   filePath: C:/Users/offic/Unity projects/GameLauncherP3/Assets/Inputs.txt
   fileName: /Inputs.txt
+  sens: 5
 --- !u!114 &1018885340
 MonoBehaviour:
   m_ObjectHideFlags: 0
