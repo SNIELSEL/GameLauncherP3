@@ -40,6 +40,8 @@ public class RequirmentCheck : MonoBehaviour
     private int variablesChecked;
 
     public ENumManager eNumManager;
+    public DescriptionAutoFill descriptionAuto;
+    public GameObject library;
 
     public void CreateCreationDateWithData()
     {
@@ -55,10 +57,15 @@ public class RequirmentCheck : MonoBehaviour
 
     private void Start()
     {
+        descriptionAuto = GameObject.Find("ScriptHolder").GetComponent<DescriptionAutoFill>();
+        library = descriptionAuto.library;
+        library.SetActive(true);
         buttonParantObject = GameObject.Find("Content").transform;
         infoParantObject = GameObject.FindGameObjectWithTag("Library").transform;
         StartCoroutine(CheckVeriables());
 
+
+        library.SetActive(false);
         //buildYear = year;
     }
 

@@ -55,6 +55,71 @@ public class InputEmulationScript : MonoBehaviour
     private Cursor cursor;
 
     //Emulation spull
+
+    [DllImport("user32.dll")]
+    private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, UIntPtr dwExtraInfo);
+
+    private const uint MOUSEEVENTF_LEFTDOWN = 0x02;
+    private const uint MOUSEEVENTF_LEFTUP = 0x04;
+    private const uint MOUSEEVENTF_MIDDLEDOWN = 0x20;
+    private const uint MOUSEEVENTF_MIDDLEUP = 0x40;
+    private const uint MOUSEEVENTF_RIGHTDOWN = 0x08;
+    private const uint MOUSEEVENTF_RIGHTUP = 0x10;
+
+    public enum MouseButtonConstants
+    {
+        vbLeftButton = 1,
+        vbMiddleButton = 4,
+        vbRightButton = 2
+    }
+
+    public static void ButtonDown(MouseButtonConstants Button = MouseButtonConstants.vbLeftButton)
+    {
+        uint flag = 0;
+        if (Button == MouseButtonConstants.vbLeftButton)
+        {
+            flag = MOUSEEVENTF_LEFTDOWN;
+        }
+        else if (Button == MouseButtonConstants.vbMiddleButton)
+        {
+            flag = MOUSEEVENTF_MIDDLEDOWN;
+        }
+        else if (Button == MouseButtonConstants.vbRightButton)
+        {
+            flag = MOUSEEVENTF_RIGHTDOWN;
+        }
+        mouse_event(flag, 0, 0, 0, UIntPtr.Zero);
+    }
+
+    public static void ButtonUp(MouseButtonConstants Button = MouseButtonConstants.vbLeftButton)
+    {
+        uint flag = 0;
+        if (Button == MouseButtonConstants.vbLeftButton)
+        {
+            flag = MOUSEEVENTF_LEFTUP;
+        }
+        else if (Button == MouseButtonConstants.vbMiddleButton)
+        {
+            flag = MOUSEEVENTF_MIDDLEUP;
+        }
+        else if (Button == MouseButtonConstants.vbRightButton)
+        {
+            flag = MOUSEEVENTF_RIGHTUP;
+        }
+        mouse_event(flag, 0, 0, 0, UIntPtr.Zero);
+    }
+
+    public static void ButtonClick(MouseButtonConstants Button = MouseButtonConstants.vbLeftButton)
+    {
+        ButtonDown(Button);
+        ButtonUp(Button);
+    }
+
+    public static void ButtonDblClick(MouseButtonConstants Button = MouseButtonConstants.vbLeftButton)
+    {
+        ButtonClick(Button);
+        ButtonClick(Button);
+    }
     public static System.Drawing.Point Position { get; set; }
 
     [DllImport("user32.dll")]
@@ -85,7 +150,7 @@ public class InputEmulationScript : MonoBehaviour
         mouse_event((int)(MouseEventFlags.LEFTUP), 0, 0, 0, 0);
     }
 
-    private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, UIntPtr dwExtraInfo);
+    //private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, UIntPtr dwExtraInfo);
 
     private const uint MOUSEEVENTF_WHEEL = 0x0800;
 
@@ -303,7 +368,7 @@ public class InputEmulationScript : MonoBehaviour
     }
     IEnumerator ResetTestBool()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.25f);
         test = false;
     }
 
@@ -581,6 +646,8 @@ public class InputEmulationScript : MonoBehaviour
                 GetCursorPos(ref defPnt);
 
                 LeftClick(defPnt.X, defPnt.Y);
+
+                ButtonDown(MouseButtonConstants.vbLeftButton);
             }
         }
 

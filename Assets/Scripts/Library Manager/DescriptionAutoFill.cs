@@ -28,6 +28,7 @@ public class DescriptionAutoFill : MonoBehaviour
     [SerializeField] RawImage qrCode;
 
     public ENumManager eNumManager;
+    public GameObject library;
 
     public void Awake()
     {
