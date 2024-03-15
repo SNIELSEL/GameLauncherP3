@@ -50,7 +50,7 @@ public class InputEmulationScript : MonoBehaviour
 
     private bool test;
     private bool useCustomInput;
-    private bool usingMouse;
+    public bool usingMouse;
     private bool usingPC;
     private bool isHolding;
 
