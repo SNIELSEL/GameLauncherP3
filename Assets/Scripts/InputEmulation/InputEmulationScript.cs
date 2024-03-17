@@ -1,21 +1,21 @@
+using System;
 using System.Collections;
+using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityRawInput;
 using WindowsInput;
 using WindowsInput.Native;
-using System.Runtime.InteropServices;
-using System;
-using System.Windows.Forms;
-using Object = System.Object;
 using Cursor = System.Windows.Forms.Cursor;
-using System.Drawing;
 
 public class InputEmulationScript : MonoBehaviour
 {
-    InputSimulator sim;
-    MouseSimulator mouseSim;
+    private InputSimulator sim;
+    private MouseSimulator mouseSim;
 
+    //keys to output
     [SerializeField] VirtualKeyCode lJoystickUp;
     [SerializeField] VirtualKeyCode lJoystickDown;
     [SerializeField] VirtualKeyCode lJoystickLeft;
@@ -42,21 +42,54 @@ public class InputEmulationScript : MonoBehaviour
     [SerializeField] VirtualKeyCode rStartButton;
     [SerializeField] VirtualKeyCode lSideBlackButton;
 
+    //keys to search for input
+    private RawKey InputlJoystickUp;
+    private RawKey InputlJoystickDown;
+    private RawKey InputlJoystickLeft;
+    private RawKey InputlJoystickRight;
+    private RawKey InputlXButton;
+    private RawKey InputlAButton;
+    private RawKey InputlBlankRedButton;
+    private RawKey InputlYButton;
+    private RawKey InputlBlackButton;
+    private RawKey InputlYellowButton;
+    private RawKey InputrJoystickUp;
+    private RawKey InputrJoystickDown;
+    private RawKey InputrJoystickLeft;
+    private RawKey InputrJoystickRight;
+    private RawKey InputrXButton;
+    private RawKey InputrAButton;
+    private RawKey InputrBlankRedButton;
+    private RawKey InputrYButton;
+    private RawKey InputrBlackButton;
+    private RawKey InputrYellowButton;
+    private RawKey InputstartButton;
+    private RawKey InputselectButton;
+    private RawKey InputrSelectButton;
+    private RawKey InputrStartButton;
+    private RawKey InputlSideBlackButton;
+
     [SerializeField] string filePath, fileName;
     private string currentLine;
     private int currentLineIndex = 0;
     private int invisableI;
-    public int sens;
 
-    private bool test;
+    //checks for if variables are set or if a event is triggerd
+    private bool inputDelayIsActive;
     private bool useCustomInput;
-    public bool usingMouse;
     private bool usingPC;
+    private bool usingPCInput;
+    private bool usingRaspberryPiInput;
+    private bool setInputKeys;
     private bool isHolding;
 
     private Cursor cursor;
+    
+    public int sens;
 
-    //Emulation spull
+    public bool usingMouse;
+
+    //Windows mouse event emulation
 
     [DllImport("user32.dll")]
     private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, UIntPtr dwExtraInfo);
@@ -174,6 +207,13 @@ public class InputEmulationScript : MonoBehaviour
         RawInput.WorkInBackground = true;
     }
 
+    private void OnApplicationQuit()
+    {
+        RawInput.WorkInBackground = false;
+        RawInput.Stop();
+        usingMouse = false;
+    }
+
     void Start()
     {
         this.cursor = new Cursor(Cursor.Current.Handle);
@@ -210,6 +250,48 @@ public class InputEmulationScript : MonoBehaviour
                 checkForinputNames();
             }
         }
+    }
+
+    void Update()
+    {
+        if (inputDelayIsActive == true)
+        {
+            StartCoroutine(DelayTheInput());
+        }
+
+        if (isHolding)
+        {
+            if (!RawInput.IsKeyDown(InputlXButton))
+            {
+                isHolding = false;
+                ButtonUp(MouseButtonConstants.vbLeftButton);
+            }
+            else if (RawInput.IsKeyDown(InputlXButton))
+            {
+                inputDelayIsActive = true;
+                isHolding = true;
+                ButtonDown(MouseButtonConstants.vbLeftButton);
+            }
+        }
+
+        if (usingPC)
+        {
+            usingPCInput = true;
+            usingRaspberryPiInput = false;
+            InputListener();
+        }
+        else
+        {
+            usingPCInput = false;
+            usingRaspberryPiInput = true;
+            InputListener();
+        }
+    }
+    private void MoveCursor(int xToMove, int yToMove)
+    {
+        // Set the Current cursor, move the cursor's Position,
+        // and set its clipping rectangle to the form. 
+        Cursor.Position = new Point(Cursor.Position.X + xToMove, Cursor.Position.Y + yToMove);
     }
 
     private string GetLineAtIndex(int index)
@@ -345,249 +427,89 @@ public class InputEmulationScript : MonoBehaviour
             rSelectButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
         }
     }
-
-    void Update()
-    {
-        if (test == true)
-        {
-            StartCoroutine(ResetTestBool());
-        }
-
-        if (!usingPC)
-        {
-            InputListener();
-        }
-        else
-        {
-            InputListenerPC();
-        }
-    }
-    private void MoveCursor(int xToMove, int yToMove)
-    {
-        // Set the Current cursor, move the cursor's Position,
-        // and set its clipping rectangle to the form. 
-        Cursor.Position = new Point(Cursor.Position.X + xToMove, Cursor.Position.Y + yToMove);
-    }
-    IEnumerator ResetTestBool()
+    IEnumerator DelayTheInput()
     {
         yield return new WaitForSeconds(0.25f);
-        test = false;
+        inputDelayIsActive = false;
     }
-
-    private void InputListener()
-    {
-        if (RawInput.IsKeyDown(RawKey.OEMComma) && !RawInput.IsKeyDown(RawKey.LeftShift) &&test == false)
-        {
-            if (!usingMouse)
-            {
-                test = true;
-                sim.Keyboard.KeyPress(lJoystickUp);
-            }
-            else
-            {
-                MoveCursor(0, -sens);
-            }
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEMComma) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            if (!usingMouse)
-            {
-                test = true;
-                sim.Keyboard.KeyPress(lJoystickDown);
-            }
-            else
-            {
-                MoveCursor(0, sens);
-            }
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEMPeriod) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            if (!usingMouse)
-            {
-                test = true;
-                sim.Keyboard.KeyPress(lJoystickLeft);
-            }
-            else
-            {
-                MoveCursor(-sens, 0);
-            }
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEMPeriod) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            if (!usingMouse)
-            {
-                test = true;
-                sim.Keyboard.KeyPress(lJoystickRight);
-            }
-            else
-            {
-                MoveCursor(sens, 0);
-            }
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEM2) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            if (!usingMouse)
-            {
-                test = true;
-                sim.Keyboard.KeyPress(lXButton);
-            }
-            else
-            {
-                Point defPnt = new Point();
-                GetCursorPos(ref defPnt);
-
-                LeftClick(defPnt.X, defPnt.Y);
-            }
-        }
-
-
-        if (RawInput.IsKeyDown(RawKey.OEM2) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(lAButton);
-        }
-
-
-        if (RawInput.IsKeyDown(RawKey.OEM1) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(lBlankRedButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEM1) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(lYButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEM7) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(lBlackButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEM7) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(lYellowButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEM4) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(rJoystickUp);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEM4) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(rJoystickDown);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEM6) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(rJoystickLeft);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEM6) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(rJoystickRight);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEM5) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(rXButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEM5) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(rAButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEMPlus) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(rBlankRedButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEMPlus) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(rYButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEMMinus) && !RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(rBlackButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.OEMMinus) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(rYellowButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.N0) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(startButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.N9) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(selectButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.N8) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(rStartButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.N7) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-            sim.Keyboard.KeyPress(rSelectButton);
-        }
-
-        if (RawInput.IsKeyDown(RawKey.N6) && RawInput.IsKeyDown(RawKey.LeftShift) && test == false)
-        {
-            test = true;
-
-            if(usingMouse == false)
-            {
-                usingMouse = true;
-            }
-            else
-            {
-                usingMouse = false;
-            }
-        }
-    }
-
-
 
     /// <summary>
     /// PC Version of The Input Listener for Debugging Without a RaspberryPi
     /// </summary>
 
-    private void InputListenerPC()
+    private void InputListener()
     {
-        if (RawInput.IsKeyDown(RawKey.Up) && test == false)
+
+
+        //set the input that the script is searching for to either the windows commands or for RaspberryPi commands this ensures that the code is usable without RaspberryPi
+        if (usingPCInput && !setInputKeys)
+        {
+            InputlJoystickUp = RawKey.Up;
+            InputlJoystickDown = RawKey.Down;
+            InputlJoystickLeft = RawKey.Left;
+            InputlJoystickRight = RawKey.Right;
+            InputlXButton = RawKey.X;
+            InputlAButton = RawKey.Z;
+            InputlBlankRedButton = RawKey.Shift;
+            InputlYButton = RawKey.Space;
+            InputlBlackButton = RawKey.LeftMenu;
+            InputlYellowButton = RawKey.LeftControl;
+            InputrJoystickUp = RawKey.R;
+            InputrJoystickDown = RawKey.F;
+            InputrJoystickLeft = RawKey.D;
+            InputrJoystickRight = RawKey.G;
+            InputrXButton = RawKey.W;
+            InputrAButton = RawKey.I;
+            InputrBlankRedButton = RawKey.K;
+            InputrYButton = RawKey.A;
+            InputrBlackButton = RawKey.S;
+            InputrYellowButton = RawKey.Q;
+            InputstartButton = RawKey.N1;
+            InputselectButton = RawKey.Tab;
+            InputrSelectButton = RawKey.L;
+            InputrStartButton = RawKey.V;
+            InputlSideBlackButton = RawKey.P;
+
+            setInputKeys = true;
+            usingPCInput = false;
+        }
+        else if (usingRaspberryPiInput && !setInputKeys)
+        {
+            InputlJoystickUp = RawKey.F13;
+            InputlJoystickDown = RawKey.F14;
+            InputlJoystickLeft = RawKey.F15;
+            InputlJoystickRight = RawKey.F16;
+            InputlXButton = RawKey.F17;
+            InputlAButton = RawKey.F18;
+            InputlBlankRedButton = RawKey.F19;
+            InputlYButton = RawKey.F20;
+            InputlBlackButton = RawKey.F21;
+            InputlYellowButton = RawKey.F22;
+            InputrJoystickUp = RawKey.F23;
+            InputrJoystickDown = RawKey.F24;
+            InputrJoystickLeft = RawKey.OEMComma;
+            InputrJoystickRight = RawKey.OEMPeriod;
+            InputrXButton = RawKey.OEM2;
+            InputrAButton = RawKey.OEM1;
+            InputrBlankRedButton = RawKey.OEM7;
+            InputrYButton = RawKey.OEM4;
+            InputrBlackButton = RawKey.OEM6;
+            InputrYellowButton = RawKey.OEM5;
+            InputstartButton = RawKey.OEMPlus;
+            InputselectButton = RawKey.OEMMinus;
+            InputrSelectButton = RawKey.OEM3;
+            InputrStartButton = RawKey.Noname;
+            InputlSideBlackButton = RawKey.Kana;
+
+            setInputKeys = true;
+            usingRaspberryPiInput = false;
+        }
+
+        if (RawInput.IsKeyDown(InputlJoystickUp) && inputDelayIsActive == false)
         {
             if (!usingMouse)
             {
-                test = true;
+                inputDelayIsActive = true;
                 sim.Keyboard.KeyPress(lJoystickUp);
             }
             else
@@ -596,11 +518,11 @@ public class InputEmulationScript : MonoBehaviour
             }
         }
 
-        if (RawInput.IsKeyDown(RawKey.Down) && test == false)
+        if (RawInput.IsKeyDown(InputlJoystickDown) && inputDelayIsActive == false)
         {
             if (!usingMouse)
             {
-                test = true;
+                inputDelayIsActive = true;
                 sim.Keyboard.KeyPress(lJoystickDown);
             }
             else
@@ -609,11 +531,11 @@ public class InputEmulationScript : MonoBehaviour
             }
         }
 
-        if (RawInput.IsKeyDown(RawKey.Left) && test == false)
+        if (RawInput.IsKeyDown(InputlJoystickLeft) && inputDelayIsActive == false)
         {
             if (!usingMouse)
             {
-                test = true;
+                inputDelayIsActive = true;
                 sim.Keyboard.KeyPress(lJoystickLeft);
             }
             else
@@ -622,11 +544,11 @@ public class InputEmulationScript : MonoBehaviour
             }
         }
 
-        if (RawInput.IsKeyDown(RawKey.Right) && test == false)
+        if (RawInput.IsKeyDown(InputlJoystickRight) && inputDelayIsActive == false)
         {
             if (!usingMouse)
             {
-                test = true;
+                inputDelayIsActive = true;
                 sim.Keyboard.KeyPress(lJoystickRight);
             }
             else
@@ -635,154 +557,148 @@ public class InputEmulationScript : MonoBehaviour
             }
         }
 
-        if (RawInput.IsKeyDown(RawKey.X) && test == false)
+        if (RawInput.IsKeyDown(InputlXButton) && inputDelayIsActive == false)
         {
             if (!usingMouse)
             {
-                test = true;
+                inputDelayIsActive = true;
                 sim.Keyboard.KeyPress(lXButton);
             }
             else
             {
-                Point defPnt = new Point();
-                GetCursorPos(ref defPnt);
-
-                //LeftClick(defPnt.X, defPnt.Y);
-
-                if (!isHolding)
+                if (!RawInput.IsKeyDown(InputlXButton))
                 {
-                    test = true;
-                    isHolding = true;
-                    ButtonDown(MouseButtonConstants.vbLeftButton);
+                    Point defPnt = new Point();
+                    GetCursorPos(ref defPnt);
+
+                    LeftClick(defPnt.X, defPnt.Y);
                 }
                 else
                 {
-                    test = true;
-                    isHolding = false;
-                    ButtonUp(MouseButtonConstants.vbLeftButton);
+                    isHolding = true;
                 }
             }
         }
 
 
-        if (RawInput.IsKeyDown(RawKey.Z) && test == false)
+        if (RawInput.IsKeyDown(InputlAButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(lAButton);
         }
 
 
-        if (RawInput.IsKeyDown(RawKey.Shift) && test == false)
+        if (RawInput.IsKeyDown(InputlBlankRedButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(lBlankRedButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.Space) && test == false)
+        if (RawInput.IsKeyDown(InputlYButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(lYButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.LeftMenu) && test == false)
+        if (RawInput.IsKeyDown(InputlBlackButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(lBlackButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.LeftControl) && test == false)
+        if (RawInput.IsKeyDown(InputlYellowButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(lYellowButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.R) && test == false)
+        if (RawInput.IsKeyDown(InputrJoystickUp) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(rJoystickUp);
         }
 
-        if (RawInput.IsKeyDown(RawKey.F) && test == false)
+        if (RawInput.IsKeyDown(InputrJoystickDown) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(rJoystickDown);
         }
 
-        if (RawInput.IsKeyDown(RawKey.D) && test == false)
+        if (RawInput.IsKeyDown(InputrJoystickLeft) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(rJoystickLeft);
         }
 
-        if (RawInput.IsKeyDown(RawKey.G) && test == false)
+        if (RawInput.IsKeyDown(InputrJoystickRight) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(rJoystickRight);
         }
 
-        if (RawInput.IsKeyDown(RawKey.W) && test == false)
+        if (RawInput.IsKeyDown(InputrXButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(rXButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.I) && test == false)
+        if (RawInput.IsKeyDown(InputrAButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(rAButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.K) && test == false)
+        if (RawInput.IsKeyDown(InputrBlankRedButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(rBlankRedButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.A) && test == false)
+        if (RawInput.IsKeyDown(InputrYButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(rYButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.S) && test == false)
+        if (RawInput.IsKeyDown(InputrBlackButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(rBlackButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.Q) && test == false)
+        if (RawInput.IsKeyDown(InputrYellowButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(rYellowButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.N1) && test == false)
+        if (RawInput.IsKeyDown(InputstartButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(startButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.Tab) && test == false)
+        if (RawInput.IsKeyDown(InputselectButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(selectButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.V) && test == false)
+        if (RawInput.IsKeyDown(InputrStartButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(rStartButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.L) && test == false)
+        if (RawInput.IsKeyDown(InputrSelectButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
             sim.Keyboard.KeyPress(rSelectButton);
         }
 
-        if (RawInput.IsKeyDown(RawKey.P) && test == false)
+        if (RawInput.IsKeyDown(InputlSideBlackButton) && inputDelayIsActive == false)
         {
-            test = true;
+            inputDelayIsActive = true;
 
             if (usingMouse == false)
             {
