@@ -10,7 +10,7 @@ public class Search : MonoBehaviour
     public GameObject[] games;
 
     int totalGames;
-    // Start is called before the first frame update
+   
     void Start()
     {
         totalGames = contentHolder.transform.childCount;
@@ -32,13 +32,14 @@ public class Search : MonoBehaviour
         foreach (GameObject game in games)
         {
             searchedGames++;
-            //goede
-            /*if(game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Length >= searchLength)
+            //origineel
+           /* if (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Length >= searchLength)
             {
-                if(searchText.ToLower() == (game.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
+                if (searchText.ToLower() == (game.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
                 {
                     game.SetActive(true);
-                   *//* NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE*//*
+                    *//*NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE
+                      nessie god*//*
                 }
                 else
                 {
@@ -46,21 +47,54 @@ public class Search : MonoBehaviour
                 }
             }*/
 
-
-            //probeer
-            if (game.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text.Length >= searchLength)
+            // meer probeer
+            for (int i = 0; i < searchBar.transform.childCount; i++)
             {
-                
-                if (searchText.ToLower() == (game.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
+                if (searchBar.transform.GetChild(i).name == "GameButtonLibrary(Clone)")
                 {
-                    game.SetActive(true);
-                    /* NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE*/
+
+                    if (game.transform.GetChild(i).GetComponentInChildren<TextMeshProUGUI>().text.Length >= searchLength)
+                    {
+                        if (searchText.ToLower() == (game.transform.GetChild(i).GetComponentInChildren<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
+                        {
+                            game.SetActive(true);
+                            /* NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE*/
+                        }
+                        else
+                        {
+                            game.SetActive(false);
+                        }
+                    }
                 }
-                else
-                {
-                    game.SetActive(false);
-                }
+
             }
+            
+
+
+
+           /* //probeer
+            if (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Length >= searchLength)
+            {
+
+                for (int i = 0; i < searchBar.transform.childCount; i++)
+                {
+                    if (searchBar.transform.GetChild(i).name == "InfoTab(Clone)")
+                    {
+
+                        if (searchText.ToLower() == (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
+                        {
+                            game.SetActive(true);
+                            *//* NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE*//*
+                        }
+                        else
+                        {
+                            game.SetActive(false);
+                        }
+                        
+                    }
+                }
+
+            }*/
         }
     }
 }
