@@ -6,22 +6,31 @@ using UnityEngine.UI;
 
 public class DescriptionAutoFill : MonoBehaviour
 {
+    [Hedaer "Prefab's"]
     [SerializeField] private GameObject gameButtonPrefab;
+
+
+    [Header "Text Data"]
 
     [SerializeField] private string filePath;
     [SerializeField] private string imageFilePath;
     [SerializeField] private string exeFilePath;
     [SerializeField] private string fileName;
     [SerializeField] private string[] lineText;
-    public string[] gameFolders;
-
-
-    private int currentLineIndex = 0;
     [SerializeField] private int lineAmount;
+
+    public string[] gameFolders;
+    private int currentLineIndex = 0;
+
+
+    [Header "Text"]
 
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI descriptionText;
     [SerializeField] TextMeshProUGUI CreatorText;
+
+
+    [Header "Images"]
 
     [SerializeField] RawImage logo;
     [SerializeField] RawImage banner;
@@ -30,14 +39,10 @@ public class DescriptionAutoFill : MonoBehaviour
     public ENumManager eNumManager;
     public GameObject library;
 
-    public void Awake()
-    {
-
-    }
-
+    //This void gets info out of the Selected File.
     public void GetAllFolderData()
     {
-
+        //Cicles trough all of the sub folders of the selected library file.
         for (int i = 0; i < gameFolders.Length; i++)
         {
             filePath = gameFolders[i] + "/Description.txt";
@@ -47,6 +52,7 @@ public class DescriptionAutoFill : MonoBehaviour
             string[] lines = File.ReadAllLines(filePath);
             lineText = new string[lines.Length];
 
+            //Cicles Trhough all of the text files lines until it vfinds a key word and then assaings it to the right variable.
             for (int j = 0; j < lines.Length; j++)
             {
                 lineText[j] = GetLineAtIndex(j);
@@ -109,7 +115,7 @@ public class DescriptionAutoFill : MonoBehaviour
                 }
             }
 
-            //LoadImages
+            //After finding the right .PNG file it willl conect it to the right RawImage.
             imageFilePath = gameFolders[i] + "/Logo.PNG";
             requirementChecker.GetComponent<RequirmentCheck>().gameLogo.texture = LoadImage(imageFilePath);
 
@@ -130,6 +136,8 @@ public class DescriptionAutoFill : MonoBehaviour
 }
     }
 
+
+    // Sets The selected textures above to the right size.
     public static Texture2D LoadImage(string filename)
     {
         byte[] bytes = File.ReadAllBytes(filename);
@@ -140,6 +148,7 @@ public class DescriptionAutoFill : MonoBehaviour
         return texture;
     }
 
+    // Checks all The Lines
     private string GetLineAtIndex(int index)
     {
         lineAmount = index;

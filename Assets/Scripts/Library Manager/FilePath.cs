@@ -7,12 +7,17 @@ using SimpleFileBrowser;
 
 public class FilePath : MonoBehaviour
 {
+
+    [Header "File Select"]
     [SerializeField] private string fileName;
     [SerializeField] private string[] subFolders;
 
+
+    [Header "Script Reverence"]
     public DescriptionAutoFill descriptionAutoFill;
 
 
+    // Code from the folder asset From Asset Store.
     public void ChooseGamesFolder()
     {
         // Add a new quick link to the browser (optional) (returns true if quick link is added successfully)
@@ -33,6 +38,7 @@ public class FilePath : MonoBehaviour
         FileBrowser.ShowLoadDialog(OnFilesSelected, null, FileBrowser.PickMode.FilesAndFolders, false, "C:\\Users\\" + System.Environment.UserName + "\\Desktop", "", "Choose Games Folder", "Load");
     }
 
+    
     void OnFilesSelected(string[] filePaths)
     {
         // Print paths of the selected files
@@ -65,7 +71,7 @@ public class FilePath : MonoBehaviour
 
     private void GameFolderCheck()
     {
-       subFolders = Directory.GetDirectories(fileName);
+        subFolders = Directory.GetDirectories(fileName);
 
         descriptionAutoFill.gameFolders = subFolders;
         descriptionAutoFill.GetAllFolderData();

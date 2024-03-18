@@ -9,6 +9,7 @@ public class OnUninstall : MonoBehaviour
     [SerializeField] private string selectedFile;
     [SerializeField] private GameObject folderPanel;
 
+    //Code from the asset from the asset store.
     public void ChooseDeletionFolder()
     {
         // Add a new quick link to the browser (optional) (returns true if quick link is added successfully)
@@ -47,9 +48,10 @@ public class OnUninstall : MonoBehaviour
 
     }
 
+    //Deletes the selected file after conferming.
     private void DeleteGame()
     {
-
+        //Checks if the file is selected.
         if (selectedFile != "")
         {
             try
@@ -69,13 +71,8 @@ public class OnUninstall : MonoBehaviour
                 Debug.LogError("Error deleting directory: " + e.Message);
             }
         }
-        else
-        {
-            Debug.Log("No folder selected.");
-        }
-
-#if !UNITY_EDITOR
-        folderPanel.SetActive(false); // Deactivate the folder selection panel after folder selection
-#endif
+        #if !UNITY_EDITOR
+            folderPanel.SetActive(false); // Deactivate the folder selection panel after folder selection
+        #endif
     }
 }

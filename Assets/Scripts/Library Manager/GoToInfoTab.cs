@@ -7,6 +7,8 @@ public class GoToInfoTab : MonoBehaviour
 {
     public GameObject buttonInfoTab;
 
+
+    //Sets the Info Tab Active
     public void SetInfoTabActive()
     {
         buttonInfoTab.SetActive(true);

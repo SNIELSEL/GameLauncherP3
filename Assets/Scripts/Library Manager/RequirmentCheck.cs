@@ -5,21 +5,24 @@ using UnityEngine.UI;
 
 public class RequirmentCheck : MonoBehaviour
 {
+    [Header "Prefabs's"]
+
     [SerializeField] private GameObject uiGameButtonPrefab;
     [SerializeField] private GameObject infoPrefab;
+
+
     private Transform buttonParantObject;
     private Transform infoParantObject;
+
+
+    [Header "Images"]
 
     public RawImage gameLogo;
     public RawImage gameBanner;
     public RawImage qrCode;
 
-    public BuildYear buildYear;
-    public TeacherScore teacherScore;
-    public StudentYear studentYear;
-    public GanreTags ganreTag;
-    public MultiPlayTag multiPlayTag;
-    public PerspectiveTag perspectiveTag;
+
+    [Header "Data"]
 
     public string gameName;
     public string gameDescrioption;
@@ -37,24 +40,24 @@ public class RequirmentCheck : MonoBehaviour
     public int day;
     public int convertedDocentenScore;
 
+
     private int variablesChecked;
 
+
+    [Header "Script References"]
     public ENumManager eNumManager;
     public DescriptionAutoFill descriptionAuto;
     public GameObject library;
 
+
+    //Makes it so that the creation date looks nice inside the UI.
     public void CreateCreationDateWithData()
     {
         creationDate = day + "/" + month+ "/" + year;
     }
 
-    private void Awake()
-    {
-        eNumManager = GameObject.Find("ScriptHolder").GetComponent<ENumManager>();
 
-        eNumManager.requirmentCheck = this;
-    }
-
+    //
     private void Start()
     {
         descriptionAuto = GameObject.Find("ScriptHolder").GetComponent<DescriptionAutoFill>();
@@ -64,11 +67,8 @@ public class RequirmentCheck : MonoBehaviour
         infoParantObject = GameObject.FindGameObjectWithTag("Library").transform;
         StartCoroutine(CheckVeriables());
 
-
         library.SetActive(false);
-        //buildYear = year;
     }
-
 
 
     private IEnumerator CheckVeriables()
