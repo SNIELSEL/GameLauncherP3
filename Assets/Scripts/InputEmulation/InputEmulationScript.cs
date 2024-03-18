@@ -218,6 +218,8 @@ public class InputEmulationScript : MonoBehaviour
     {
         this.cursor = new Cursor(Cursor.Current.Handle);
 
+        filePath = Application.dataPath + fileName;
+
         string[] lines = File.ReadAllLines(filePath);
 
         sim = new InputSimulator();
@@ -245,7 +247,12 @@ public class InputEmulationScript : MonoBehaviour
                 }
             }
 
-            if(useCustomInput == true)
+            if (currentLine == "MouseSensitivity:")
+            {
+                sens = int.Parse(GetLineAtIndex(invisableI + 1));
+            }
+
+            if (useCustomInput == true)
             {
                 checkForinputNames();
             }
@@ -261,16 +268,15 @@ public class InputEmulationScript : MonoBehaviour
 
         if (isHolding)
         {
-            if (!RawInput.IsKeyDown(InputlXButton))
+            if (RawInput.IsKeyDown(InputlXButton))
+            {
+                isHolding = true;
+                ButtonDown(MouseButtonConstants.vbLeftButton);
+            }
+            else if (!RawInput.IsKeyDown(InputlXButton))
             {
                 isHolding = false;
                 ButtonUp(MouseButtonConstants.vbLeftButton);
-            }
-            else if (RawInput.IsKeyDown(InputlXButton))
-            {
-                inputDelayIsActive = true;
-                isHolding = true;
-                ButtonDown(MouseButtonConstants.vbLeftButton);
             }
         }
 
@@ -312,119 +318,191 @@ public class InputEmulationScript : MonoBehaviour
     {
         if (currentLine == "Left joystick Up:")
         {
-            lJoystickUp = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                lJoystickUp = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Left joystick Down:")
         {
-            lJoystickDown = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                lJoystickDown = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Left joystick Left:")
         {
-            lJoystickLeft = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                lJoystickLeft = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Left joystick Right:")
         {
-            lJoystickRight = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                lJoystickRight = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "X Button:")
         {
-            lXButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                lXButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "A Button:")
         {
-            lAButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                lAButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Blank Red Button:")
         {
-            lBlankRedButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                lBlankRedButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Y Button:")
         {
-            lYButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                lYButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Black Button:")
         {
-            lBlackButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                lBlackButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Yellow Button:")
         {
-            lYellowButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                lYellowButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Right joystick Up:")
         {
-            rJoystickUp = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                rJoystickUp = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Right joystick Down:")
         {
-            rJoystickDown = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                rJoystickDown = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Right joystick Left:")
         {
-            rJoystickLeft = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                rJoystickLeft = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Right joystick Right:")
         {
-            rJoystickRight = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                rJoystickRight = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Right X Button:")
         {
-            rXButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                rXButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Right A Button:")
         {
-            rAButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                rAButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Right Red Button(WithoutLetter):")
         {
-            rBlankRedButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                rBlankRedButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Right Y Button:")
         {
-            rYButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                rYButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Right Black Button:")
         {
-            rBlackButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                rBlackButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Right Yellow Button:")
         {
-            rYellowButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                rYellowButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
 
         if (currentLine == "Start Button:")
         {
-            startButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                startButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
         if (currentLine == "Select button:")
         {
-            selectButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                selectButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
         if (currentLine == "Right Side Start:")
         {
-            rStartButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                rStartButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
         if (currentLine == "Right Side Select:")
         {
-            rSelectButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            if ((GetLineAtIndex(invisableI + 1)) != "")
+            {
+                rSelectButton = (VirtualKeyCode)System.Enum.Parse(typeof(VirtualKeyCode), GetLineAtIndex(invisableI + 1));
+            }
         }
     }
     IEnumerator DelayTheInput()
@@ -566,16 +644,16 @@ public class InputEmulationScript : MonoBehaviour
             }
             else
             {
-                if (!RawInput.IsKeyDown(InputlXButton))
+                if (RawInput.IsKeyDown(InputlXButton))
+                {
+                    isHolding = true;
+                }
+                else
                 {
                     Point defPnt = new Point();
                     GetCursorPos(ref defPnt);
 
                     LeftClick(defPnt.X, defPnt.Y);
-                }
-                else
-                {
-                    isHolding = true;
                 }
             }
         }

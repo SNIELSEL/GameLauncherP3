@@ -4,19 +4,23 @@ InputSettings
 UseInputTranslation:
 PC
 
+//SetMouseSens
+MouseSensitivity:
+2
+
 Input
 //Here you can change the inputs
 Left joystick Up:
-VK_W
+
 
 Left joystick Left:
-VK_A
+
 
 Left joystick Down:
-VK_S
+
 
 Left joystick Right:
-VK_D
+
 
 X Button:
 VK_R
@@ -37,16 +41,16 @@ Yellow Button:
 SHIFT
 
 Right joystick Up:
-UP
+VK_W
 
 Right joystick Left:
-LEFT
+VK_A
 
 Right joystick Right:
-RIGHT
+VK_D
 
 Right joystick Down:
-DOWN
+VK_S
 
 Right X Button:
 VK_I
