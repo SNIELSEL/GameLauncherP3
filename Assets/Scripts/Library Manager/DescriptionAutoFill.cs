@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class DescriptionAutoFill : MonoBehaviour
 {
-    [Hedaer "Prefab's"]
+    [Header ("Prefab's")]
     [SerializeField] private GameObject gameButtonPrefab;
 
 
-    [Header "Text Data"]
+    [Header ("Text Data")]
 
     [SerializeField] private string filePath;
     [SerializeField] private string imageFilePath;
@@ -23,20 +23,20 @@ public class DescriptionAutoFill : MonoBehaviour
     private int currentLineIndex = 0;
 
 
-    [Header "Text"]
+    [Header ("Text")]
 
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI descriptionText;
     [SerializeField] TextMeshProUGUI CreatorText;
 
 
-    [Header "Images"]
+    [Header ("Images")]
 
     [SerializeField] RawImage logo;
     [SerializeField] RawImage banner;
     [SerializeField] RawImage qrCode;
 
-    public ENumManager eNumManager;
+
     public GameObject library;
 
     //This void gets info out of the Selected File.
@@ -131,9 +131,7 @@ public class DescriptionAutoFill : MonoBehaviour
             FileInfo[] exeName = directoryInfo.GetFiles("*.exe");
             exeFilePath = filePath + "/" + exeName[0].Name;
             requirementChecker.GetComponent<RequirmentCheck>().executableFilePath = exeFilePath;
-
-            eNumManager.ExecuteAllVoids();
-}
+        }
     }
 
 

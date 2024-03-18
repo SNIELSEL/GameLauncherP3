@@ -8,12 +8,12 @@ using SimpleFileBrowser;
 public class FilePath : MonoBehaviour
 {
 
-    [Header "File Select"]
+    [Header ("File Select")]
     [SerializeField] private string fileName;
     [SerializeField] private string[] subFolders;
 
 
-    [Header "Script Reverence"]
+    [Header ("Script Reverence")]
     public DescriptionAutoFill descriptionAutoFill;
 
 

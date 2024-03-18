@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class RequirmentCheck : MonoBehaviour
 {
-    [Header "Prefabs's"]
+    [Header ("Prefabs's")]
 
     [SerializeField] private GameObject uiGameButtonPrefab;
     [SerializeField] private GameObject infoPrefab;
@@ -15,14 +15,14 @@ public class RequirmentCheck : MonoBehaviour
     private Transform infoParantObject;
 
 
-    [Header "Images"]
+    [Header ("Images")]
 
     public RawImage gameLogo;
     public RawImage gameBanner;
     public RawImage qrCode;
 
 
-    [Header "Data"]
+    [Header ("Data")]
 
     public string gameName;
     public string gameDescrioption;
@@ -44,8 +44,7 @@ public class RequirmentCheck : MonoBehaviour
     private int variablesChecked;
 
 
-    [Header "Script References"]
-    public ENumManager eNumManager;
+    [Header ("Script References")]
     public DescriptionAutoFill descriptionAuto;
     public GameObject library;
 
