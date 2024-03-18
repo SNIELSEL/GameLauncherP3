@@ -105,7 +105,7 @@ public class FilterTest : MonoBehaviour
         }
     }
 
-    public void UpdateFilters ()
+   /* public void UpdateFilters ()
     {
         // Verwijder alle games in lijst
         List<RequirmentCheck> gamesFiltered = new List<RequirmentCheck>();
@@ -162,7 +162,7 @@ public class FilterTest : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
     
     private void Start()
     {
