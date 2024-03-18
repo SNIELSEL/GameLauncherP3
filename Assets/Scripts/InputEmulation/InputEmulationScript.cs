@@ -85,7 +85,7 @@ public class InputEmulationScript : MonoBehaviour
 
     private Cursor cursor;
     
-    public int sens;
+    public float sens;
 
     public bool usingMouse;
 
@@ -261,6 +261,8 @@ public class InputEmulationScript : MonoBehaviour
 
     void Update()
     {
+
+
         if (inputDelayIsActive == true)
         {
             StartCoroutine(DelayTheInput());
@@ -293,11 +295,11 @@ public class InputEmulationScript : MonoBehaviour
             InputListener();
         }
     }
-    private void MoveCursor(int xToMove, int yToMove)
+    private void MoveCursor(float xToMove,float yToMove)
     {
         // Set the Current cursor, move the cursor's Position,
         // and set its clipping rectangle to the form. 
-        Cursor.Position = new Point(Cursor.Position.X + xToMove, Cursor.Position.Y + yToMove);
+        Cursor.Position = new Point(Cursor.Position.X + (int)xToMove, Cursor.Position.Y + (int)yToMove);
     }
 
     private string GetLineAtIndex(int index)
