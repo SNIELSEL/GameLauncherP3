@@ -27,14 +27,18 @@ public class FilterTest : MonoBehaviour
     
     public void UpdateFilterBuildYear (int i)
     {
+        print("i is :" + i.ToString());
+        print("and filters[0] =" + filters[0].ToString());
         // Remove if it already exists.
         if (filters[0].Contains(i))
         {
             filters[0].Remove(i);
+            Debug.Log(filters[0]);
         }
         else
         {
             filters[0].Add(i);
+            Debug.Log(filters[0]);
         }
     }
 

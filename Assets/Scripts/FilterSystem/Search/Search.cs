@@ -50,7 +50,7 @@ public class Search : MonoBehaviour
             //probeer
             if (game.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text.Length >= searchLength)
             {
-                Debug.Log("pookie");
+                
                 if (searchText.ToLower() == (game.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
                 {
                     game.SetActive(true);

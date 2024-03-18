@@ -35,7 +35,7 @@ public class RequirmentCheck : MonoBehaviour
     public int year;
     public int month;
     public int day;
-    private int confertedDocentenScore;
+    public int convertedDocentenScore;
 
     private int variablesChecked;
 
@@ -207,8 +207,8 @@ public class RequirmentCheck : MonoBehaviour
             textPanel = bannerImage.transform.GetChild(3).gameObject;
             penal4 = textPanel.transform.GetChild(3).gameObject;
             GameObject score = penal4.transform.GetChild(1).gameObject;
-            int.TryParse(docentenScore, out confertedDocentenScore);
-            score.GetComponent<Slider>().value = confertedDocentenScore;
+            int.TryParse(docentenScore, out convertedDocentenScore);
+            score.GetComponent<Slider>().value = convertedDocentenScore;
 
             TextMeshProUGUI filePathText = infoTab.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
             filePathText.text = executableFilePath;
