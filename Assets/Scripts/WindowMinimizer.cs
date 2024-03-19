@@ -1,21 +1,35 @@
 using System;
-using System.Windows.Forms;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using UnityEngine;
-using System.Reflection;
-using Application = UnityEngine.Application;
-using SysApp = System.Windows.Forms.Application;
 
 public class WindowMinimizer : MonoBehaviour
 {
+    [NonSerialized] public string processName;
+
+    [DllImport("user32.dll")]
+    private static extern bool ShowWindow(IntPtr hwnd, int nCmdShow);
+
+    [DllImport("user32.dll")]
+    private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr GetActiveWindow();
+
     public void MinimizeLauncher()
     {
-        var form = new Form();
-        form.WindowState = FormWindowState.Minimized;
+        ShowWindow(GetActiveWindow(), 2);
     }
 
     public void MaximizeLauncher()
     {
-        var form = new Form();
-        form.WindowState = FormWindowState.Maximized;
+        Process[] processes = Process.GetProcessesByName(processName);
+
+        IntPtr mainWindowHandle = processes[0].MainWindowHandle;
+
+        ShowWindow(mainWindowHandle, 3);
+
+        SetForegroundWindow(mainWindowHandle);
+
     }
 }

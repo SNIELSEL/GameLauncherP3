@@ -53,6 +53,8 @@ public class ProcessChecker : MonoBehaviour
 
                     if (isMinimized)
                     {
+                        window.processName = Application.productName;
+
                         window.MaximizeLauncher();
                        
                         isMinimized = false;
