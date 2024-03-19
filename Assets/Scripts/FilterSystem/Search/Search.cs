@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class Search : MonoBehaviour
 
     int totalGames;
     float startTime = 4;
+    
    
     void Start()
     {
@@ -31,7 +33,8 @@ public class Search : MonoBehaviour
 
     public void SearchBar()
     {
-        string searchText = searchBar.GetComponent<TMP_InputField>().text;
+       
+        string searchText = searchBar.GetComponent<TMP_Text>().text;
 
         int searchLength = searchText.Length; 
         int searchedGames = 0;
@@ -39,69 +42,29 @@ public class Search : MonoBehaviour
         foreach (GameObject game in games)
         {
             searchedGames++;
-            //origineel
-            /* if (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Length >= searchLength)
-             {
-                 if (searchText.ToLower() == (game.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
-                 {
-                     game.SetActive(true);
-                     *//*NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE
-                       nessie god*//*
-                 }
-                 else
-                 {
-                     game.SetActive(false);
-                 }
-             }*/
-
-            // meer probeer
-            /*for (int i = 0; i < searchBar.transform.childCount; i++)
+            for (int i  = 0; i < contentHolder.transform.childCount; i++)
             {
-                if (searchBar.transform.GetChild(i).name == "GameButtonLibrary(Clone)")
+                
+               
+                if (game.transform.GetComponentInChildren<TextMeshProUGUI>().text.Length >= searchLength)//error
                 {
+                  
 
-                    if (game.transform.GetChild(i).GetComponentInChildren<TextMeshProUGUI>().text.Length >= searchLength)
+                    if (searchText.ToLower() == (game.transform.GetComponentInChildren<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
                     {
-                        if (searchText.ToLower() == (game.transform.GetChild(i).GetComponentInChildren<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
-                        {
-                            game.SetActive(true);
-                            *//* NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE*//*
-                        }
-                        else
-                        {
-                            game.SetActive(false);
-                        }
+                       
+                        game.SetActive(true);
+
                     }
-                }
-
-            }*/
-
-
-
-
-            //probeer
-            if (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Length >= searchLength)
-            {
-
-                for (int i = 0; i < searchBar.transform.childCount; i++)
-                {
-                    if (searchBar.transform.GetChild(i).name == "TitelTekst")
+                    else
                     {
-
-                        if (searchText.ToLower() == (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
-                        {
-                            game.SetActive(true);
-                            //NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE
-                        }
-                        else
-                        {
-                            game.SetActive(false);
-                        }
-
+                       
+                        game.SetActive(false);
                     }
                 }
 
             }
+         
         }
     }
 }
