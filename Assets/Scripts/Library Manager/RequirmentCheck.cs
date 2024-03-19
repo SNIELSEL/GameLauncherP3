@@ -139,6 +139,7 @@ public class RequirmentCheck : MonoBehaviour
 
             // this part of the codeis responseble of instatiating a button and creating 
             GameObject gameLibraryButton = Instantiate(uiGameButtonPrefab, transform.position, transform.rotation, buttonParantObject);
+            GameObject.Find("ScriptHolder").GetComponent<DeleteGameObjectAfterFileChange>().deleteGameObject = gameLibraryButton;
 
             GameObject button = gameLibraryButton.transform.GetChild(0).gameObject;
             button.GetComponent<RawImage>().texture = gameLogo.texture;
