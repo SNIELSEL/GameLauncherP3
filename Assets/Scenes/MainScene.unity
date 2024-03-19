@@ -976,6 +976,7 @@ GameObject:
   - component: {fileID: 1018885347}
   - component: {fileID: 1018885348}
   - component: {fileID: 1018885349}
+  - component: {fileID: 1018885350}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -1225,6 +1226,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb0f41107244c947a1af5696a6205a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1018885350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018885335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 114395de30fa3184aa9264b7b29d3ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deleteGameObject: {fileID: 0}
 --- !u!114 &1026037381 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3630913547287128530, guid: 21bff95471b6dca478bb5bd28eb4dedb,
@@ -4389,7 +4403,7 @@ PrefabInstance:
     - target: {fileID: 858855543734124124, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000030517578
+      value: -0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 1184355560071069099, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
