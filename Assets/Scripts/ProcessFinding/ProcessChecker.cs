@@ -1,84 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.Windows;
+using System;
 using System.Diagnostics;
 using System.Linq;
-
+using System.Windows.Forms;
+using UnityEngine;
+using Application = UnityEngine.Application;
+using SysApp = System.Windows.Forms.Application;
 public class ProcessChecker : MonoBehaviour
 {
-    [SerializeField] private string[] processNames;
-
-    [SerializeField] private int[] processIDs;
-
-    [SerializeField] private Process[] processes;
-
-    [SerializeField] private List<GameObject> gameFolders;
+    public string currentRunningProcess;
 
     [SerializeField] private GameObject parent;
 
     [SerializeField] private bool isProccesRunning;
 
+    [SerializeField] private WindowMinimizer window;
+
+    [NonSerialized] public bool scanningForProcesses;
+
+    private bool processWasRunning;
+    private bool isMinimized;
+
     private float timer;
-    private void Start()
-    {
-        StartCoroutine(WaitForGames());
-    }
-
-    private IEnumerator WaitForGames()
-    {
-        yield return new WaitForSeconds(4);
-        GetAllExePaths();
-    }
-
-    public void GetAllExePaths()
-    {
-        for (int i = 0; i < parent.transform.childCount; i++)
-        {
-            if (parent.transform.GetChild(i).name == "InfoTab(Clone)")
-            {
-                gameFolders.Add(parent.transform.GetChild(i).gameObject);
-            }
-        }
-
-        gameFolders.RemoveAll(x => x == null);
-
-        processNames = new string[gameFolders.Count];
-
-        for (int i = 0; i < gameFolders.Count; i++)
-        {
-            processNames[i] = gameFolders[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text;
-
-            processNames[i] = processNames[i].Replace(".exe", "");
-            processNames[i] = processNames[i].Substring(processNames[i].IndexOf('/') + 1);
-        }
-
-        processes = new Process[processNames.Length];
-
-        for (int i = 0; i < processNames.Length; i++)
-        {
-            processes[i] = Process.GetProcessesByName(processNames[i]).FirstOrDefault<Process>();
-        }
-
-        processIDs = new int[processNames.Length];
-
-        for (int i = 0; i < processNames.Length; i++)
-        {
-            //processIDs[i] = processes[i].Id;
-        }
-    }
 
     private void Update()
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
+        if (scanningForProcesses)
         {
-            timer = 1;
-
-            for (int i = 0; i < processNames.Length; i++)
+            timer -= Time.deltaTime;
+            if (timer <= 0)
             {
-                isProccesRunning = Process.GetProcessesByName(processNames[i]).Any();
+                timer = 1;
+
+                isProccesRunning = Process.GetProcessesByName(currentRunningProcess).Any();
+
+                if (isProccesRunning)
+                {
+                    processWasRunning = true;
+
+                    if (!isMinimized)
+                    {
+                        window.MinimizeLauncher();
+
+                        isMinimized = true;
+                    }
+                }
+
+                if (!isProccesRunning && processWasRunning)
+                {
+                    scanningForProcesses = false;
+                    timer = 1;
+                    currentRunningProcess = null;
+
+                    if (isMinimized)
+                    {
+                        window.MaximizeLauncher();
+                       
+                        isMinimized = false;
+                    }
+                }
             }
         }
     }
