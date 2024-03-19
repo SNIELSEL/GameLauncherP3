@@ -10,8 +10,14 @@ public class Search : MonoBehaviour
     public GameObject[] games;
 
     int totalGames;
+    float startTime = 4;
    
     void Start()
+    {
+        Invoke("FindGames", startTime);
+    }
+
+    void FindGames()
     {
         totalGames = contentHolder.transform.childCount;
         games = new GameObject[totalGames];
@@ -20,6 +26,7 @@ public class Search : MonoBehaviour
         {
             games[i] = contentHolder.transform.GetChild(i).gameObject;
         }
+
     }
 
     public void SearchBar()
@@ -33,22 +40,22 @@ public class Search : MonoBehaviour
         {
             searchedGames++;
             //origineel
-           /* if (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Length >= searchLength)
-            {
-                if (searchText.ToLower() == (game.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
-                {
-                    game.SetActive(true);
-                    *//*NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE
-                      nessie god*//*
-                }
-                else
-                {
-                    game.SetActive(false);
-                }
-            }*/
+            /* if (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Length >= searchLength)
+             {
+                 if (searchText.ToLower() == (game.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
+                 {
+                     game.SetActive(true);
+                     *//*NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE
+                       nessie god*//*
+                 }
+                 else
+                 {
+                     game.SetActive(false);
+                 }
+             }*/
 
             // meer probeer
-            for (int i = 0; i < searchBar.transform.childCount; i++)
+            /*for (int i = 0; i < searchBar.transform.childCount; i++)
             {
                 if (searchBar.transform.GetChild(i).name == "GameButtonLibrary(Clone)")
                 {
@@ -58,43 +65,43 @@ public class Search : MonoBehaviour
                         if (searchText.ToLower() == (game.transform.GetChild(i).GetComponentInChildren<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
                         {
                             game.SetActive(true);
-                            /* NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE*/
-                        }
-                        else
-                        {
-                            game.SetActive(false);
-                        }
-                    }
-                }
-
-            }
-            
-
-
-
-           /* //probeer
-            if (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Length >= searchLength)
-            {
-
-                for (int i = 0; i < searchBar.transform.childCount; i++)
-                {
-                    if (searchBar.transform.GetChild(i).name == "InfoTab(Clone)")
-                    {
-
-                        if (searchText.ToLower() == (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
-                        {
-                            game.SetActive(true);
                             *//* NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE*//*
                         }
                         else
                         {
                             game.SetActive(false);
                         }
-                        
                     }
                 }
 
             }*/
+
+
+
+
+            //probeer
+            if (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Length >= searchLength)
+            {
+
+                for (int i = 0; i < searchBar.transform.childCount; i++)
+                {
+                    if (searchBar.transform.GetChild(i).name == "TitelTekst")
+                    {
+
+                        if (searchText.ToLower() == (game.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Substring(0, searchLength).ToLower()))
+                        {
+                            game.SetActive(true);
+                            //NESSIEEEEEEEEEEEE WE LOVE NESSSIEEEEEEEEEEEEEEE
+                        }
+                        else
+                        {
+                            game.SetActive(false);
+                        }
+
+                    }
+                }
+
+            }
         }
     }
 }
