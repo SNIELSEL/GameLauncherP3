@@ -44,8 +44,6 @@ public class Search : MonoBehaviour
             searchedGames++;
             for (int i  = 0; i < contentHolder.transform.childCount; i++)
             {
-                
-               
                 if (game.transform.GetComponentInChildren<TextMeshProUGUI>().text.Length >= searchLength)//error
                 {
                   
@@ -65,6 +63,14 @@ public class Search : MonoBehaviour
 
             }
          
+        }
+    }
+
+    public void CloseSearchBar()
+    {
+        for (int i = 0; i < games.Length; i++)
+        {
+            games[i].SetActive(true);
         }
     }
 }

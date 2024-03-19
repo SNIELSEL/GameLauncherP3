@@ -23,7 +23,6 @@ public class ProjectHolder : MonoBehaviour
         }
 
         FilterOnThis(-1,2003,"","BLA BLA", "", "" );
-        FilterOnThis(5, -1, "", "", "", "" );
     }
 
 
