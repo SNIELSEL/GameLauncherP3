@@ -141,14 +141,12 @@ public class DescriptionAutoFill : MonoBehaviour
             // find .exe path
             filePath = gameFolders[i];
             DirectoryInfo directoryInfo = new DirectoryInfo(filePath);
-            DirectoryInfo directoryExeInfo = new DirectoryInfo(filePath + "*.exe");
-            if (directoryExeInfo.Exists)
+            FileInfo[] exeName = directoryInfo.GetFiles("*.exe");
+            if(exeName != null && exeName.Length != 0)
             {
-                FileInfo[] exeName = directoryInfo.GetFiles("*.exe");
                 exeFilePath = filePath + "/" + exeName[0].Name;
-                requirementChecker.GetComponent<RequirmentCheck>().executableFilePath = exeFilePath;
             }
-           
+            requirementChecker.GetComponent<RequirmentCheck>().executableFilePath = exeFilePath;
         }
     }
 
