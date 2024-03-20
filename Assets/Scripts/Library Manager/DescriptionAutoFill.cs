@@ -3,6 +3,7 @@ using System.IO;
 using TMPro;
 using System.Reflection;
 using UnityEngine.UI;
+using static System.Windows.Forms.LinkLabel;
 
 public class DescriptionAutoFill : MonoBehaviour
 {
@@ -48,89 +49,104 @@ public class DescriptionAutoFill : MonoBehaviour
             filePath = gameFolders[i] + "/Description.txt";
 
             GameObject requirementChecker = Instantiate(gameButtonPrefab, new Vector3(transform.position.x,transform.position.y, 90), transform.rotation);
-    
-            string[] lines = File.ReadAllLines(filePath);
-            lineText = new string[lines.Length];
-
-            //Cicles Trhough all of the text files lines until it vfinds a key word and then assaings it to the right variable.
-            for (int j = 0; j < lines.Length; j++)
+            
+            if(File.Exists(filePath))
             {
-                lineText[j] = GetLineAtIndex(j);
+                string[] lines = File.ReadAllLines(filePath);
+                lineText = new string[lines.Length];
 
-                if (lineText[j] == "Name:")
+                //Cicles Trhough all of the text files lines until it vfinds a key word and then assaings it to the right variable.
+                for (int j = 0; j < lines.Length; j++)
                 {
-                    requirementChecker.GetComponent<RequirmentCheck>().gameName = GetLineAtIndex(j + 1);
-                }
+                    lineText[j] = GetLineAtIndex(j);
 
-                if (lineText[j] == "Description:")
-                {
-                    requirementChecker.GetComponent<RequirmentCheck>().gameDescrioption = GetLineAtIndex(j + 1);
-                }
+                    if (lineText[j] == "Name:")
+                    {
+                        requirementChecker.GetComponent<RequirmentCheck>().gameName = GetLineAtIndex(j + 1);
+                    }
 
-                if (lineText[j] == "Creators:")
-                {
-                    requirementChecker.GetComponent<RequirmentCheck>().creators = GetLineAtIndex(j + 1);
-                }
+                    if (lineText[j] == "Description:")
+                    {
+                        requirementChecker.GetComponent<RequirmentCheck>().gameDescrioption = GetLineAtIndex(j + 1);
+                    }
 
-                if (lineText[j] == "LeerJaar:")
-                {
-                    requirementChecker.GetComponent<RequirmentCheck>().leerJaar = GetLineAtIndex(j + 1);
-                }
+                    if (lineText[j] == "Creators:")
+                    {
+                        requirementChecker.GetComponent<RequirmentCheck>().creators = GetLineAtIndex(j + 1);
+                    }
 
-                if (lineText[j] == "tag1:")
-                {
-                    requirementChecker.GetComponent<RequirmentCheck>().tag1 = GetLineAtIndex(j + 1);
-                }
+                    if (lineText[j] == "LeerJaar:")
+                    {
+                        requirementChecker.GetComponent<RequirmentCheck>().leerJaar = GetLineAtIndex(j + 1);
+                    }
 
-                if (lineText[j] == "tag2:")
-                {
-                    requirementChecker.GetComponent<RequirmentCheck>().tag2 = GetLineAtIndex(j + 1);
-                }
+                    if (lineText[j] == "tag1:")
+                    {
+                        requirementChecker.GetComponent<RequirmentCheck>().tag1 = GetLineAtIndex(j + 1);
+                    }
 
-                if (lineText[j] == "tag3:")
-                {
-                    requirementChecker.GetComponent<RequirmentCheck>().tag3 = GetLineAtIndex(j + 1);
-                }
+                    if (lineText[j] == "tag2:")
+                    {
+                        requirementChecker.GetComponent<RequirmentCheck>().tag2 = GetLineAtIndex(j + 1);
+                    }
 
-                if (lineText[j] == "Score:")
-                {
-                    requirementChecker.GetComponent<RequirmentCheck>().docentenScore = GetLineAtIndex(j + 1);
-                }
+                    if (lineText[j] == "tag3:")
+                    {
+                        requirementChecker.GetComponent<RequirmentCheck>().tag3 = GetLineAtIndex(j + 1);
+                    }
 
-                if (lineText[j] == "Day:")
-                {
-                    int.TryParse(GetLineAtIndex(j + 1), out requirementChecker.GetComponent<RequirmentCheck>().day);
-                }
-                
-                if (lineText[j] == "Month:")
-                {
-                    int.TryParse(GetLineAtIndex(j + 1), out requirementChecker.GetComponent<RequirmentCheck>().month);
-                }
-                
-                if (lineText[j] == "Year:")
-                {
-                    int.TryParse(GetLineAtIndex(j + 1), out requirementChecker.GetComponent<RequirmentCheck>().year);
+                    if (lineText[j] == "Score:")
+                    {
+                        requirementChecker.GetComponent<RequirmentCheck>().docentenScore = GetLineAtIndex(j + 1);
+                    }
 
-                    requirementChecker.GetComponent<RequirmentCheck>().CreateCreationDateWithData();
+                    if (lineText[j] == "Day:")
+                    {
+                        int.TryParse(GetLineAtIndex(j + 1), out requirementChecker.GetComponent<RequirmentCheck>().day);
+                    }
+
+                    if (lineText[j] == "Month:")
+                    {
+                        int.TryParse(GetLineAtIndex(j + 1), out requirementChecker.GetComponent<RequirmentCheck>().month);
+                    }
+
+                    if (lineText[j] == "Year:")
+                    {
+                        int.TryParse(GetLineAtIndex(j + 1), out requirementChecker.GetComponent<RequirmentCheck>().year);
+
+                        requirementChecker.GetComponent<RequirmentCheck>().CreateCreationDateWithData();
+                    }
                 }
             }
+            
 
+
+            
             //After finding the right .PNG file it willl conect it to the right RawImage.
             imageFilePath = gameFolders[i] + "/Logo.PNG";
-            requirementChecker.GetComponent<RequirmentCheck>().gameLogo.texture = LoadImage(imageFilePath);
+            if (File.Exists(imageFilePath))
+            {
+                requirementChecker.GetComponent<RequirmentCheck>().gameLogo.texture = LoadImage(imageFilePath);
+            }
 
             imageFilePath = gameFolders[i] + "/Banner.PNG";
-            requirementChecker.GetComponent<RequirmentCheck>().gameBanner.texture = LoadImage(imageFilePath);
-            
+            if (File.Exists(imageFilePath))
+            {
+                requirementChecker.GetComponent<RequirmentCheck>().gameBanner.texture = LoadImage(imageFilePath);
+            }
+
             /*imageFilePath = gameFolders[i] + "/QRCode.PNG";
             requirementChecker.GetComponent<RequirmentCheck>().gameBanner.texture = LoadImage(imageFilePath);
 */
             // find .exe path
             filePath = gameFolders[i];
-            DirectoryInfo directoryInfo = new DirectoryInfo(filePath);
-            FileInfo[] exeName = directoryInfo.GetFiles("*.exe");
-            exeFilePath = filePath + "/" + exeName[0].Name;
-            requirementChecker.GetComponent<RequirmentCheck>().executableFilePath = exeFilePath;
+            if (File.Exists(filePath))
+            {
+                DirectoryInfo directoryInfo = new DirectoryInfo(filePath);
+                FileInfo[] exeName = directoryInfo.GetFiles("*.exe");
+                exeFilePath = filePath + "/" + exeName[0].Name;
+                requirementChecker.GetComponent<RequirmentCheck>().executableFilePath = exeFilePath;
+            }
         }
     }
 
