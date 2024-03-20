@@ -24,6 +24,11 @@ public class ProcessChecker : MonoBehaviour
 
     private float timer;
 
+    private void Start()
+    {
+        window.processName = Process.GetCurrentProcess().ProcessName;
+    }
+
     private void Update()
     {
         if (scanningForProcesses)
@@ -58,8 +63,6 @@ public class ProcessChecker : MonoBehaviour
                     if (isMinimized)
                     {
                         activeGameDetection.runningProcessName = "";
-
-                        window.processName = Application.productName;
 
                         window.MaximizeLauncher();
                        

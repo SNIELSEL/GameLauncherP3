@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WindowMinimizer : MonoBehaviour
 {
-    [NonSerialized] public string processName;
+    public string processName;
 
     [DllImport("user32.dll")]
     private static extern bool ShowWindow(IntPtr hwnd, int nCmdShow);
