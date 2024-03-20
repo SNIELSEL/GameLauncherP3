@@ -12,7 +12,7 @@ public class GameFoldernav : MonoBehaviour
 
     public void SetNavigation()
     {
-        if(parent.transform.GetChild(0) != null)
+        if(parent.transform.childCount != 0)
         {
             eventSystem.SetSelectedGameObject(parent.transform.GetChild(0).GetChild(0).gameObject);
         }
