@@ -1394,6 +1394,7 @@ GameObject:
   - component: {fileID: 1018885345}
   - component: {fileID: 1018885344}
   - component: {fileID: 1018885346}
+  - component: {fileID: 1018885353}
   - component: {fileID: 1018885347}
   - component: {fileID: 1018885348}
   - component: {fileID: 1018885349}
@@ -1621,6 +1622,7 @@ MonoBehaviour:
   parent: {fileID: 947671573}
   isProccesRunning: 0
   window: {fileID: 1018885349}
+  activeGameDetection: {fileID: 1018885353}
 --- !u!114 &1018885348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1675,6 +1677,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   products: []
   gameHolder: {fileID: 168467874}
+--- !u!114 &1018885353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018885335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb150853b6fb7fc4590239c0b016dd76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  proccesName: 
+  exeName: 
+  allProcessWithGameName: []
+  countingPlayTime: 0
+  FirstCheck: 0
+  checkForProccesInterval: 0
+  currentGamePlaytimeMinutes: 0
+  currentGamePlaytimeHours: 0
+  timeTillSavingPlaytime: 0
+  playtime: 
 --- !u!114 &1026037381 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3630913547287128530, guid: 21bff95471b6dca478bb5bd28eb4dedb,

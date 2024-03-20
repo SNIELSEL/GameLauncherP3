@@ -47,7 +47,7 @@ public class DescriptionAutoFill : MonoBehaviour
         {
             filePath = gameFolders[i] + "/Description.txt";
 
-            GameObject requirementChecker = Instantiate(gameButtonPrefab, transform.position, transform.rotation);
+            GameObject requirementChecker = Instantiate(gameButtonPrefab, new Vector3(transform.position.x,transform.position.y, 90), transform.rotation);
     
             string[] lines = File.ReadAllLines(filePath);
             lineText = new string[lines.Length];

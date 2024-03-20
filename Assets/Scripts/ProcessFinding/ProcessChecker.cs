@@ -15,6 +15,8 @@ public class ProcessChecker : MonoBehaviour
 
     [SerializeField] private WindowMinimizer window;
 
+    [SerializeField] private ActiveGameDetection activeGameDetection;
+
     [NonSerialized] public bool scanningForProcesses;
 
     private bool processWasRunning;
@@ -39,6 +41,8 @@ public class ProcessChecker : MonoBehaviour
 
                     if (!isMinimized)
                     {
+                        activeGameDetection.runningProcessName = currentRunningProcess;
+
                         window.MinimizeLauncher();
 
                         isMinimized = true;
@@ -53,6 +57,8 @@ public class ProcessChecker : MonoBehaviour
 
                     if (isMinimized)
                     {
+                        activeGameDetection.runningProcessName = "";
+
                         window.processName = Application.productName;
 
                         window.MaximizeLauncher();

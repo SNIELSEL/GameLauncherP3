@@ -11,8 +11,8 @@ public class ActiveGameDetection : MonoBehaviour
     private Process[] processesByName;
 
     [Header("Processes")]
-    [SerializeField] string proccesName;
-    [SerializeField] string exeName;
+    public string launcherProccesName;
+    public string runningProcessName;
     [SerializeField] string[] allProcessWithGameName;
     //[SerializeField] string[] allProccesName;
 
@@ -70,16 +70,16 @@ public class ActiveGameDetection : MonoBehaviour
             {
                 FirstCheck = true;
 
-                currentGamePlaytimeMinutes = PlayerPrefs.GetInt("PlayTimeMinutes" + exeName);
-                currentGamePlaytimeHours = PlayerPrefs.GetInt("PlayTimeHours" + exeName);
+                currentGamePlaytimeMinutes = PlayerPrefs.GetInt("PlayTimeMinutes" + runningProcessName);
+                currentGamePlaytimeHours = PlayerPrefs.GetInt("PlayTimeHours" + runningProcessName);
             }
 
             countingPlayTime = true;
 
             playtime = currentGamePlaytimeHours + "." + Mathf.RoundToInt(currentGamePlaytimeMinutes / 6f);
 
-            PlayerPrefs.SetInt("PlayTimeMinutes" + exeName, currentGamePlaytimeMinutes);
-            PlayerPrefs.SetInt("PlayTimeHours" + exeName, currentGamePlaytimeHours);
+            PlayerPrefs.SetInt("PlayTimeMinutes" + runningProcessName, currentGamePlaytimeMinutes);
+            PlayerPrefs.SetInt("PlayTimeHours" + runningProcessName, currentGamePlaytimeHours);
         }
 
         yield return new WaitForSeconds(checkForProccesInterval);
@@ -93,7 +93,7 @@ public class ActiveGameDetection : MonoBehaviour
         // pak de procces van de game
         currentProcess = Process.GetCurrentProcess();
 
-        proccesName = currentProcess.ProcessName;
+        launcherProccesName = currentProcess.ProcessName;
 
 
         // pak alle dingen die runnen op je pc
@@ -106,7 +106,7 @@ public class ActiveGameDetection : MonoBehaviour
 
 
         //pak alle processes met een bepaalde naam
-        processesByName = Process.GetProcessesByName(exeName);
+        processesByName = Process.GetProcessesByName(runningProcessName);
 
         allProcessWithGameName = new string[processesByName.Length];
 
