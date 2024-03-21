@@ -1650,6 +1650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb0f41107244c947a1af5696a6205a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  processName: 
 --- !u!114 &1018885350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1677,6 +1678,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   products: []
   gameHolder: {fileID: 168467874}
+  games: []
+  filter:
+    rating: 0
+    buildYear: 0
+    studentYear: 
+    multiTag: 
+    perspectiveTag: 
+    genreTag: 
+    tags: []
 --- !u!114 &1018885353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1689,8 +1699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb150853b6fb7fc4590239c0b016dd76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proccesName: 
-  exeName: 
+  launcherProccesName: 
+  runningProcessName: 
   allProcessWithGameName: []
   countingPlayTime: 0
   FirstCheck: 0
@@ -1976,33 +1986,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1280820596 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3489506274034932578, guid: 21bff95471b6dca478bb5bd28eb4dedb,
-    type: 3}
-  m_PrefabInstance: {fileID: 6218319230702415930}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1280820599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1280820596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e15f0191e6f6de247800eb3864a10c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  filter:
-    rating: 0
-    buildYear: 0
-    studentYear: 
-    multiTag: 
-    perspectiveTag: 
-    genreTag: 
-    tags: []
-  rc: {fileID: 0}
 --- !u!1 &1295711353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2144,33 +2127,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6218319230702415930}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1308786095 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8529354610776331779, guid: 21bff95471b6dca478bb5bd28eb4dedb,
-    type: 3}
-  m_PrefabInstance: {fileID: 6218319230702415930}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1308786098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308786095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e15f0191e6f6de247800eb3864a10c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  filter:
-    rating: 0
-    buildYear: 0
-    studentYear: 
-    multiTag: 
-    perspectiveTag: 
-    genreTag: 
-    tags: []
-  rc: {fileID: 0}
 --- !u!224 &1379231539 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3037098452868449644, guid: 21bff95471b6dca478bb5bd28eb4dedb,
@@ -5324,33 +5280,6 @@ MonoBehaviour:
   hiddenPassword: {fileID: 1431406973}
   invisable: {r: 0, g: 0, b: 0, a: 0}
   normalcolor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
---- !u!1 &2010544824 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5889410117247308798, guid: 21bff95471b6dca478bb5bd28eb4dedb,
-    type: 3}
-  m_PrefabInstance: {fileID: 6218319230702415930}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2010544827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2010544824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e15f0191e6f6de247800eb3864a10c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  filter:
-    rating: 0
-    buildYear: 0
-    studentYear: 
-    multiTag: 
-    perspectiveTag: 
-    genreTag: 
-    tags: []
-  rc: {fileID: 0}
 --- !u!224 &2050842122 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1318411364399228929, guid: 21bff95471b6dca478bb5bd28eb4dedb,
@@ -5638,7 +5567,7 @@ PrefabInstance:
     - target: {fileID: 858855543734124124, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000015258789
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1184355560071069099, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
@@ -5794,6 +5723,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736283079069683001, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -78.52301
       objectReference: {fileID: 0}
     - target: {fileID: 1901388039659130290, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
@@ -6849,7 +6783,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1280820599}
+      objectReference: {fileID: 0}
     - target: {fileID: 4677721320378813429, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -8175,6 +8109,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8207364560507005169, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -78.52301
+      objectReference: {fileID: 0}
     - target: {fileID: 8322728999474664377, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -8375,18 +8314,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 677580981}
-    - targetCorrespondingSourceObject: {fileID: 5889410117247308798, guid: 21bff95471b6dca478bb5bd28eb4dedb,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2010544827}
-    - targetCorrespondingSourceObject: {fileID: 8529354610776331779, guid: 21bff95471b6dca478bb5bd28eb4dedb,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1308786098}
-    - targetCorrespondingSourceObject: {fileID: 3489506274034932578, guid: 21bff95471b6dca478bb5bd28eb4dedb,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1280820599}
     - targetCorrespondingSourceObject: {fileID: 8610344896373917496, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       insertIndex: -1

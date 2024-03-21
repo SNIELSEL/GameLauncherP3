@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 884762236754725025}
   - component: {fileID: 879802381006095380}
   - component: {fileID: 3735088120268526585}
+  - component: {fileID: 8074435922297102553}
   m_Layer: 0
   m_Name: Requirment
   m_TagString: Untagged
@@ -129,13 +130,24 @@ MonoBehaviour:
     type: 3}
   gameLogo: {fileID: 1006650242511116255}
   gameBanner: {fileID: 3196621857014678544}
+  qrCode: {fileID: 0}
   gameName: 
   gameDescrioption: 
   creationDate: 
+  leerJaar: 
+  creators: 
+  tag1: 
+  tag2: 
+  tag3: 
+  docentenScore: 
   executableFilePath: 
   year: 0
   month: 0
   day: 0
+  convertedDocentenScore: 0
+  descriptionAuto: {fileID: 0}
+  library: {fileID: 0}
+  product: {fileID: 8074435922297102553}
 --- !u!222 &3735088120268526585
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -144,6 +156,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8173372293362795034}
   m_CullTransparentMesh: 1
+--- !u!114 &8074435922297102553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8173372293362795034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e15f0191e6f6de247800eb3864a10c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filter:
+    rating: 0
+    buildYear: 0
+    studentYear: 
+    multiTag: 
+    perspectiveTag: 
+    genreTag: 
+    tags: []
 --- !u!1 &8989697062825192950
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,6 +47,7 @@ public class RequirmentCheck : MonoBehaviour
     [Header ("Script References")]
     public DescriptionAutoFill descriptionAuto;
     public GameObject library;
+    public Product product;
 
 
     //Makes it so that the creation date looks nice inside the UI.
@@ -212,6 +213,12 @@ public class RequirmentCheck : MonoBehaviour
 
             TextMeshProUGUI filePathText = infoTab.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
             filePathText.text = executableFilePath;
+
+
+
+            //filter
+            product.filter.SetFilter(convertedDocentenScore, year, leerJaar, tag1, tag2, tag3);
+       
         }
 
         else
