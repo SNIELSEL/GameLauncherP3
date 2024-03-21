@@ -19,6 +19,7 @@ public class DescriptionAutoFill : MonoBehaviour
     [SerializeField] private string fileName;
     [SerializeField] private string[] lineText;
     [SerializeField] private int lineAmount;
+    [SerializeField] private Transform parent;
 
     public string[] gameFolders;
     private int currentLineIndex = 0;
@@ -48,7 +49,7 @@ public class DescriptionAutoFill : MonoBehaviour
         {
             filePath = gameFolders[i] + "/Description.txt";
 
-            GameObject requirementChecker = Instantiate(gameButtonPrefab, new Vector3(transform.position.x,transform.position.y, 90), transform.rotation);
+            GameObject requirementChecker = Instantiate(gameButtonPrefab, new Vector3(transform.position.x,transform.position.y, 90), transform.rotation, parent);
             
             if(File.Exists(filePath))
             {

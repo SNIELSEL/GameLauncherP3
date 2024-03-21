@@ -1295,6 +1295,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749676897}
   m_CullTransparentMesh: 1
+--- !u!1 &808628630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 808628631}
+  m_Layer: 0
+  m_Name: RequirmentCheckerHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &808628631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808628630}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1057.8859, y: 444.54218, z: -1.2955626}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &947671573 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3489903112713706654, guid: 21bff95471b6dca478bb5bd28eb4dedb,
@@ -1427,6 +1458,7 @@ MonoBehaviour:
   fileName: /Description.txt
   lineText: []
   lineAmount: 0
+  parent: {fileID: 808628631}
   gameFolders: []
   nameText: {fileID: 0}
   descriptionText: {fileID: 0}
@@ -1678,15 +1710,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   products: []
   gameHolder: {fileID: 168467874}
-  games: []
-  filter:
-    rating: 0
-    buildYear: 0
-    studentYear: 
-    multiTag: 
-    perspectiveTag: 
-    genreTag: 
-    tags: []
 --- !u!114 &1018885353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5567,7 +5590,7 @@ PrefabInstance:
     - target: {fileID: 858855543734124124, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 1184355560071069099, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
@@ -8368,3 +8391,4 @@ SceneRoots:
   - {fileID: 1689669172}
   - {fileID: 540150331}
   - {fileID: 1018885338}
+  - {fileID: 808628631}
