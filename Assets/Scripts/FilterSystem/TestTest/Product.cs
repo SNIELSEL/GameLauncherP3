@@ -5,15 +5,12 @@ using UnityEngine;
 public class Product : MonoBehaviour
 {
     public Filter filter;
-    //public string nameE;
-    //public string description;
 
-    public RequirmentCheck rc;
     public void Init()
     {
         filter = new Filter();
         //int randomYear = Random.Range(2000, 2005);
-        filter.SetFilter(rc.convertedDocentenScore, rc.year, rc.leerJaar, rc.tag1, rc.tag2, rc.tag3);
+        //filter.SetFilter(rc.convertedDocentenScore, rc.year, rc.leerJaar, rc.tag1, rc.tag2, rc.tag3);
         //hier moeten dylano zijn variables in ^^^^
     }
 }
