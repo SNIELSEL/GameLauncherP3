@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class GameFoldernav : MonoBehaviour
 {
     public GameObject parent;
-    public Button libraryButton;
+    public Toggle libraryButton;
     public EventSystem eventSystem;
 
     public InputEmulationScript emulationScript;
