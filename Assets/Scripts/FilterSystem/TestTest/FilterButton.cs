@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FilterButton : MonoBehaviour
 {
-    [SerializeField] public string studentYear, multiPlay, perspective, genre;
-    [SerializeField] public int rating, buildYear;
+     public string studentYear, multiPlay, perspective, genre;
+     public int rating, buildYear;
 
 }

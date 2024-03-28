@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements.Experimental;
 using UnityEngine.XR;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
@@ -13,12 +16,13 @@ public class ProjectHolder : MonoBehaviour
     [SerializeField] private GameObject[] requirements;
     [SerializeField] private GameObject gameHolder;
     [SerializeField] private GameObject[] games;
+    public List<GameObject> gameButtons = new List<GameObject>();
     
-
-    public List<FilterButton>  filterButtons = new List<FilterButton>();
+    public List<GameObject>  filterButtons = new List<GameObject>();
+    bool toggleOn;
     int totalRequirements, totalGames;
-    float waitTime = 5;
-    public Filter filter;
+    float waitTime = 3;
+    //public Filter filter;
 
     public void Start()
     {
@@ -27,10 +31,7 @@ public class ProjectHolder : MonoBehaviour
             product.Init();
         }
 
-
         Invoke("GetListOfGames", waitTime);
-
-
     }
 
     public void GetListOfGames()
@@ -49,27 +50,42 @@ public class ProjectHolder : MonoBehaviour
         games = new GameObject[totalGames];
         for (int i = 0;i < totalGames; i++)
         {
-            games[i] = gameHolder.transform.GetChild(i).gameObject; 
+            games[i] = gameHolder.transform.GetChild(i).gameObject;
+
+           gameButtons.Add(games[i]);
         }
         
     }
 
     public void ApplyFilter()
     {
-        for (int i = 0; i <= filterButtons.Count; i++)
+        foreach(GameObject button in filterButtons)
         {
-            if (filterButtons[i] == true)
+            if (button.GetComponent<Toggle>().isOn)
             {
-                FilterOnThis(filterButtons[i].rating, filterButtons[i].buildYear, filterButtons[i].studentYear, filterButtons[i].multiPlay, filterButtons[i].perspective, filterButtons[i].genre);
+                toggleOn = true;
+
+                if (toggleOn)
+                {
+                    FilterOnThis(button.GetComponent<FilterButton>().rating, button.GetComponent<FilterButton>().buildYear, button.GetComponent<FilterButton>().studentYear, button.GetComponent<FilterButton>().multiPlay, button.GetComponent<FilterButton>().perspective, button.GetComponent<FilterButton>().genre);
+                    Debug.Log(button.GetComponent<FilterButton>().rating);
+                    Debug.Log(button.GetComponent<FilterButton>().buildYear);
+                    Debug.Log(button.GetComponent<FilterButton>().studentYear);
+                    Debug.Log(button.GetComponent<FilterButton>().multiPlay);
+                    Debug.Log(button.GetComponent<FilterButton>().perspective);
+                    Debug.Log(button.GetComponent<FilterButton>().genre);
+                }
+                
+                toggleOn = false;
             }
         }
     }
-
 
     public void FilterOnThis(int ratingToFilterTo,int buildYearToFilterTo, string studentYearToFilterTo, string multiPlayToFilterTo, string perspectiveToFilterTo, string genreToFilterTo)
     {
 
         List<Product> filteredList = new List<Product>();
+       // List<GameObject> gameList = new List<GameObject>();
         foreach(Product product in products)
         {
             filteredList.Add(product);
@@ -79,8 +95,7 @@ public class ProjectHolder : MonoBehaviour
         {
             foreach (Product product in products)
             {
-                //filtert door alles en als hij lager is dan 0 gooit hij hem uit de lijst
-                if(ratingToFilterTo > 0 && product.filter.rating != ratingToFilterTo)
+                if(ratingToFilterTo < 0 && product.filter.rating != ratingToFilterTo)
                 {
                     filteredList.Remove(product);
                     game.SetActive(false);
@@ -92,7 +107,6 @@ public class ProjectHolder : MonoBehaviour
                 }
                 if(studentYearToFilterTo != "" && product.filter.studentYear != studentYearToFilterTo)
                 {
-                    print("ehm");
                     filteredList.Remove(product);
                     game.SetActive(false);
                 }
@@ -117,11 +131,17 @@ public class ProjectHolder : MonoBehaviour
             {
                 //hier moeten de laatste games overblijven
                 print(product.name);
-                game.SetActive(true);
+               game.SetActive(true);
             }
         }
 
+    }
 
-
+    public void PutGamesBack()
+    {
+        foreach(GameObject game in games)
+        {
+            game.SetActive(true);
+        }
     }
 }
