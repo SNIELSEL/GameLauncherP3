@@ -44,6 +44,11 @@ public class Login : MonoBehaviour
     [SerializeField] private TMP_Text errorText;
     private int wrongTries;
 
+    [Header("Create new admin acount page")]
+    [SerializeField] private TMP_Text newAcountUsername;
+    [SerializeField] private TMP_Text newAcountPassword;
+    private bool usernameAvailable = true;
+
     [SerializeField] private TMP_Text changeUsernameTextMessage;
     [SerializeField] private TMP_Text changePasswordTextMessage;
     
@@ -158,6 +163,45 @@ public class Login : MonoBehaviour
     }
 
     #endregion
+    public void ResetRecoveryKey()
+    {
+        PlayerPrefs.DeleteKey("Recoverykey");
+    }
 
 
+    public void CreateAdmin()
+    {
+        usernameAvailable = true;
+        if (!PlayerPrefs.HasKey("AdminCount"))
+        {
+            // AdminCount is for admin acounts NOT SUPERADMIN
+            PlayerPrefs.SetInt("AdminCount", 0);
+        }
+        if (newAcountUsername.text != "" && newAcountPassword.text != "")
+        {
+            for (int i = 0; i < PlayerPrefs.GetInt("AdminCount"); i++)
+            {
+                if (newAcountUsername.text == PlayerPrefs.GetString("Username" + i) || newAcountUsername.text == PlayerPrefs.GetString("Username"))
+                {
+                    usernameAvailable = false;
+                    break;
+                }
+            }
+            if (usernameAvailable)
+            {
+                PlayerPrefs.SetString("Username" + PlayerPrefs.GetInt("AdminCount").ToString(), newAcountUsername.text);
+                PlayerPrefs.SetString("Password" + PlayerPrefs.GetInt("AdminCount").ToString(), newAcountPassword.text);
+                PlayerPrefs.SetInt("AdminCount", PlayerPrefs.GetInt("AdminCount") + 1);
+            }
+            else
+            {
+
+            }
+        }
+    }
+
+    public void DeleteAdmin(int username)
+    {
+        
+    }
 }
