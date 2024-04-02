@@ -13,6 +13,8 @@ public class Startup : MonoBehaviour
     [SerializeField] private Toggle libraryToggle;
     [SerializeField] private Toggle adminToggle;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +25,7 @@ public class Startup : MonoBehaviour
         homeToggle.isOn = true;
         libraryToggle.isOn = false;
         adminToggle.isOn = false;
+
+        print(homeToggle.isOn);
     }
 }
