@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2814880766564768916}
   - component: {fileID: 5466203514867123920}
   - component: {fileID: 6558029307462731602}
+  - component: {fileID: 1023922087223305193}
   m_Layer: 5
   m_Name: PanelTabSprite
   m_TagString: Untagged
@@ -104,6 +105,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1023922087223305193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562042370700000273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
 --- !u!1 &2687205568822520638
 GameObject:
   m_ObjectHideFlags: 0
