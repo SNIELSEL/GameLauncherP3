@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
@@ -21,16 +22,27 @@ public class ProcessChecker : MonoBehaviour
 
     private bool processWasRunning;
     private bool isMinimized;
+    private bool inputSetUpComplete;
 
     private float timer;
 
     private void Start()
     {
         window.processName = Process.GetCurrentProcess().ProcessName;
+        StartCoroutine(SetupTime());
     }
 
     private void Update()
     {
+        if (!isProccesRunning && gameObject.GetComponent<InputEmulationScript>().enabled == true && inputSetUpComplete == true)
+        {
+            gameObject.GetComponent<InputEmulationScript>().enabled = false;
+        }
+        else if(isProccesRunning && gameObject.GetComponent<InputEmulationScript>().enabled == false && inputSetUpComplete == true)
+        {
+            gameObject.GetComponent<InputEmulationScript>().enabled = true;
+        }
+
         if (scanningForProcesses)
         {
             timer -= Time.deltaTime;
@@ -71,5 +83,11 @@ public class ProcessChecker : MonoBehaviour
                 }
             }
         }
+    }
+
+    private IEnumerator SetupTime()
+    {
+        yield return new WaitForSeconds(1.5f);
+        inputSetUpComplete = true;
     }
 }
