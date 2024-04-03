@@ -83,6 +83,13 @@ public class ProjectHolder : MonoBehaviour
     public void ApplyFilter()
     {
         FilterOnThis(setFilter.ratingToFilterTo, setFilter.buildYearToFilterTo, setFilter.studentYearToFilterTo, setFilter.multiPlayToFilterTo, setFilter.perspectiveToFilterTo, setFilter.genreToFilterTo);
+
+        Debug.Log(setFilter.ratingToFilterTo);
+        Debug.Log(setFilter.buildYearToFilterTo);
+        Debug.Log(setFilter.studentYearToFilterTo);
+        Debug.Log(setFilter.multiPlayToFilterTo);
+        Debug.Log(setFilter.perspectiveToFilterTo);
+        Debug.Log(setFilter.genreToFilterTo);
     }
 
     public void FilterOnThis(int ratingToFilterTo,int buildYearToFilterTo, string studentYearToFilterTo, string multiPlayToFilterTo, string perspectiveToFilterTo, string genreToFilterTo)
