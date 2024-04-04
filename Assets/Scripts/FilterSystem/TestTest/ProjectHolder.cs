@@ -14,13 +14,15 @@ public class ProjectHolder : MonoBehaviour
 
 
     public SetFilter setFilter = new SetFilter();
-
+    //deze voif aanspreken in dylano zijn start
     public void Init()
     {
         foreach (Product product in products)
         {
             product.Init();
         }
+
+        GetListOfGames();
     }
 
     public void GetListOfGames()
@@ -174,7 +176,7 @@ public class ProjectHolder : MonoBehaviour
     {
         foreach(Product product in products)
         {
-            product.GetComponent<RequirmentCheck>().gfuckingKnop.SetActive(true);
+            //product.GetComponent<RequirmentCheck>().gfuckingKnop.SetActive(true);
         }
     }
 }
