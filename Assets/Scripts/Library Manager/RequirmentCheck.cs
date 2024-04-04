@@ -11,8 +11,8 @@ public class RequirmentCheck : MonoBehaviour
     [SerializeField] private GameObject infoPrefab;
 
 
-    private Transform buttonParantObject;
-    private Transform infoParantObject;
+    [SerializeField] private Transform buttonParantObject;
+    [SerializeField] private Transform infoParantObject;
 
 
     [Header ("Images")]

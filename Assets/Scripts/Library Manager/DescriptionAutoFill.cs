@@ -124,13 +124,13 @@ public class DescriptionAutoFill : MonoBehaviour
 
             
             //After finding the right .PNG file it willl conect it to the right RawImage.
-            imageFilePath = gameFolders[i] + "/Logo.PNG";
+            imageFilePath = gameFolders[i] + "/Logo.png";
             if (File.Exists(imageFilePath))
             {
                 requirementChecker.GetComponent<RequirmentCheck>().gameLogo.texture = LoadImage(imageFilePath);
             }
 
-            imageFilePath = gameFolders[i] + "/Banner.PNG";
+            imageFilePath = gameFolders[i] + "/Banner.png";
             if (File.Exists(imageFilePath))
             {
                 requirementChecker.GetComponent<RequirmentCheck>().gameBanner.texture = LoadImage(imageFilePath);

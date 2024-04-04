@@ -406,6 +406,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6218319230702415930}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &168467875 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 858855543734124124, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6218319230702415930}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &178423470 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7290689175076263520, guid: 21bff95471b6dca478bb5bd28eb4dedb,
@@ -699,37 +705,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6218319230702415930}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &808628630
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 808628631}
-  m_Layer: 0
-  m_Name: RequirmentCheckerHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &808628631
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808628630}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1057.8859, y: 444.54218, z: -1.2955626}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &859157314 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1677881775717947446, guid: 21bff95471b6dca478bb5bd28eb4dedb,
@@ -886,7 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc3d16a30adc6a47960111fe58590de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameButtonPrefab: {fileID: 8173372293362795034, guid: bd9e7cd1918cae147867c80cb3e68e21,
+  gameButtonPrefab: {fileID: 4759807699321646390, guid: 6b1d438099b8fb946b81112a9f3a8224,
     type: 3}
   filePath: 
   imageFilePath: 
@@ -894,7 +869,7 @@ MonoBehaviour:
   fileName: /Description.txt
   lineText: []
   lineAmount: 0
-  parent: {fileID: 808628631}
+  parent: {fileID: 168467875}
   gameFolders: []
   nameText: {fileID: 0}
   descriptionText: {fileID: 0}
@@ -1145,7 +1120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   products: []
-  requireCheckHolder: {fileID: 808628630}
+  requireCheckHolder: {fileID: 0}
   filterButtons:
   - {fileID: 263217186}
   - {fileID: 2075829091}
@@ -4265,7 +4240,7 @@ PrefabInstance:
     - target: {fileID: 858855543734124124, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0001606294
+      value: -0.000041463005
       objectReference: {fileID: 0}
     - target: {fileID: 886255157619926746, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
@@ -8168,4 +8143,3 @@ SceneRoots:
   - {fileID: 1689669172}
   - {fileID: 540150331}
   - {fileID: 1018885338}
-  - {fileID: 808628631}
