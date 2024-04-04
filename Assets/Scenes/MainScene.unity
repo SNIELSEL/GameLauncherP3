@@ -1146,10 +1146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   products: []
   requireCheckHolder: {fileID: 808628630}
-  requirements: []
-  gameHolder: {fileID: 168467874}
-  games: []
-  gameButtons: []
   filterButtons:
   - {fileID: 263217186}
   - {fileID: 2075829091}
@@ -4269,7 +4265,7 @@ PrefabInstance:
     - target: {fileID: 858855543734124124, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00013679171
+      value: 0.0001606294
       objectReference: {fileID: 0}
     - target: {fileID: 886255157619926746, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
@@ -4516,7 +4512,7 @@ PrefabInstance:
     - target: {fileID: 1354012194066001794, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: perspective
-      value: Third person
+      value: Third Person
       objectReference: {fileID: 0}
     - target: {fileID: 1354012194066001794, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
@@ -4659,6 +4655,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -23.050003
       objectReference: {fileID: 0}
+    - target: {fileID: 1736579796230351064, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.92163086
+      objectReference: {fileID: 0}
     - target: {fileID: 1797742338848674197, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_sharedMaterial
@@ -4764,6 +4765,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194960671585250726, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: m_AllowSwitchOff
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2288041326555693144, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
@@ -5166,6 +5172,11 @@ PrefabInstance:
       propertyPath: studentYear
       value: Teacher
       objectReference: {fileID: 0}
+    - target: {fileID: 3310234642062051815, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: m_AllowSwitchOff
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3313030119065553917, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -5350,7 +5361,7 @@ PrefabInstance:
     - target: {fileID: 3641589926989774805, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: perspective
-      value: First person
+      value: First Person
       objectReference: {fileID: 0}
     - target: {fileID: 3641589926989774805, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
@@ -5630,6 +5641,11 @@ PrefabInstance:
       objectReference: {fileID: 1018885352}
     - target: {fileID: 4148025179254578296, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
+      propertyPath: m_text
+      value: Top Down
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148025179254578296, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 1149492777132201344, guid: 6357b92546b8b71469798da38fe4c1b0,
@@ -5704,7 +5720,7 @@ PrefabInstance:
     - target: {fileID: 4310820423276031296, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: studentYear
-      value: 'Year 2 '
+      value: Year 2
       objectReference: {fileID: 0}
     - target: {fileID: 4457531746506581629, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
@@ -5758,6 +5774,11 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4713732836758037887, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: m_AllowSwitchOff
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4757927550320259671, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -5803,6 +5824,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4845833321691043931, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: m_AllowSwitchOff
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4903843410566061546, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
@@ -6812,7 +6838,7 @@ PrefabInstance:
     - target: {fileID: 6771755882668476047, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: perspective
-      value: Top down
+      value: Top Down
       objectReference: {fileID: 0}
     - target: {fileID: 6771755882668476047, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
@@ -7250,6 +7276,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1425938078}
+    - target: {fileID: 7963896835644968099, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: m_AllowSwitchOff
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7966619747093991097, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -7800,6 +7831,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501761917241811169, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: m_AllowSwitchOff
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8530444862369323474, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
