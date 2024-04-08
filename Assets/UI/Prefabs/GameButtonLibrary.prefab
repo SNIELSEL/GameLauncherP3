@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 1383487943601096511}
   - component: {fileID: 6234091682228892513}
   - component: {fileID: 2438691329459408333}
+  - component: {fileID: 3546549045031821800}
   m_Layer: 5
   m_Name: GameButtonLibrary
   m_TagString: Untagged
@@ -104,9 +105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b148a2e9e5565294ea3ef70cfb258312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiGameButtonPrefab: {fileID: 4759807699321646390}
+  uiGameButtonPrefab: {fileID: 7794176208586974262}
   infoPrefab: {fileID: 1747770425669949532, guid: 33c77b9e1896b4d4f9428a29ba709b2e,
     type: 3}
+  buttonParantObject: {fileID: 0}
+  infoParantObject: {fileID: 0}
   gameLogo: {fileID: 9099617466561074594}
   gameBanner: {fileID: 7321276219430124995}
   qrCode: {fileID: 0}
@@ -126,7 +129,27 @@ MonoBehaviour:
   convertedDocentenScore: 0
   descriptionAuto: {fileID: 0}
   library: {fileID: 0}
-  product: {fileID: 0}
+  product: {fileID: 3546549045031821800}
+--- !u!114 &3546549045031821800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4759807699321646390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e15f0191e6f6de247800eb3864a10c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filter:
+    rating: 0
+    buildYear: 0
+    studentYear: 
+    multiTag: 
+    perspectiveTag: 
+    genreTag: 
+    tags: []
 --- !u!1 &5945009798078119601
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +360,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: gkggjgj
+  m_text: Test
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6357b92546b8b71469798da38fe4c1b0, type: 2}
   m_sharedMaterial: {fileID: 1149492777132201344, guid: 6357b92546b8b71469798da38fe4c1b0,

@@ -16,7 +16,7 @@ public class DescriptionAutoFill : MonoBehaviour
     [SerializeField] private string filePath;
     [SerializeField] private string imageFilePath;
     [SerializeField] private string exeFilePath;
-    [SerializeField] private string fileName;
+
     [SerializeField] private string[] lineText;
     [SerializeField] private int lineAmount;
     [SerializeField] private Transform parent;

@@ -12,5 +12,6 @@ public class GoToInfoTab : MonoBehaviour
     public void SetInfoTabActive()
     {
         buttonInfoTab.SetActive(true);
+        Debug.Log("working");
     }
 }

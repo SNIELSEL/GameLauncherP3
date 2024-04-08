@@ -61,88 +61,24 @@ public class RequirmentCheck : MonoBehaviour
     private void Start()
     {
         descriptionAuto = GameObject.Find("ScriptHolder").GetComponent<DescriptionAutoFill>();
-        library = descriptionAuto.library;
-        library.SetActive(true);
+        //library = descriptionAuto.library;
+        //library.SetActive(true);
         buttonParantObject = GameObject.Find("Content").transform;
         infoParantObject = GameObject.FindGameObjectWithTag("Library").transform;
-        StartCoroutine(CheckVeriables());
+        CheckVeriables();
 
-        library.SetActive(false);
+        //library.SetActive(false);
     }
 
 
-    private IEnumerator CheckVeriables()
+    private void CheckVeriables()
     {
-        yield return new WaitForSeconds(1.5f);
-        
-        if (year < 2020)
+        if(year >= 2020 && gameLogo.texture != null && gameBanner.texture != null && gameName != "" && gameDescrioption != "" && creationDate != "" && creators != "" && tag1 != "" && tag2 != "" && tag3 != "" && docentenScore != "" && executableFilePath != "")
         {
-            variablesChecked = -1000;
-        }
-
-        if (gameLogo.texture != null)
-        {
-            variablesChecked ++;
-        }
-
-        if (gameBanner.texture != null)
-        {
-            variablesChecked ++;
-        }
-
-        if (gameName != "")
-        {
-            variablesChecked ++;
-        }
-
-        if (gameDescrioption != "")
-        {
-            variablesChecked ++;
-        }
-
-        if (creationDate != "")
-        {
-            variablesChecked ++;
-        }
-
-        if (creators != "")
-        {
-            variablesChecked++;
-        }
-
-        if (tag1 != "")
-        {
-            variablesChecked++;
-        }
-
-        if (tag2 != "")
-        {
-            variablesChecked++;
-        }
-
-        if (tag3 != "")
-        {
-            variablesChecked++;
-        }
-        
-        if (docentenScore != "")
-        {
-            variablesChecked++;
-        }
-        
-        if (executableFilePath != "")
-        {
-            variablesChecked++;
-        }
-
-        if (variablesChecked >= 9)
-        {
+            print(1234567890);
 
             // this part of the codeis responseble of instatiating a button and creating 
-            GameObject gameLibraryButton = Instantiate(uiGameButtonPrefab, transform.position, transform.rotation, buttonParantObject);
-            GameObject.Find("ScriptHolder").GetComponent<DeleteGameObjectAfterFileChange>().deleteGameObject = gameLibraryButton;
-
-            GameObject button = gameLibraryButton.transform.GetChild(0).gameObject;
+            GameObject button = transform.GetChild(0).gameObject;
             button.GetComponent<RawImage>().texture = gameLogo.texture;
 
             GameObject panelTitel = button.transform.GetChild(0).gameObject;
@@ -225,6 +161,6 @@ public class RequirmentCheck : MonoBehaviour
         {
             Destroy(gameObject);
             Debug.Log("destroy");
-        }
+        }   
     }
 }

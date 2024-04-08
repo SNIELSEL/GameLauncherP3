@@ -842,6 +842,7 @@ GameObject:
   - component: {fileID: 1018885352}
   - component: {fileID: 1018885354}
   - component: {fileID: 1018885355}
+  - component: {fileID: 1018885356}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -1213,6 +1214,20 @@ MonoBehaviour:
   homeToggle: {fileID: 1617938592}
   libraryToggle: {fileID: 1980731998}
   adminToggle: {fileID: 1427591982}
+--- !u!114 &1018885356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018885335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b49c7efc9139344972c72bea082657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonInfoTab: {fileID: 1747770425669949532, guid: 33c77b9e1896b4d4f9428a29ba709b2e,
+    type: 3}
 --- !u!1 &1022987501 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 700134891495848696, guid: 21bff95471b6dca478bb5bd28eb4dedb,
@@ -4240,7 +4255,7 @@ PrefabInstance:
     - target: {fileID: 858855543734124124, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000041463005
+      value: 0.000032083182
       objectReference: {fileID: 0}
     - target: {fileID: 886255157619926746, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
@@ -4634,6 +4649,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.92163086
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736579796230351064, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.81066895
       objectReference: {fileID: 0}
     - target: {fileID: 1797742338848674197, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
