@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -101,8 +102,13 @@ public class RequirmentCheck : MonoBehaviour
             GameObject gameImage = bannerImage.transform.GetChild(1).gameObject;
             gameImage.GetComponent<RawImage>().texture = gameLogo.texture;
             
-            //GameObject gameQRCode = infoTab.transform.GetChild(1).gameObject;
-            //gameQRCode.GetComponent<RawImage>().texture = gameLogo.texture;
+            if (qrCode != null)
+            {
+                GameObject gameQRCode = bannerImage.transform.GetChild(2).gameObject;
+                print(bannerImage.name);
+                gameQRCode.GetComponent<RawImage>().texture = qrCode.texture;
+                print(gameQRCode.name);
+            }
 
             GameObject textPanel = bannerImage.transform.GetChild(3).gameObject;
             GameObject penal1 = textPanel.transform.GetChild(0).gameObject;
@@ -166,5 +172,6 @@ public class RequirmentCheck : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("destroy");
         }   
+
     }
 }

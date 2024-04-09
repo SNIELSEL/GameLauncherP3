@@ -137,9 +137,13 @@ public class DescriptionAutoFill : MonoBehaviour
                 requirementChecker.GetComponent<RequirmentCheck>().gameBanner.texture = LoadImage(imageFilePath);
             }
 
-            /*imageFilePath = gameFolders[i] + "/QRCode.PNG";
-            requirementChecker.GetComponent<RequirmentCheck>().gameBanner.texture = LoadImage(imageFilePath);
-*/
+            imageFilePath = gameFolders[i] + "/QRCode.png";
+            if (File.Exists(imageFilePath))
+            {
+                print("QR code found");
+                requirementChecker.GetComponent<RequirmentCheck>().qrCode.texture = LoadImage(imageFilePath);
+            }
+
             // find .exe path
             filePath = gameFolders[i];
             DirectoryInfo directoryInfo = new DirectoryInfo(filePath);
@@ -182,7 +186,7 @@ public class DescriptionAutoFill : MonoBehaviour
         }
         else
         {
-            return "No Bitches?";
+            return "No Lines Found";
         }
     }
 }
