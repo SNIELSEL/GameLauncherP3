@@ -47,6 +47,9 @@ public class RequirmentCheck : MonoBehaviour
     [Header ("Script References")]
     public DescriptionAutoFill descriptionAuto;
     public GameObject library;
+
+    //Doutzen Filter
+   // public ProjectHolder projectHolder;
     public Product product;
 
 
@@ -57,7 +60,7 @@ public class RequirmentCheck : MonoBehaviour
     }
 
 
-    //
+    
     private void Start()
     {
         descriptionAuto = GameObject.Find("ScriptHolder").GetComponent<DescriptionAutoFill>();
@@ -151,9 +154,10 @@ public class RequirmentCheck : MonoBehaviour
             filePathText.text = executableFilePath;
 
 
+            product.filter.SetFilter(convertedDocentenScore, year, leerJaar, tag1, tag2, tag3);
 
             //filter
-            product.filter.SetFilter(convertedDocentenScore, year, leerJaar, tag1, tag2, tag3);
+            
        
         }
 

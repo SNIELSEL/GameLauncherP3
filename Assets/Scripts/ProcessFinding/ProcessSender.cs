@@ -13,6 +13,8 @@ public class ProcessSender : MonoBehaviour
         processName = processpath.text;
         processName = processName.Replace(".exe", "");
         processName = processName.Substring(processName.IndexOf('/') + 1);
+
+        GameObject.Find("ScriptHolder").GetComponent<ProjectHolder>().gameNames.Add(processName);
     }
 
     public void SendProcessNameToChecker()

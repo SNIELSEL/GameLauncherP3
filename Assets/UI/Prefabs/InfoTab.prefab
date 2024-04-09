@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 8845713764258988240}
   m_Layer: 5
   m_Name: Playbutton
-  m_TagString: Untagged
+  m_TagString: NameSender
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 8607273030843129318}
   m_Layer: 5
   m_Name: ExePath
-  m_TagString: Untagged
+  m_TagString: Path
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

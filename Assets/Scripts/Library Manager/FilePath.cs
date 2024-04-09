@@ -16,6 +16,7 @@ public class FilePath : MonoBehaviour
     [Header ("Script Reverence")]
     public DescriptionAutoFill descriptionAutoFill;
 
+    public ProjectHolder projectHolder;
 
     // Code from the folder asset From Asset Store.
     public void ChooseGamesFolder()
@@ -75,7 +76,7 @@ public class FilePath : MonoBehaviour
 
         descriptionAutoFill.gameFolders = subFolders;
         descriptionAutoFill.GetAllFolderData();
-
+        projectHolder.Init();
     }
 
     protected void GetFilePath()

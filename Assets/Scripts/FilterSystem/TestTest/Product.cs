@@ -19,9 +19,9 @@ public class Product : MonoBehaviour
 [System.Serializable]
 public class Filter
 {
-    public int rating;
+    public float rating;
     private int minRating = 0;
-    private int maxRating = 5;
+    private int maxRating = 10;
 
     public int buildYear;
 
@@ -34,7 +34,7 @@ public class Filter
 
     public List<string> tags = new List<string>();
 
-    public void SetFilter(int rating, int buildYear, string studentYear, string multiTag, string perspectiveTag, string genreTag)
+    public void SetFilter(float rating, int buildYear, string studentYear, string multiTag, string perspectiveTag, string genreTag)
     {
         GiveRating(rating);
         SetBuildYear(buildYear);
@@ -44,7 +44,7 @@ public class Filter
         SetGenreTag(genreTag);
     }
 
-    public void GiveRating(int ratingToGive)
+    public void GiveRating(float ratingToGive)
     {
         if (ratingToGive < minRating) {
             ratingToGive = 0; 

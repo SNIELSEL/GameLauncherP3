@@ -41,6 +41,7 @@ public class DescriptionAutoFill : MonoBehaviour
 
     public GameObject library;
 
+
     //This void gets info out of the Selected File.
     public void GetAllFolderData()
     {
@@ -119,10 +120,10 @@ public class DescriptionAutoFill : MonoBehaviour
                     }
                 }
             }
-            
 
 
             
+
             //After finding the right .PNG file it willl conect it to the right RawImage.
             imageFilePath = gameFolders[i] + "/Logo.png";
             if (File.Exists(imageFilePath))
@@ -148,6 +149,12 @@ public class DescriptionAutoFill : MonoBehaviour
                 exeFilePath = filePath + "/" + exeName[0].Name;
             }
             requirementChecker.GetComponent<RequirmentCheck>().executableFilePath = exeFilePath;
+            //Niels
+            string processName = exeFilePath;
+            processName = processName.Replace(".exe", "");
+            processName = processName.Substring(processName.IndexOf('/') + 1);
+
+            GameObject.Find("ScriptHolder").GetComponent<ProjectHolder>().gameNames.Add(processName);
         }
     }
 

@@ -1,20 +1,37 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 public class ProjectHolder : MonoBehaviour
 {
-    public List<Product> products = new List<Product>();
+
+    /*NOTE TO SELF>>>>
+     * Dylano even zeggen dat er een product op de games moeten anders ka ik niet filteren: DONE
+     * Noets melden over dat ik een toggle nodig heb waarmee me de slider aan en uit kunmnen zetten, ik heb het script ervoor al maar de slider moet eigenlijk grijs worden ipv uitgaan zodat je hem altijd kunt zien: DONE maar nog een keer doen voor de zekerheid
+     * alles in main scene gOED ASSIGNEN: wachten tot dylano klaar is in main scene
+    */
+
     [SerializeField] private GameObject requireCheckHolder;
+    public List<Product> products = new List<Product>();
+
+    public Slider ratingSlider;
+
+    //Niels MostPlayed
+    public List<string> gameNames;
+    public List<float> gameTimes;
 
 
     public List<GameObject> filterButtons = new List<GameObject>();
-    int totalRequirements, totalGames;
+    int totalRequirements;
 
 
     public SetFilter setFilter = new SetFilter();
-    //deze voif aanspreken in dylano zijn start
+   
+   //Void wordt aangesproken in FilePath van Dylano
     public void Init()
     {
         foreach (Product product in products)
@@ -38,15 +55,11 @@ public class ProjectHolder : MonoBehaviour
         }
     }
 
-    public void RatingFilter(int rating)
+    public void RatingFilter(GameObject rating)
     {
         //SLIDER AAAAAAAAAAAAAh
-        //setFilter.ratingToFilterTo = rating.GetComponent<FilterButton>().rating;
-
-       /* else
-        {
-            setFilter.ratingToFilterTo = 0;
-        }*/
+        //we houden vanb sliders echt mijhn fvqavoriet
+        setFilter.ratingToFilterTo = rating.GetComponent<Slider>().value;
     }
     public void BuildYearFilter(GameObject buildYear)
     {
@@ -57,7 +70,7 @@ public class ProjectHolder : MonoBehaviour
         }
         else
         {
-            setFilter.buildYearToFilterTo = 0;
+            setFilter.buildYearToFilterTo = -1;
         }
 
     }
@@ -70,7 +83,7 @@ public class ProjectHolder : MonoBehaviour
         }
         else
         {
-            setFilter.studentYearToFilterTo = null;
+            setFilter.studentYearToFilterTo = "";
         }
 
     }
@@ -83,7 +96,7 @@ public class ProjectHolder : MonoBehaviour
         }
         else
         {
-            setFilter.multiPlayToFilterTo = null;
+            setFilter.multiPlayToFilterTo = "";
         }
     }
 
@@ -95,7 +108,7 @@ public class ProjectHolder : MonoBehaviour
         }
         else
         {
-            setFilter.perspectiveToFilterTo = null;
+            setFilter.perspectiveToFilterTo = "";
         }
 
     }
@@ -108,22 +121,22 @@ public class ProjectHolder : MonoBehaviour
         }
         else
         {
-            setFilter.genreToFilterTo = null;
+            setFilter.genreToFilterTo = "";
         }
     }
 
     public void ApplyFilter()
     {
-       
+
         FilterOnThis(setFilter.ratingToFilterTo, setFilter.buildYearToFilterTo, setFilter.studentYearToFilterTo, setFilter.multiPlayToFilterTo, setFilter.perspectiveToFilterTo, setFilter.genreToFilterTo);
     }
 
-  
-    public void FilterOnThis(int ratingToFilterTo, int buildYearToFilterTo, string studentYearToFilterTo, string multiPlayToFilterTo, string perspectiveToFilterTo, string genreToFilterTo)
+
+    public void FilterOnThis(float ratingToFilterTo, int buildYearToFilterTo, string studentYearToFilterTo, string multiPlayToFilterTo, string perspectiveToFilterTo, string genreToFilterTo)
     {
 
         List<Product> filteredList = new List<Product>();
-       
+
         foreach (Product product in products)
         {
             filteredList.Add(product);
@@ -160,31 +173,53 @@ public class ProjectHolder : MonoBehaviour
 
         }
         // Zet elk product uit.
-        foreach(Product g in products)
+        foreach (Product g in products)
         {
             g.gameObject.SetActive(false);
         }
         //Zet elk product in de filteredLIst weer aan.
-        foreach(Product p in filteredList)
+        foreach (Product p in filteredList)
         {
             p.gameObject.SetActive(true);
+            
+        }
+        filteredList.Clear();
+    }
+
+
+    public void PutGamesBack()
+    {
+        foreach (Product product in products)
+        {
+            product.gameObject.SetActive(true);
         }
     }
 
-   
-    public void PutGamesBack()
+    //FUCK DIT HOE WERKT DIT MOET NOG AF WHY THIS DO THIS IK WIL NIET MEER........... deze hele functie werkt niet bruhhhh
+    public void MostPlayed()
     {
-        foreach(Product product in products)
+        // nu de array sorteren en daarbij de goede games bovenaan zetten :')
+        gameTimes.Clear();
+
+        for (int i = 0; i < gameNames.Count; i++)
         {
-            //product.GetComponent<RequirmentCheck>().gfuckingKnop.SetActive(true);
+            gameTimes.Add(PlayerPrefs.GetInt("PlayTimeMinutes" + gameNames[i]) + (PlayerPrefs.GetInt("PlayTimeHours" + gameNames[i]) * 60));
         }
+        
+
+
+
+
+
+        Debug.Log(gameTimes);
+
     }
 }
 
 [System.Serializable]
 public class SetFilter
 {
-    public int ratingToFilterTo;
+    public float ratingToFilterTo;
     public int buildYearToFilterTo;
     public string studentYearToFilterTo;
     public string multiPlayToFilterTo;
