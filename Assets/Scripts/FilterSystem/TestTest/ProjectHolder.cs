@@ -8,13 +8,6 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 public class ProjectHolder : MonoBehaviour
 {
-
-    /*NOTE TO SELF>>>>
-     * Dylano even zeggen dat er een product op de games moeten anders ka ik niet filteren: DONE
-     * Noets melden over dat ik een toggle nodig heb waarmee me de slider aan en uit kunmnen zetten, ik heb het script ervoor al maar de slider moet eigenlijk grijs worden ipv uitgaan zodat je hem altijd kunt zien: DONE maar nog een keer doen voor de zekerheid
-     * alles in main scene gOED ASSIGNEN: wachten tot dylano klaar is in main scene
-    */
-
     [SerializeField] private GameObject requireCheckHolder;
     public List<Product> products = new List<Product>();
 
@@ -30,8 +23,12 @@ public class ProjectHolder : MonoBehaviour
 
 
     public SetFilter setFilter = new SetFilter();
-   
-   //Void wordt aangesproken in FilePath van Dylano
+
+    //Danique's kut code hoi Frans :D
+    public ToggleGroup toggleGroup1, toggleGroup2, toggleGroup3, toggleGroup4, toggleGroup5;
+    public Toggle sliderToggle;
+
+    //Void wordt aangesproken in FilePath van Dylano
     public void Init()
     {
         foreach (Product product in products)
@@ -187,12 +184,31 @@ public class ProjectHolder : MonoBehaviour
     }
 
 
-    public void PutGamesBack()
+    public void ClearFilter()
     {
         foreach (Product product in products)
         {
             product.gameObject.SetActive(true);
         }
+
+        //dit is Danique's code sorry alvast
+        if (toggleGroup1.AnyTogglesOn())
+            toggleGroup1.SetAllTogglesOff();
+
+        if (toggleGroup2.AnyTogglesOn())
+            toggleGroup2.SetAllTogglesOff();
+
+        if (toggleGroup3.AnyTogglesOn())
+            toggleGroup3.SetAllTogglesOff();
+
+        if (toggleGroup4.AnyTogglesOn())
+            toggleGroup4.SetAllTogglesOff();
+
+        if (toggleGroup5.AnyTogglesOn())
+            toggleGroup5.SetAllTogglesOff();
+
+        sliderToggle.isOn = false;
+
     }
 
     //FUCK DIT HOE WERKT DIT MOET NOG AF WHY THIS DO THIS IK WIL NIET MEER........... deze hele functie werkt niet bruhhhh

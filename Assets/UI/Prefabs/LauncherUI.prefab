@@ -2651,7 +2651,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1674873753965017369}
   toggleTransition: 0
   graphic: {fileID: 1548362537769696759}
-  m_Group: {fileID: 4713732836758037887}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -6069,7 +6069,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1592350675047796469}
   m_Direction: 3
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999824
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8323,8 +8323,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 974521715434768147}
   m_HandleRect: {fileID: 7193182250511382956}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.51720136
+  m_Value: -0.000000103868736
+  m_Size: 0.5172004
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10891,7 +10891,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 587.61804}
+  m_AnchoredPosition: {x: 0, y: 587.61816}
   m_SizeDelta: {x: 0, y: 1217.108}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3995906268759822150
@@ -18773,7 +18773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00087031326}
+  m_AnchoredPosition: {x: 0, y: 0.0007651375}
   m_SizeDelta: {x: 0, y: 144}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1245174422518023423
@@ -21456,6 +21456,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5467462107945766707, guid: e6fb86b310d77aa48a0bc2ff47363913, type: 3}
     - {fileID: 1234618187580010031, guid: e6fb86b310d77aa48a0bc2ff47363913, type: 3}
+    - {fileID: 8287237444455664365, guid: e6fb86b310d77aa48a0bc2ff47363913, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2393764967075229409, guid: e6fb86b310d77aa48a0bc2ff47363913, type: 3}
     m_AddedGameObjects:
