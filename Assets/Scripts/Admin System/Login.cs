@@ -50,13 +50,25 @@ public class Login : MonoBehaviour
     [Header("Create new admin acount page")]
     [SerializeField] private TMP_Text newAcountUsername;
     [SerializeField] private TMP_Text newAcountPassword;
+    [SerializeField] private TMP_Text createAcountMessage;
     private bool usernameAvailable = true;
+
+    [Header("Delete Admin acount page")]
+    [SerializeField] private TMP_Text deleteUsername;
+    [SerializeField] private TMP_Text deleteAcountMessage;
 
     [Header("Change screens messages")]
     [SerializeField] private TMP_Text changeUsernameTextMessage;
     [SerializeField] private TMP_Text changePasswordTextMessage;
 
-    public int currentAdminIndex;
+    private int currentAdminIndex;
+    [SerializeField] private TMP_Text acount; //used for displaying username in top left
+    [Header("Logs from top to bottom")]
+    [SerializeField] private TMP_Text log5;
+    [SerializeField] private TMP_Text log4;
+    [SerializeField] private TMP_Text log3;
+    [SerializeField] private TMP_Text log2;
+    [SerializeField] private TMP_Text log1;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -94,6 +106,7 @@ public class Login : MonoBehaviour
                     wrongTries = 0;
                     eventSystem.SetSelectedGameObject(nextSelectedButtonAcount);
                     currentAdminIndex = i;
+                    acount.text = PlayerPrefs.GetString("Username" + i);
                 }
             }
         }
@@ -107,9 +120,10 @@ public class Login : MonoBehaviour
             recoveryKeyText.text = "";
             wrongTries = 0;
             eventSystem.SetSelectedGameObject(nextSelectedButtonSuperAcount);
+            acount.text = PlayerPrefs.GetString("Username");
         }
         //Login Failed
-        else
+        else if (!isAdmin)
         {
             print("Login failed");
             wrongTries += 1;
@@ -179,6 +193,7 @@ public class Login : MonoBehaviour
             {
                 if (newUsername.text != "" && newUsername.text == confirmNewUsername.text)
                 {
+                    SetLog($"Changed username to {newUsername.text}");
                     PlayerPrefs.SetString("Username" + currentAdminIndex.ToString(), newUsername.text);
                 }
             }
@@ -186,6 +201,7 @@ public class Login : MonoBehaviour
             {
                 if (newUsername.text != "" && newUsername.text == confirmNewUsername.text)
                 {
+                    SetLog($"Changed username to {newUsername.text}");
                     PlayerPrefs.SetString("Username", newUsername.text);
                 }
             }
@@ -246,13 +262,10 @@ public class Login : MonoBehaviour
         {
             for (int i = 0; i < PlayerPrefs.GetInt("AdminIndex"); i++)
             {
-                if (PlayerPrefs.HasKey("AdminIndex" + i))
+                if (newAcountUsername.text == PlayerPrefs.GetString("Username" + i.ToString()) || newAcountUsername.text == PlayerPrefs.GetString("Username"))
                 {
-                    if (newAcountUsername.text == PlayerPrefs.GetString("Username" + i) || newAcountUsername.text == PlayerPrefs.GetString("Username"))
-                    {
-                        usernameAvailable = false;
-                        break;
-                    }
+                    usernameAvailable = false;
+                    break;
                 }
             }
             if (usernameAvailable)
@@ -260,28 +273,87 @@ public class Login : MonoBehaviour
                 PlayerPrefs.SetString("Username" + PlayerPrefs.GetInt("AdminIndex").ToString(), newAcountUsername.text);
                 PlayerPrefs.SetString("Password" + PlayerPrefs.GetInt("AdminIndex").ToString(), newAcountPassword.text);
                 PlayerPrefs.SetInt("AdminIndex", PlayerPrefs.GetInt("AdminIndex") + 1);
+                SetLog($"Created new admin acount with username: {newAcountUsername.text}");
+                createAcountMessage.color = Color.green;
+                createAcountMessage.text = "Succesfully created new admin acount";
             }
             else
             {
+                createAcountMessage.color = Color.red;
+                createAcountMessage.text = "failed \n name might allready be in use";
                 // Username isn't available
             }
         }
     }
 
-    public void DeleteAdmin(string username)
+    public void DeleteAdmin()
     {
-        for (int i = 0; i < PlayerPrefs.GetInt("AdminIndex"); i++)
+        for (int i = 0; i <= PlayerPrefs.GetInt("AdminIndex"); i++)
         {
-            if (username == PlayerPrefs.GetString("Username" +i))
+            if (deleteUsername.text == PlayerPrefs.GetString("Username" +i))
             {
                 PlayerPrefs.DeleteKey("Username" + i);
                 PlayerPrefs.DeleteKey("Password" + i);
+                deleteAcountMessage.color = Color.green;
+                deleteAcountMessage.text = "Succesfully deleted the acount";
+                break;
+            }
+            if (i == PlayerPrefs.GetInt("AdminIndex"))
+            {
+                deleteAcountMessage.color = Color.red;
+                deleteAcountMessage.text = "Couldn't find an acount with that name";
+            }
+        }
+    }
+    #region log system
+    public void LoadLog()
+    {
+        int logIndex = PlayerPrefs.GetInt("LogIndex");
+        for (int i = logIndex; i > 0; i--)
+        {
+            if (i >= logIndex - 4) // only execute for first 5 loops
+            {
+
             }
         }
     }
 
-    public void LoadLog()
+    public string SetLog(string action)
     {
+        if (!PlayerPrefs.HasKey("LogIndex"))
+        {
+            PlayerPrefs.SetInt("LogIndex", 0);
+        }
+        int logIndex = PlayerPrefs.GetInt("LogIndex");
+        string currentUser;
+        if (isAdmin) // Normal Admin
+        {
+            currentUser = PlayerPrefs.GetString("Username" + currentAdminIndex);
+        }
+        else // Super Admin
+        {
+            currentUser = PlayerPrefs.GetString("Username");
+        }
+        PlayerPrefs.SetInt("LogIndex", PlayerPrefs.GetInt("LogIndex") +1 );
+        string date = GetCurrentTime();
+        string log = $"{currentUser} - {action} - {date} - {logIndex}";
+        print(log);
+
+        PlayerPrefs.SetString($"Log{logIndex}", log);
+
+        return log;
 
     }
+    public string GetCurrentTime()
+    {
+        int day = System.DateTime.Now.Day;
+        int month = System.DateTime.Now.Month;
+        int year = System.DateTime.Now.Year;
+        int hour = System.DateTime.Now.Hour;
+        int minute = System.DateTime.Now.Minute;
+
+        string date = $"{day}-{month}-{year}/{hour}:{minute}";
+        return date;
+    }
+    #endregion
 }
