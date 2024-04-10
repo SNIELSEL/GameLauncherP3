@@ -34,7 +34,7 @@ public class Filter
 
     public List<string> tags = new List<string>();
 
-    public void SetFilter(float rating, int buildYear, string studentYear, string multiTag, string perspectiveTag, string genreTag)
+    public void SetFilter(float rating, int buildYear, string studentYear, string multiTag, string perspectiveTag, string genreTag, int gameTime)
     {
         GiveRating(rating);
         SetBuildYear(buildYear);
@@ -42,6 +42,7 @@ public class Filter
         SetMultiTag(multiTag);
         SetPerspectiveTag(perspectiveTag);
         SetGenreTag(genreTag);
+        SetGameTime(gameTime);
     }
 
     public void GiveRating(float ratingToGive)
@@ -78,5 +79,9 @@ public class Filter
     public void SetGenreTag(string genreTagToSet)
     {
         genreTag = genreTagToSet;
+    }
+    public void SetGameTime(int gametime)
+    {
+        gameTime = gametime;
     }
 }

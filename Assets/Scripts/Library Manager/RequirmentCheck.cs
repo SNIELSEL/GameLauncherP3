@@ -167,11 +167,15 @@ public class RequirmentCheck : MonoBehaviour
             filePathText.text = executableFilePath;
 
 
-            product.filter.SetFilter(convertedDocentenScore, year, leerJaar, tag1, tag2, tag3);
+            //Niels
+            string processName = executableFilePath;
+            processName = processName.Replace(".exe", "");
+            processName = processName.Substring(processName.IndexOf('/') + 1);
+
+            gameTime = (PlayerPrefs.GetInt("PlayTimeMinutes" + processName) + (PlayerPrefs.GetInt("PlayTimeHours" + processName) * 60)); ;
+            product.filter.SetFilter(convertedDocentenScore, year, leerJaar, tag1, tag2, tag3, gameTime);
 
             //filter
-            
-       
         }
 
         else
