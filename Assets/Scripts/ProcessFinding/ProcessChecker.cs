@@ -34,11 +34,11 @@ public class ProcessChecker : MonoBehaviour
 
     private void Update()
     {
-        if (!isProccesRunning && gameObject.GetComponent<InputEmulationScript>().enabled == true && inputSetUpComplete == true)
+        if (!isProccesRunning && gameObject.GetComponent<InputEmulationScript>().enabled == true)
         {
             gameObject.GetComponent<InputEmulationScript>().enabled = false;
         }
-        else if(isProccesRunning && gameObject.GetComponent<InputEmulationScript>().enabled == false && inputSetUpComplete == true)
+        else if(isProccesRunning && gameObject.GetComponent<InputEmulationScript>().enabled == false)
         {
             gameObject.GetComponent<InputEmulationScript>().enabled = true;
         }

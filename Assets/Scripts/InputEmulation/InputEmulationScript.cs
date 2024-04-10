@@ -3,6 +3,7 @@ using System.Collections;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityRawInput;
@@ -41,6 +42,7 @@ public class InputEmulationScript : MonoBehaviour
     [SerializeField] VirtualKeyCode rSelectButton;
     [SerializeField] VirtualKeyCode rStartButton;
     [SerializeField] VirtualKeyCode lSideBlackButton;
+    private VirtualKeyCode emptyVirtualKey;
 
     //keys to search for input
     private RawKey InputlJoystickUp;
@@ -67,21 +69,23 @@ public class InputEmulationScript : MonoBehaviour
     private RawKey InputselectButton;
     private RawKey InputrSelectButton;
     private RawKey InputrStartButton;
-    private RawKey InputlSideBlackButton;
+    public RawKey InputlSideBlackButton;
+    private RawKey empty;
 
-    [SerializeField] string filePath, fileName;
+    public string filePath, fileName, processName;
     private string currentLine;
     private int currentLineIndex = 0;
     private int invisableI;
 
     //checks for if variables are set or if a event is triggerd
     private bool inputDelayIsActive;
-    private bool useCustomInput;
-    private bool usingPC;
-    private bool usingPCInput;
-    private bool usingRaspberryPiInput;
+    public bool useCustomInput;
+    public bool usingPC;
+    public bool usingPCInput;
+    public bool usingRaspberryPiInput;
     private bool setInputKeys;
     private bool isHolding;
+    private bool beganSettingInput;
 
     private Cursor cursor;
     
@@ -199,6 +203,64 @@ public class InputEmulationScript : MonoBehaviour
     {
         RawInput.WorkInBackground = false;
         RawInput.Stop();
+
+        beganSettingInput = false;
+
+        lJoystickUp = emptyVirtualKey;
+        lJoystickDown = emptyVirtualKey;
+        lJoystickLeft = emptyVirtualKey;
+        lJoystickRight = emptyVirtualKey;
+        lXButton = emptyVirtualKey;
+        lAButton = emptyVirtualKey;
+        lBlankRedButton = emptyVirtualKey;
+        lYButton = emptyVirtualKey;
+        lBlackButton = emptyVirtualKey;
+        lYellowButton = emptyVirtualKey;
+        rJoystickUp = emptyVirtualKey;
+        rJoystickDown = emptyVirtualKey;
+        rJoystickLeft = emptyVirtualKey;
+        rJoystickRight = emptyVirtualKey;
+        rXButton = emptyVirtualKey;
+        rAButton = emptyVirtualKey;
+        rBlankRedButton = emptyVirtualKey;
+        rYButton = emptyVirtualKey;
+        rBlackButton = emptyVirtualKey;
+        rYellowButton = emptyVirtualKey;
+        startButton = emptyVirtualKey;
+        selectButton = emptyVirtualKey;
+        rSelectButton = emptyVirtualKey;
+        rStartButton = emptyVirtualKey;
+        lSideBlackButton = emptyVirtualKey;
+
+        InputlJoystickUp = empty;
+        InputlJoystickDown = empty;
+        InputlJoystickLeft = empty;
+        InputlJoystickRight = empty;
+        InputlXButton = empty;
+        InputlAButton = empty;
+        InputlBlankRedButton = empty;
+        InputlYButton = empty;
+        InputlBlackButton = empty;
+        InputlYellowButton = empty;
+        InputrJoystickUp = empty;
+        InputrJoystickDown = empty;
+        InputrJoystickLeft = empty;
+        InputrJoystickRight = empty;
+        InputrXButton = empty;
+        InputrAButton = empty;
+        InputrBlankRedButton = empty;
+        InputrYButton = empty;
+        InputrBlackButton = empty;
+        InputrYellowButton = empty;
+        InputstartButton = empty;
+        InputselectButton = empty;
+        InputrSelectButton = empty;
+        InputrStartButton = empty;
+        InputlSideBlackButton = empty;
+
+        setInputKeys = false;
+        usingPCInput = false;
+        usingRaspberryPiInput = false;
     }
 
     private void OnEnable()
@@ -214,11 +276,17 @@ public class InputEmulationScript : MonoBehaviour
         usingMouse = false;
     }
 
-    void Start()
+    public void SetKeyBinds()
     {
         this.cursor = new Cursor(Cursor.Current.Handle);
 
-        filePath = Application.dataPath + fileName;
+        processName = filePath;
+        processName = processName.Replace(".exe", "");
+        processName = processName.Substring(processName.IndexOf('/') + 1);
+
+        filePath = filePath.Replace(processName + ".exe", "");
+
+        filePath = filePath + fileName;
 
         string[] lines = File.ReadAllLines(filePath);
 
@@ -232,7 +300,7 @@ public class InputEmulationScript : MonoBehaviour
 
             if (currentLine == "UseInputTranslation:")
             {
-                if(GetLineAtIndex(invisableI + 1) == "Yes")
+                if (GetLineAtIndex(invisableI + 1) == "Yes")
                 {
                     useCustomInput = true;
                 }
@@ -257,6 +325,8 @@ public class InputEmulationScript : MonoBehaviour
                 checkForinputNames();
             }
         }
+
+        beganSettingInput = true;
     }
 
     void Update()
@@ -282,13 +352,13 @@ public class InputEmulationScript : MonoBehaviour
             }
         }
 
-        if (usingPC)
+        if (usingPC && beganSettingInput)
         {
             usingPCInput = true;
             usingRaspberryPiInput = false;
             InputListener();
         }
-        else
+        else if(!usingPC && beganSettingInput)
         {
             usingPCInput = false;
             usingRaspberryPiInput = true;
