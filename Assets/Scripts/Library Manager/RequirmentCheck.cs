@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
@@ -40,6 +41,7 @@ public class RequirmentCheck : MonoBehaviour
     public int month;
     public int day;
     public int convertedDocentenScore;
+    public int gameTime;
 
 
     private int variablesChecked;
@@ -60,10 +62,15 @@ public class RequirmentCheck : MonoBehaviour
         creationDate = day + "/" + month+ "/" + year;
     }
 
+    private void Awake()
+    {
+        gameTime = UnityEngine.Random.Range(0, 100);
+        //Debug.Log("DSHKFSHDJFJGSDJFHDSGJJHDSFJSDF ");
+    }
 
-    
     private void Start()
     {
+
         descriptionAuto = GameObject.Find("ScriptHolder").GetComponent<DescriptionAutoFill>();
         //library = descriptionAuto.library;
         //library.SetActive(true);
@@ -79,7 +86,7 @@ public class RequirmentCheck : MonoBehaviour
     {
         if(year >= 2020 && gameLogo.texture != null && gameBanner.texture != null && gameName != "" && gameDescrioption != "" && creationDate != "" && creators != "" && tag1 != "" && tag2 != "" && tag3 != "" && docentenScore != "" && executableFilePath != "")
         {
-            print(1234567890);
+            //print(1234567890);
 
             // this part of the codeis responseble of instatiating a button and creating 
             GameObject button = transform.GetChild(0).gameObject;
@@ -105,9 +112,9 @@ public class RequirmentCheck : MonoBehaviour
             if (qrCode != null)
             {
                 GameObject gameQRCode = bannerImage.transform.GetChild(2).gameObject;
-                print(bannerImage.name);
+                //print(bannerImage.name);
                 gameQRCode.GetComponent<RawImage>().texture = qrCode.texture;
-                print(gameQRCode.name);
+                //print(gameQRCode.name);
             }
 
             GameObject textPanel = bannerImage.transform.GetChild(3).gameObject;

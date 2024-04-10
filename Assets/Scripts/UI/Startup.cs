@@ -26,6 +26,6 @@ public class Startup : MonoBehaviour
         libraryToggle.isOn = false;
         adminToggle.isOn = false;
 
-        print(homeToggle.isOn);
+        //print(homeToggle.isOn);
     }
 }

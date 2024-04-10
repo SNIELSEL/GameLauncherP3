@@ -158,7 +158,7 @@ public class DescriptionAutoFill : MonoBehaviour
             processName = processName.Replace(".exe", "");
             processName = processName.Substring(processName.IndexOf('/') + 1);
 
-            GameObject.Find("ScriptHolder").GetComponent<ProjectHolder>().gameNames.Add(processName);
+            //GameObject.Find("ScriptHolder").GetComponent<ProjectHolder>().gameNames.Add(processName);
         }
     }
 

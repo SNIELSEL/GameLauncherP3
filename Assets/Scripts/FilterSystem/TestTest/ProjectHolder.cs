@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
@@ -14,7 +16,7 @@ public class ProjectHolder : MonoBehaviour
     public Slider ratingSlider;
 
     //Niels MostPlayed
-    public List<string> gameNames;
+    //public List<string> gameNames;
     public List<float> gameTimes;
 
 
@@ -54,8 +56,6 @@ public class ProjectHolder : MonoBehaviour
 
     public void RatingFilter(GameObject rating)
     {
-        //SLIDER AAAAAAAAAAAAAh
-        //we houden vanb sliders echt mijhn fvqavoriet
         setFilter.ratingToFilterTo = rating.GetComponent<Slider>().value;
     }
     public void BuildYearFilter(GameObject buildYear)
@@ -124,14 +124,12 @@ public class ProjectHolder : MonoBehaviour
 
     public void ApplyFilter()
     {
-
         FilterOnThis(setFilter.ratingToFilterTo, setFilter.buildYearToFilterTo, setFilter.studentYearToFilterTo, setFilter.multiPlayToFilterTo, setFilter.perspectiveToFilterTo, setFilter.genreToFilterTo);
     }
 
 
     public void FilterOnThis(float ratingToFilterTo, int buildYearToFilterTo, string studentYearToFilterTo, string multiPlayToFilterTo, string perspectiveToFilterTo, string genreToFilterTo)
     {
-
         List<Product> filteredList = new List<Product>();
 
         foreach (Product product in products)
@@ -139,10 +137,8 @@ public class ProjectHolder : MonoBehaviour
             filteredList.Add(product);
         }
 
-
         foreach (Product product in products)
         {
-            //rating moet even op een andere manier
             if (ratingToFilterTo > 0 && product.filter.rating != ratingToFilterTo)
             {
                 filteredList.Remove(product);
@@ -167,13 +163,14 @@ public class ProjectHolder : MonoBehaviour
             {
                 filteredList.Remove(product);
             }
-
         }
+
         // Zet elk product uit.
         foreach (Product g in products)
         {
             g.gameObject.SetActive(false);
         }
+
         //Zet elk product in de filteredLIst weer aan.
         foreach (Product p in filteredList)
         {
@@ -183,7 +180,6 @@ public class ProjectHolder : MonoBehaviour
         filteredList.Clear();
     }
 
-
     public void ClearFilter()
     {
         foreach (Product product in products)
@@ -192,6 +188,8 @@ public class ProjectHolder : MonoBehaviour
         }
 
         //dit is Danique's code sorry alvast
+        // KUT DANIQUE ~Tim
+        // IK BEN GEEN PROGRAMMER OKE IK HEB EEN POGING GEDAAN - danijntje
         if (toggleGroup1.AnyTogglesOn())
             toggleGroup1.SetAllTogglesOff();
 
@@ -208,27 +206,30 @@ public class ProjectHolder : MonoBehaviour
             toggleGroup5.SetAllTogglesOff();
 
         sliderToggle.isOn = false;
-
     }
 
-    //FUCK DIT HOE WERKT DIT MOET NOG AF WHY THIS DO THIS IK WIL NIET MEER........... deze hele functie werkt niet bruhhhh
     public void MostPlayed()
     {
-        // nu de array sorteren en daarbij de goede games bovenaan zetten :')
-        gameTimes.Clear();
-
-        for (int i = 0; i < gameNames.Count; i++)
-        {
-            gameTimes.Add(PlayerPrefs.GetInt("PlayTimeMinutes" + gameNames[i]) + (PlayerPrefs.GetInt("PlayTimeHours" + gameNames[i]) * 60));
+        List<Product> mostPlayedOrdered = new List<Product>();
+        for (int i = 0; i < products.Count; i++) {
+            products[i].filter.gameTime = UnityEngine.Random.Range(0, 100);
+            mostPlayedOrdered.Add(products[i]);
+            
         }
-        
+        var sortedMostPlayedOrdered = mostPlayedOrdered.OrderBy(x => x.filter.gameTime).ToList();
 
 
+        for (int i = 0; i < products.Count; i++) //gameNames.Count; i++)
+        {
+            string name = products[i].gameObject.GetComponent<RequirmentCheck>().gameName;
+            gameTimes.Add(PlayerPrefs.GetInt("PlayTimeMinutes" + name) + (PlayerPrefs.GetInt("PlayTimeHours" + name) * 60));
+            //gameTimes.Add(PlayerPrefs.GetInt("PlayTimeMinutes" + gameNames[i]) + (PlayerPrefs.GetInt("PlayTimeHours" + gameNames[i]) * 60));
+        }
+    }
 
-
-
-        Debug.Log(gameTimes);
-
+    public void SortMostPlayed()
+    {
+       //nog een beetje leeg :D
     }
 }
 

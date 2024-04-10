@@ -30,7 +30,7 @@ public class Filter
     public string multiTag;
     public string perspectiveTag;
     public string genreTag;
-
+    public int gameTime;
 
     public List<string> tags = new List<string>();
 
