@@ -10,13 +10,16 @@ public class Login : MonoBehaviour
     #region variables
     [Tooltip("if this bool is true than the user is logged into an (admin) acount")]
     public bool isAdmin;
+    public bool isSuperAdmin;
 
     [Header("Eventsystem variables")]
     [SerializeField] private EventSystem eventSystem;
-    [SerializeField] private GameObject nextSelectedButton;
+    [SerializeField] private GameObject nextSelectedButtonAcount;
+    [SerializeField] private GameObject nextSelectedButtonSuperAcount;
     [Header("Screens")]
     [SerializeField] private GameObject loginScreen;
     [SerializeField] private GameObject acountScreen;
+    [SerializeField] private GameObject superAcountScreen;
 
     [Header("InputField Refrence")]
     [SerializeField] private TMP_Text username;
@@ -49,9 +52,11 @@ public class Login : MonoBehaviour
     [SerializeField] private TMP_Text newAcountPassword;
     private bool usernameAvailable = true;
 
+    [Header("Change screens messages")]
     [SerializeField] private TMP_Text changeUsernameTextMessage;
     [SerializeField] private TMP_Text changePasswordTextMessage;
-    
+
+    public int currentAdminIndex;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -68,22 +73,42 @@ public class Login : MonoBehaviour
         {
             recoveryKey = GenerateRandomString(8);
             PlayerPrefs.SetString("Recoverykey", recoveryKey);
-            recoveryKeyText.text = "This is your recovery key save it before loging in this is the only time you get it! \n\n" +recoveryKey;
+            recoveryKeyText.text = "This is your recovery key save it before loging in! \n\n" +recoveryKey;
         }
     }
 
     public void AdminLogin()
     {
+        // Login Admin
+        if (PlayerPrefs.HasKey("AdminIndex"))
+        {
+            for (int i = 0; i < PlayerPrefs.GetInt("AdminIndex"); i++)
+            {
+                if (username.text == PlayerPrefs.GetString("Username" + i) && password.text == PlayerPrefs.GetString("Password" + i))
+                {
+                    print("Login succeeded");
+                    isAdmin = true;
+                    loginScreen.SetActive(false);
+                    acountScreen.SetActive(true);
+                    recoveryKeyText.text = "";
+                    wrongTries = 0;
+                    eventSystem.SetSelectedGameObject(nextSelectedButtonAcount);
+                    currentAdminIndex = i;
+                }
+            }
+        }
+        // Login Super Admin
         if (username.text == PlayerPrefs.GetString("Username") && password.text == PlayerPrefs.GetString("Password") || password.text == PlayerPrefs.GetString("Recoverykey"))
         {
             print("Login succeeded");
-            isAdmin = true;
+            isSuperAdmin = true;
             loginScreen.SetActive(false);
-            acountScreen.SetActive(true);
+            superAcountScreen.SetActive(true);
             recoveryKeyText.text = "";
             wrongTries = 0;
-            eventSystem.SetSelectedGameObject(nextSelectedButton);
+            eventSystem.SetSelectedGameObject(nextSelectedButtonSuperAcount);
         }
+        //Login Failed
         else
         {
             print("Login failed");
@@ -109,6 +134,7 @@ public class Login : MonoBehaviour
     public void Logout()
     {
         isAdmin = false;
+        isSuperAdmin = false;
         loginScreen.SetActive(true);
         acountScreen.SetActive(false);
     }
@@ -130,11 +156,42 @@ public class Login : MonoBehaviour
     #region Changing username and password
     public void ChangeUsername()
     {
-        if (newUsername.text != "" && newUsername.text == confirmNewUsername.text)
+        usernameAvailable = true;
+        if (newUsername.text == PlayerPrefs.GetString("Username"))
         {
-            PlayerPrefs.SetString("Username", newUsername.text);
+            usernameAvailable = false;
+        }
+        for (int i = 0; i < PlayerPrefs.GetInt("AdminIndex"); i++)
+        {
+            if (PlayerPrefs.HasKey("AdminIndex" + i))
+            {
+                if (newUsername.text == PlayerPrefs.GetString("Username" + i))
+                {
+                    usernameAvailable = false;
+                    break;
+                }
+            }
+        }
+
+        if (usernameAvailable)
+        {
+            if (isAdmin) // Normal  admin
+            {
+                if (newUsername.text != "" && newUsername.text == confirmNewUsername.text)
+                {
+                    PlayerPrefs.SetString("Username" + currentAdminIndex.ToString(), newUsername.text);
+                }
+            }
+            else // Super Admin
+            {
+                if (newUsername.text != "" && newUsername.text == confirmNewUsername.text)
+                {
+                    PlayerPrefs.SetString("Username", newUsername.text);
+                }
+            }
             changeUsernameTextMessage.color = Color.green;
             changeUsernameTextMessage.text = "Username Changed succesfully";
+
         }
         else
         {
@@ -149,9 +206,17 @@ public class Login : MonoBehaviour
     {
         if (newPassword.text != "" && newPassword.text == confirmNewPassword.text)
         {
-            PlayerPrefs.SetString("Password", newPassword.text);
+            if (isAdmin) // Normal Admin
+            {
+                PlayerPrefs.SetString("Password" + currentAdminIndex.ToString(), newPassword.text);
+            }
+            else // Super Admin
+            {
+                PlayerPrefs.SetString("Password", newPassword.text);
+            }
             changePasswordTextMessage.color = Color.green;
             changePasswordTextMessage.text = "Password changed succesfully";
+
         }
         else
         {
@@ -172,36 +237,51 @@ public class Login : MonoBehaviour
     public void CreateAdmin()
     {
         usernameAvailable = true;
-        if (!PlayerPrefs.HasKey("AdminCount"))
+        if (!PlayerPrefs.HasKey("AdminIndex"))
         {
             // AdminCount is for admin acounts NOT SUPERADMIN
-            PlayerPrefs.SetInt("AdminCount", 0);
+            PlayerPrefs.SetInt("AdminIndex", 0);
         }
         if (newAcountUsername.text != "" && newAcountPassword.text != "")
         {
-            for (int i = 0; i < PlayerPrefs.GetInt("AdminCount"); i++)
+            for (int i = 0; i < PlayerPrefs.GetInt("AdminIndex"); i++)
             {
-                if (newAcountUsername.text == PlayerPrefs.GetString("Username" + i) || newAcountUsername.text == PlayerPrefs.GetString("Username"))
+                if (PlayerPrefs.HasKey("AdminIndex" + i))
                 {
-                    usernameAvailable = false;
-                    break;
+                    if (newAcountUsername.text == PlayerPrefs.GetString("Username" + i) || newAcountUsername.text == PlayerPrefs.GetString("Username"))
+                    {
+                        usernameAvailable = false;
+                        break;
+                    }
                 }
             }
             if (usernameAvailable)
             {
-                PlayerPrefs.SetString("Username" + PlayerPrefs.GetInt("AdminCount").ToString(), newAcountUsername.text);
-                PlayerPrefs.SetString("Password" + PlayerPrefs.GetInt("AdminCount").ToString(), newAcountPassword.text);
-                PlayerPrefs.SetInt("AdminCount", PlayerPrefs.GetInt("AdminCount") + 1);
+                PlayerPrefs.SetString("Username" + PlayerPrefs.GetInt("AdminIndex").ToString(), newAcountUsername.text);
+                PlayerPrefs.SetString("Password" + PlayerPrefs.GetInt("AdminIndex").ToString(), newAcountPassword.text);
+                PlayerPrefs.SetInt("AdminIndex", PlayerPrefs.GetInt("AdminIndex") + 1);
             }
             else
             {
-
+                // Username isn't available
             }
         }
     }
 
-    public void DeleteAdmin(int username)
+    public void DeleteAdmin(string username)
     {
-        
+        for (int i = 0; i < PlayerPrefs.GetInt("AdminIndex"); i++)
+        {
+            if (username == PlayerPrefs.GetString("Username" +i))
+            {
+                PlayerPrefs.DeleteKey("Username" + i);
+                PlayerPrefs.DeleteKey("Password" + i);
+            }
+        }
+    }
+
+    public void LoadLog()
+    {
+
     }
 }
