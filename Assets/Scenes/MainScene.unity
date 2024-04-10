@@ -436,6 +436,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6218319230702415930}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &209921677 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5634685501548772326, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6218319230702415930}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &215945128 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 280649609724894311, guid: 072bd3bd89f9e164c81df347d703dd43,
@@ -577,6 +589,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6218319230702415930}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &490301130 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 312224919103901475, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6218319230702415930}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &530105844 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2275361589331515701, guid: 21bff95471b6dca478bb5bd28eb4dedb,
@@ -669,6 +693,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6218319230702415930}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &569728895 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6212983128077317772, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6218319230702415930}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &575925656 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3488474222901417492, guid: 21bff95471b6dca478bb5bd28eb4dedb,
@@ -5841,6 +5877,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1192223458633786023, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: hiddenPassword
+      value: 
+      objectReference: {fileID: 209921677}
     - target: {fileID: 1211044440145123597, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6463,6 +6504,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2895138679011352474, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: hiddenPassword
+      value: 
+      objectReference: {fileID: 569728895}
     - target: {fileID: 2895502631184916597, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -8843,6 +8889,11 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7076856298701509841, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: hiddenPassword
+      value: 
+      objectReference: {fileID: 490301130}
     - target: {fileID: 7108170855517725053, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -10235,6 +10286,9 @@ PrefabInstance:
     - {fileID: 4482057534266253363, guid: 21bff95471b6dca478bb5bd28eb4dedb, type: 3}
     - {fileID: 623673662873199849, guid: 21bff95471b6dca478bb5bd28eb4dedb, type: 3}
     - {fileID: 7375956479479717711, guid: 21bff95471b6dca478bb5bd28eb4dedb, type: 3}
+    - {fileID: 4940276622692940635, guid: 21bff95471b6dca478bb5bd28eb4dedb, type: 3}
+    - {fileID: 7044251769174850663, guid: 21bff95471b6dca478bb5bd28eb4dedb, type: 3}
+    - {fileID: 1225627706295350985, guid: 21bff95471b6dca478bb5bd28eb4dedb, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4457531746506581629, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
