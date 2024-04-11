@@ -62,11 +62,11 @@ public class RequirmentCheck : MonoBehaviour
         creationDate = day + "/" + month+ "/" + year;
     }
 
-    private void Awake()
+   /* private void Awake()
     {
         gameTime = UnityEngine.Random.Range(0, 100);
         //Debug.Log("DSHKFSHDJFJGSDJFHDSGJJHDSFJSDF ");
-    }
+    }*/
 
     private void Start()
     {

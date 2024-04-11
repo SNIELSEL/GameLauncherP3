@@ -43,6 +43,9 @@ public class DescriptionAutoFill : MonoBehaviour
 
 
     //This void gets info out of the Selected File.
+
+    //Functie GetAllFolderData in DescriptionAutoFill moet een list accepteren en op basis van die list de games instantiaten. Die list is de gefilterde list daarmee kan hij de goede games laten zien en met de goede tijd op alle dingen die gefilterd zijn
+    //Elke keer als het filter dan aangepast wordt moet deze functie aangesproken worden en dan moet hij weer de goede games laten zien 
     public void GetAllFolderData()
     {
         //Cicles trough all of the sub folders of the selected library file.

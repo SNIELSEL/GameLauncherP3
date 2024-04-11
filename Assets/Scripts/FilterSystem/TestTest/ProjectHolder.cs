@@ -17,7 +17,7 @@ public class ProjectHolder : MonoBehaviour
 
     //Niels MostPlayed
     //public List<string> gameNames;
-    public List<float> gameTimes;
+   // public List<float> gameTimes;
 
 
     public List<GameObject> filterButtons = new List<GameObject>();
@@ -29,6 +29,8 @@ public class ProjectHolder : MonoBehaviour
     //Danique's kut code hoi Frans :D
     public ToggleGroup toggleGroup1, toggleGroup2, toggleGroup3, toggleGroup4, toggleGroup5;
     public Toggle sliderToggle;
+
+    [SerializeField] private Transform reOrder, content;
 
     //Void wordt aangesproken in FilePath van Dylano
     public void Init()
@@ -212,25 +214,18 @@ public class ProjectHolder : MonoBehaviour
     {
         List<Product> mostPlayedOrdered = new List<Product>();
         for (int i = 0; i < products.Count; i++) {
-            products[i].filter.gameTime = UnityEngine.Random.Range(0, 100);
             mostPlayedOrdered.Add(products[i]);
-            
         }
-        var sortedMostPlayedOrdered = mostPlayedOrdered.OrderBy(x => x.filter.gameTime).ToList();
+        var sortedMostPlayedOrdered = mostPlayedOrdered.OrderBy(x => -x.filter.gameTime).ToList(); // gefilterde list WHOOOOOOOOOO
 
-
-        for (int i = 0; i < products.Count; i++) //gameNames.Count; i++)
+        for (int i = 0; i <products.Count; i++)
         {
-            string name = products[i].gameObject.GetComponent<RequirmentCheck>().gameName;
-            gameTimes.Add(PlayerPrefs.GetInt("PlayTimeMinutes" + name) + (PlayerPrefs.GetInt("PlayTimeHours" + name) * 60));
-            //gameTimes.Add(PlayerPrefs.GetInt("PlayTimeMinutes" + gameNames[i]) + (PlayerPrefs.GetInt("PlayTimeHours" + gameNames[i]) * 60));
+            sortedMostPlayedOrdered[i].transform.SetParent(reOrder);
+            sortedMostPlayedOrdered[i].transform.SetParent(content);
         }
+       
     }
-
-    public void SortMostPlayed()
-    {
-       //nog een beetje leeg :D
-    }
+    
 }
 
 [System.Serializable]
@@ -242,5 +237,4 @@ public class SetFilter
     public string multiPlayToFilterTo;
     public string perspectiveToFilterTo;
     public string genreToFilterTo;
-
 }
