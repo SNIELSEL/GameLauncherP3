@@ -396,4 +396,16 @@ public class Login : MonoBehaviour
         return date;
     }
     #endregion
+
+    public void OnReturnSetSelectedGameObject()
+    {
+        if (isAdmin)
+        {
+            eventSystem.SetSelectedGameObject(nextSelectedButtonAcount);
+        }
+        else
+        {
+            eventSystem.SetSelectedGameObject(nextSelectedButtonSuperAcount);
+        }
+    }
 }
