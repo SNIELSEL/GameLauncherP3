@@ -62,7 +62,8 @@ public class Login : MonoBehaviour
     [SerializeField] private TMP_Text changePasswordTextMessage;
 
     private int currentAdminIndex;
-    [SerializeField] private TMP_Text acount; //used for displaying username in top left
+    [SerializeField] private TMP_Text acountSuper; //used for displaying username in top left
+    [SerializeField] private TMP_Text acountAdmin;
     [SerializeField] private TMP_Text[] log;
     private int logint;
 
@@ -103,7 +104,7 @@ public class Login : MonoBehaviour
                     wrongTries = 0;
                     eventSystem.SetSelectedGameObject(nextSelectedButtonAcount);
                     currentAdminIndex = i;
-                    acount.text = PlayerPrefs.GetString("Username" + i);
+                    acountAdmin.text = PlayerPrefs.GetString("Username" + i);
                 }
             }
         }
@@ -117,7 +118,7 @@ public class Login : MonoBehaviour
             recoveryKeyText.text = "";
             wrongTries = 0;
             eventSystem.SetSelectedGameObject(nextSelectedButtonSuperAcount);
-            acount.text = PlayerPrefs.GetString("Username");
+            acountSuper.text = PlayerPrefs.GetString("Username");
         }
         //Login Failed
         else if (!isAdmin)
@@ -148,6 +149,7 @@ public class Login : MonoBehaviour
         isSuperAdmin = false;
         loginScreen.SetActive(true);
         acountScreen.SetActive(false);
+        superAcountScreen.SetActive(false);
     }
 
     public string GenerateRandomString(int length)
@@ -174,13 +176,10 @@ public class Login : MonoBehaviour
         }
         for (int i = 0; i < PlayerPrefs.GetInt("AdminIndex"); i++)
         {
-            if (PlayerPrefs.HasKey("AdminIndex" + i))
+            if (newUsername.text == PlayerPrefs.GetString("Username" + i.ToString()))
             {
-                if (newUsername.text == PlayerPrefs.GetString("Username" + i))
-                {
-                    usernameAvailable = false;
-                    break;
-                }
+                usernameAvailable = false;
+                break;
             }
         }
 
@@ -209,7 +208,7 @@ public class Login : MonoBehaviour
         else
         {
             changeUsernameTextMessage.color = Color.red;
-            changeUsernameTextMessage.text = "Both fields have to be the exact same and can't be empty";
+            changeUsernameTextMessage.text = "Both fields have to be the exact same and can't be empty \n\n Username might allready be in use ";
         }
         newUsername.text = "";
         confirmNewUsername.text = "";
