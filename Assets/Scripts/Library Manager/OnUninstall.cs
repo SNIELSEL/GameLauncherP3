@@ -8,6 +8,7 @@ public class OnUninstall : MonoBehaviour
 {
     [SerializeField] private string selectedFile;
     [SerializeField] private GameObject folderPanel;
+    [SerializeField] private Login acount;
 
     //Code from the asset from the asset store.
     public void ChooseDeletionFolder()
@@ -33,6 +34,8 @@ public class OnUninstall : MonoBehaviour
 
     void OnFilesSelected(string[] filePaths)
     {
+        acount.SetLog("Deleted a folder");
+
         // Print paths of the selected files
         for (int i = 0; i < filePaths.Length; i++)
         {

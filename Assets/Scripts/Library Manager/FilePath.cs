@@ -11,6 +11,7 @@ public class FilePath : MonoBehaviour
     [Header ("File Select")]
     [SerializeField] private string fileName;
     [SerializeField] private string[] subFolders;
+    [SerializeField] private Login acount;
 
 
     [Header ("Script Reverence")]
@@ -42,6 +43,7 @@ public class FilePath : MonoBehaviour
     
     void OnFilesSelected(string[] filePaths)
     {
+        acount.SetLog("Changed the folder location");
         // Print paths of the selected files
         for (int i = 0; i < filePaths.Length; i++)
         {
