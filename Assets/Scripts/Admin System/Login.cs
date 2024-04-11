@@ -63,12 +63,9 @@ public class Login : MonoBehaviour
 
     private int currentAdminIndex;
     [SerializeField] private TMP_Text acount; //used for displaying username in top left
-    [Header("Logs from top to bottom")]
-    [SerializeField] private TMP_Text log5;
-    [SerializeField] private TMP_Text log4;
-    [SerializeField] private TMP_Text log3;
-    [SerializeField] private TMP_Text log2;
-    [SerializeField] private TMP_Text log1;
+    [SerializeField] private TMP_Text[] log;
+    private int logint;
+
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -306,18 +303,35 @@ public class Login : MonoBehaviour
         }
     }
     #region log system
-    public void LoadLog()
+    public void LoadLog(int whatBatchToLoad) // 0 is newest 1 is next 2 is previous
     {
-        int logIndex = PlayerPrefs.GetInt("LogIndex");
-        for (int i = logIndex; i > 0; i--)
+        int logIndex = PlayerPrefs.GetInt("LogIndex") -1;
+        int logNodeNumber = 0;
+        for (int i = logIndex + whatBatchToLoad; i >= 0; i--)
         {
-            if (i >= logIndex - 4) // only execute for first 5 loops
+            log[logNodeNumber].text = PlayerPrefs.GetString("Log" + i.ToString());
+            logNodeNumber += 1;
+            if (logNodeNumber == 5)
             {
-
+                break;
             }
         }
     }
 
+    public void LoadNextLogBatch()
+    {
+        if (logint <= -5)
+        {
+            logint += 5;
+        }
+        LoadLog(logint);
+    }
+
+    public void LoadPreviousLogBatch()
+    {
+        logint -= 5;
+        LoadLog(logint);
+    }
     public string SetLog(string action)
     {
         if (!PlayerPrefs.HasKey("LogIndex"))
@@ -336,10 +350,10 @@ public class Login : MonoBehaviour
         }
         PlayerPrefs.SetInt("LogIndex", PlayerPrefs.GetInt("LogIndex") +1 );
         string date = GetCurrentTime();
-        string log = $"{currentUser} - {action} - {date} - {logIndex}";
+        string log = $"{currentUser} | {action} | {date} | {logIndex}";
         print(log);
 
-        PlayerPrefs.SetString($"Log{logIndex}", log);
+        PlayerPrefs.SetString("Log" + logIndex.ToString(), log);
 
         return log;
 
