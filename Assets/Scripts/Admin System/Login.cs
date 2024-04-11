@@ -296,6 +296,7 @@ public class Login : MonoBehaviour
                 PlayerPrefs.DeleteKey("Password" + i);
                 deleteAcountMessage.color = Color.green;
                 deleteAcountMessage.text = "Succesfully deleted the acount";
+                SetLog("Deleted admin acount with username: " + deleteUsername.text);
                 break;
             }
             if (i == PlayerPrefs.GetInt("AdminIndex"))
