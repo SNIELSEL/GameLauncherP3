@@ -27390,6 +27390,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704499900}
   m_CullTransparentMesh: 1
+--- !u!1 &1705396881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2476611922035471117, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6218319230702415930}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1709087289
 GameObject:
   m_ObjectHideFlags: 0
@@ -37484,6 +37490,11 @@ PrefabInstance:
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 540150330}
+    - target: {fileID: 7605543145047600598, guid: 21bff95471b6dca478bb5bd28eb4dedb,
+        type: 3}
+      propertyPath: nextSelectedButtonSuperAcount
+      value: 
+      objectReference: {fileID: 1705396881}
     - target: {fileID: 7810869413650191441, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[3].m_Target
