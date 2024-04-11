@@ -1104,7 +1104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114395de30fa3184aa9264b7b29d3ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deleteGameObject: {fileID: 0}
+  deleteGameObject: {fileID: 168467874}
 --- !u!114 &1018885352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4519,7 +4519,7 @@ PrefabInstance:
     - target: {fileID: 858855543734124124, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000894679
+      value: 0.00006656158
       objectReference: {fileID: 0}
     - target: {fileID: 886255157619926746, guid: 21bff95471b6dca478bb5bd28eb4dedb,
         type: 3}
