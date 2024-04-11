@@ -67,6 +67,10 @@ public class Login : MonoBehaviour
     [SerializeField] private TMP_Text[] log;
     private int logint;
 
+    [Header("AudioSources")]
+    [SerializeField] private AudioSource errorSFX;
+    [SerializeField] private AudioSource succesSFX;
+
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -94,7 +98,7 @@ public class Login : MonoBehaviour
         {
             for (int i = 0; i < PlayerPrefs.GetInt("AdminIndex"); i++)
             {
-                if (username.text == PlayerPrefs.GetString("Username" + i) && password.text == PlayerPrefs.GetString("Password" + i))
+                if (username.text == PlayerPrefs.GetString("Username" + i) && password.text == PlayerPrefs.GetString("Password" + i) && username.text != "")
                 {
                     print("Login succeeded");
                     isAdmin = true;
@@ -105,6 +109,7 @@ public class Login : MonoBehaviour
                     eventSystem.SetSelectedGameObject(nextSelectedButtonAcount);
                     currentAdminIndex = i;
                     acountAdmin.text = PlayerPrefs.GetString("Username" + i);
+                    succesSFX.Play();
                 }
             }
         }
@@ -119,6 +124,7 @@ public class Login : MonoBehaviour
             wrongTries = 0;
             eventSystem.SetSelectedGameObject(nextSelectedButtonSuperAcount);
             acountSuper.text = PlayerPrefs.GetString("Username");
+            succesSFX.Play();
         }
         //Login Failed
         else if (!isAdmin)
@@ -133,6 +139,7 @@ public class Login : MonoBehaviour
             {
                 errorText.text = "Wrong username or password";
             }
+            errorSFX.Play();
         }
         if (wrongTries == 0)
         {
@@ -270,6 +277,7 @@ public class Login : MonoBehaviour
             }
             if (usernameAvailable)
             {
+                succesSFX.Play();
                 PlayerPrefs.SetString("Username" + PlayerPrefs.GetInt("AdminIndex").ToString(), newAcountUsername.text);
                 PlayerPrefs.SetString("Password" + PlayerPrefs.GetInt("AdminIndex").ToString(), newAcountPassword.text);
                 PlayerPrefs.SetInt("AdminIndex", PlayerPrefs.GetInt("AdminIndex") + 1);
@@ -281,6 +289,7 @@ public class Login : MonoBehaviour
             {
                 createAcountMessage.color = Color.red;
                 createAcountMessage.text = "failed \n name might allready be in use";
+                errorSFX.Play();
                 // Username isn't available
             }
         }
@@ -297,12 +306,14 @@ public class Login : MonoBehaviour
                 deleteAcountMessage.color = Color.green;
                 deleteAcountMessage.text = "Succesfully deleted the acount";
                 SetLog("Deleted admin acount with username: " + deleteUsername.text);
+                succesSFX.Play();
                 break;
             }
             if (i == PlayerPrefs.GetInt("AdminIndex"))
             {
                 deleteAcountMessage.color = Color.red;
                 deleteAcountMessage.text = "Couldn't find an acount with that name";
+                errorSFX.Play();
             }
         }
     }
