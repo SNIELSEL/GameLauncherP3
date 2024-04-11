@@ -6,6 +6,7 @@ using UnityEngine;
 public class WindowMinimizer : MonoBehaviour
 {
     public string processName;
+    public string gameProcces;
 
     [DllImport("user32.dll")]
     private static extern bool ShowWindow(IntPtr hwnd, int nCmdShow);
@@ -20,7 +21,11 @@ public class WindowMinimizer : MonoBehaviour
     {
         ShowWindow(GetActiveWindow(), 2);
 
-        SetForegroundWindow(GetActiveWindow());
+        Process[] processes = Process.GetProcessesByName(gameProcces);
+
+        IntPtr gameWindowHandle = processes[0].MainWindowHandle;
+
+        SetForegroundWindow(gameWindowHandle);
     }
 
     public void MaximizeLauncher()

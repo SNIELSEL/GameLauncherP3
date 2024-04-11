@@ -34,6 +34,11 @@ public class ProcessChecker : MonoBehaviour
 
     private void Update()
     {
+        if(window.gameProcces != currentRunningProcess && isProccesRunning)
+        {
+            window.gameProcces = currentRunningProcess;
+        }
+
         if (!isProccesRunning && gameObject.GetComponent<InputEmulationScript>().enabled == true)
         {
             gameObject.GetComponent<InputEmulationScript>().enabled = false;
