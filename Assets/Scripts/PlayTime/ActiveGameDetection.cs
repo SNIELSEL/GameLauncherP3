@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
 using System.ComponentModel;
+using System;
 
 public class ActiveGameDetection : MonoBehaviour
 {
@@ -25,8 +26,12 @@ public class ActiveGameDetection : MonoBehaviour
     [SerializeField] int currentGamePlaytimeMinutes;
     [SerializeField] int currentGamePlaytimeHours;
 
+    private int gameTime;
+
     [SerializeField] float timeTillSavingPlaytime;
     [SerializeField] string playtime;
+
+    [SerializeField] GameObject gameButtonparent;
 
     private void Start()
     {
@@ -80,6 +85,16 @@ public class ActiveGameDetection : MonoBehaviour
 
             PlayerPrefs.SetInt("PlayTimeMinutes" + runningProcessName, currentGamePlaytimeMinutes);
             PlayerPrefs.SetInt("PlayTimeHours" + runningProcessName, currentGamePlaytimeHours);
+
+            gameTime = (PlayerPrefs.GetInt("PlayTimeMinutes" + runningProcessName) + (PlayerPrefs.GetInt("PlayTimeHours" + runningProcessName) * 60)); ;
+
+            for (int i = 0; i < gameButtonparent.transform.childCount; i++)
+            {
+                if (gameButtonparent.transform.GetChild(i).GetComponent<RequirmentCheck>().gameName == runningProcessName)
+                {
+                    gameButtonparent.transform.GetChild(i).GetComponent<Product>().filter.SetGameTime(gameTime);
+                }
+            }
         }
 
         yield return new WaitForSeconds(checkForProccesInterval);
