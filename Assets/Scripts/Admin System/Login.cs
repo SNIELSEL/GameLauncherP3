@@ -303,14 +303,25 @@ public class Login : MonoBehaviour
         }
     }
     #region log system
-    public void LoadLog(int whatBatchToLoad) // 0 is newest 1 is next 2 is previous
+    public void LoadLog(int whatBatchToLoad) 
     {
-        int logIndex = PlayerPrefs.GetInt("LogIndex") -1;
-        int logNodeNumber = 0;
-        for (int i = logIndex + whatBatchToLoad; i >= 0; i--)
+        int logIndex = 0;
+        if (PlayerPrefs.HasKey("LogIndex"))
         {
-            log[logNodeNumber].text = PlayerPrefs.GetString("Log" + i.ToString());
-            logNodeNumber += 1;
+            logIndex = PlayerPrefs.GetInt("LogIndex") - 1;
+        }
+        int logNodeNumber = 0;
+        for (int i = logIndex + whatBatchToLoad; i >= -5; i--)
+        {
+            if (PlayerPrefs.HasKey("Log" + i.ToString()))
+            {
+                log[logNodeNumber].text = PlayerPrefs.GetString("Log" + i.ToString());
+            }
+            else
+            {
+                log[logNodeNumber].text = "Empty Log";
+            }
+                logNodeNumber += 1;
             if (logNodeNumber == 5)
             {
                 break;

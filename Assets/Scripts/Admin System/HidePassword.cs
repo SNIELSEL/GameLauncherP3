@@ -14,18 +14,19 @@ public class HidePassword : MonoBehaviour
     {
         password.color = invisable;
         hiddenPassword.color = normalcolor;
+        gameObject.GetComponent<Toggle>().isOn = false;
     }
     public void OnToggle()
     {
         if (!gameObject.GetComponent<Toggle>().isOn)
         {
-            password.color = normalcolor;
-            hiddenPassword.color = invisable;
+            password.color = invisable;
+            hiddenPassword.color = normalcolor;
         }
         else
         {
-            password.color = invisable;
-            hiddenPassword.color = normalcolor;
+            password.color = normalcolor;
+            hiddenPassword.color = invisable;
         }
     }
 }
