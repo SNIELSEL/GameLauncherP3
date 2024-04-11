@@ -19,6 +19,8 @@ public class WindowMinimizer : MonoBehaviour
     public void MinimizeLauncher()
     {
         ShowWindow(GetActiveWindow(), 2);
+
+        SetForegroundWindow(GetActiveWindow());
     }
 
     public void MaximizeLauncher()
