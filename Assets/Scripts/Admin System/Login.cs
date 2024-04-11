@@ -212,6 +212,8 @@ public class Login : MonoBehaviour
         }
         newUsername.text = "";
         confirmNewUsername.text = "";
+        newUsername.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
+        confirmNewUsername.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
     }
 
     public void ChangePassword()
@@ -237,6 +239,8 @@ public class Login : MonoBehaviour
         }
         newPassword.text = "";
         confirmNewPassword.text = "";
+        newPassword.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
+        confirmNewPassword.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
     }
 
     #endregion
