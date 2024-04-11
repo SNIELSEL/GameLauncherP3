@@ -123,6 +123,11 @@ public class RequirmentCheck : MonoBehaviour
             gameInfoName.GetComponent<TextMeshProUGUI>().text = gameName;
 
             textPanel = bannerImage.transform.GetChild(3).gameObject;
+            penal1 = textPanel.transform.GetChild(0).gameObject;
+            GameObject totalGameTime = penal1.transform.GetChild(1).gameObject;
+            totalGameTime.GetComponent<TextMeshProUGUI>().text = gameTime.ToString();
+
+            textPanel = bannerImage.transform.GetChild(3).gameObject;
             GameObject penal2 = textPanel.transform.GetChild(1).gameObject;
             GameObject creatorInfo = penal2.transform.GetChild(0).gameObject;
             creatorInfo.GetComponent<TextMeshProUGUI>().text = creators;
