@@ -50,9 +50,10 @@ public class RequirmentCheck : MonoBehaviour
     [Header ("Script References")]
     public DescriptionAutoFill descriptionAuto;
     public GameObject library;
+    public GameObject gametimeobject;
 
     //Doutzen Filter
-   // public ProjectHolder projectHolder;
+    // public ProjectHolder projectHolder;
     public Product product;
 
 
@@ -84,7 +85,14 @@ public class RequirmentCheck : MonoBehaviour
 
     private void CheckVeriables()
     {
-        if(year >= 2020 && gameLogo.texture != null && gameBanner.texture != null && gameName != "" && gameDescrioption != "" && creationDate != "" && creators != "" && tag1 != "" && tag2 != "" && tag3 != "" && docentenScore != "" && executableFilePath != "")
+        //Niels
+        string processName = executableFilePath;
+        processName = processName.Replace(".exe", "");
+        processName = processName.Substring(processName.IndexOf('/') + 1);
+
+        gameTime = (PlayerPrefs.GetInt("PlayTimeMinutes" + processName) + (PlayerPrefs.GetInt("PlayTimeHours" + processName) * 60));
+
+        if (year >= 2020 && gameLogo.texture != null && gameBanner.texture != null && gameName != "" && gameDescrioption != "" && creationDate != "" && creators != "" && tag1 != "" && tag2 != "" && tag3 != "" && docentenScore != "" && executableFilePath != "")
         {
             //print(1234567890);
 
@@ -126,6 +134,7 @@ public class RequirmentCheck : MonoBehaviour
             penal1 = textPanel.transform.GetChild(0).gameObject;
             GameObject totalGameTime = penal1.transform.GetChild(1).gameObject;
             totalGameTime.GetComponent<TextMeshProUGUI>().text = gameTime.ToString();
+            gametimeobject = totalGameTime;
 
             textPanel = bannerImage.transform.GetChild(3).gameObject;
             GameObject penal2 = textPanel.transform.GetChild(1).gameObject;
@@ -171,13 +180,6 @@ public class RequirmentCheck : MonoBehaviour
             TextMeshProUGUI filePathText = infoTab.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
             filePathText.text = executableFilePath;
 
-
-            //Niels
-            string processName = executableFilePath;
-            processName = processName.Replace(".exe", "");
-            processName = processName.Substring(processName.IndexOf('/') + 1);
-
-            gameTime = (PlayerPrefs.GetInt("PlayTimeMinutes" + processName) + (PlayerPrefs.GetInt("PlayTimeHours" + processName) * 60)); ;
             product.filter.SetFilter(convertedDocentenScore, year, leerJaar, tag1, tag2, tag3, gameTime);
 
             //filter

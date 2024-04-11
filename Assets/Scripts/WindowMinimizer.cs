@@ -26,6 +26,8 @@ public class WindowMinimizer : MonoBehaviour
         IntPtr gameWindowHandle = processes[0].MainWindowHandle;
 
         SetForegroundWindow(gameWindowHandle);
+
+        GameObject.Find("Music").GetComponent<AudioSource>().enabled = false;
     }
 
     public void MaximizeLauncher()
@@ -38,5 +40,6 @@ public class WindowMinimizer : MonoBehaviour
 
         SetForegroundWindow(mainWindowHandle);
 
+        GameObject.Find("Music").GetComponent<AudioSource>().enabled = true;
     }
 }

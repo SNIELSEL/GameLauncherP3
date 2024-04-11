@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Diagnostics;
 using System.ComponentModel;
 using System;
+using TMPro;
 
 public class ActiveGameDetection : MonoBehaviour
 {
@@ -93,6 +94,8 @@ public class ActiveGameDetection : MonoBehaviour
                 if (gameButtonparent.transform.GetChild(i).GetComponent<RequirmentCheck>().gameName == runningProcessName)
                 {
                     gameButtonparent.transform.GetChild(i).GetComponent<Product>().filter.SetGameTime(gameTime);
+
+                    gameButtonparent.transform.GetChild(i).GetComponent<RequirmentCheck>().gametimeobject.GetComponent<TextMeshProUGUI>().text = gameTime.ToString();
                 }
             }
         }
