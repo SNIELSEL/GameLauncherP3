@@ -7,6 +7,7 @@ TagManager:
   - Library
   - Path
   - NameSender
+  - GameButton
   layers:
   - Default
   - TransparentFX

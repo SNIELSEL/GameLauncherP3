@@ -19,6 +19,8 @@ public class FilePath : MonoBehaviour
 
     public ProjectHolder projectHolder;
 
+    public DeleteGameObjectAfterFileChange delete;
+
     // Code from the folder asset From Asset Store.
     public void ChooseGamesFolder()
     {
@@ -43,6 +45,8 @@ public class FilePath : MonoBehaviour
     
     void OnFilesSelected(string[] filePaths)
     {
+        //delete.OnFIleChange();
+
         acount.SetLog("Changed the folder location");
         // Print paths of the selected files
         for (int i = 0; i < filePaths.Length; i++)

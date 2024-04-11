@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class DeleteGameObjectAfterFileChange : MonoBehaviour
 {
-    [SerializeField] public GameObject deleteGameObject;
-
-    private void FixedUpdate()
-    {
-        //deleteGameObject = GameObject.Find("Canvas").GetComponentInChildren<DeleteGameObject>();
-    }
+    public GameObject parent;
     public void OnFIleChange()
     {
-        //deleteGameObject.DestroyObject();
-
-        Destroy(deleteGameObject.gameObject);
+        for (int i = 0; i < parent.transform.childCount; i++)
+        {
+            Destroy(parent.transform.GetChild(i).gameObject);
+        }
     }
 }

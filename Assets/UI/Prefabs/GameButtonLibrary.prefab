@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 3546549045031821800}
   m_Layer: 5
   m_Name: GameButtonLibrary
-  m_TagString: Untagged
+  m_TagString: GameButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,6 +200,7 @@ MonoBehaviour:
   month: 0
   day: 0
   convertedDocentenScore: 0
+  gameTime: 0
   descriptionAuto: {fileID: 0}
   library: {fileID: 0}
   product: {fileID: 3546549045031821800}
@@ -222,6 +223,7 @@ MonoBehaviour:
     multiTag: 
     perspectiveTag: 
     genreTag: 
+    gameTime: 0
     tags: []
 --- !u!1 &5945009798078119601
 GameObject:
