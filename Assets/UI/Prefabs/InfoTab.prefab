@@ -998,7 +998,7 @@ GameObject:
   - component: {fileID: 1446609146222972256}
   - component: {fileID: 1051308187537859727}
   m_Layer: 5
-  m_Name: Titel (1)
+  m_Name: Gametime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: (titel)
+  m_text: (gametime)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 330e150d190fd5d45aca242bb8838c9f, type: 2}
   m_sharedMaterial: {fileID: -2031377201462301228, guid: 330e150d190fd5d45aca242bb8838c9f,
