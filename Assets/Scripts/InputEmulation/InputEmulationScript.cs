@@ -288,6 +288,12 @@ public class InputEmulationScript : MonoBehaviour
 
         filePath = filePath + fileName;
 
+        if(filePath.Contains(fileName + fileName) == true)
+        {
+            filePath = filePath.Replace(fileName, "");
+            filePath = filePath + fileName;
+        }
+
         string[] lines = File.ReadAllLines(filePath);
 
         sim = new InputSimulator();
